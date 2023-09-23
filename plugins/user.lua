@@ -25,4 +25,12 @@ return {
       { "<leader>T", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
     },
   },
+  {
+    "folke/tokyonight.nvim",
+    config = function()
+      require("tokyonight").setup {
+        transparent = true,
+      }
+    end,
+  },
 }
