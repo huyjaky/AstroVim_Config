@@ -29,8 +29,8 @@ return {
     },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
+    -- TODO: this need more focus to get new keymap
     ["<leader>b"] = { name = "Buffers" },
-    
   },
   t = {
     -- setting a mapping to false will disable it
