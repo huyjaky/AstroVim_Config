@@ -1,5 +1,4 @@
 -- @dependencies global var for lib scroll animate
--- 
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
 
@@ -35,6 +34,7 @@ return {
       { "<leader>T", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
     },
   },
+
   {
     "folke/tokyonight.nvim",
     config = function()
@@ -110,8 +110,9 @@ return {
     opts = {},
     event = "User AstroFile",
   },
-  
-  { 
+
+  -- @desc lib for error in file
+  {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     keys = {
@@ -125,6 +126,27 @@ return {
       action_keys = {
         close = { "q", "<esc>" },
         cancel = "<c-e>",
+      },
+    },
+  },
+
+  -- @desc auto show hidden file
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = false,
+          hide_gitignored = true,
+          hide_by_name = {
+            -- '.git',
+            -- '.DS_Store',
+            -- 'thumbs.db',
+          },
+          never_show = {},
+        },
       },
     },
   },

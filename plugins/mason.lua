@@ -33,4 +33,37 @@ return {
       })
     end,
   },
+  
+  -- NOTE: python lsp server is enviroments for format code plugins
+  {
+    "python-lsp/python-lsp-server",
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
+        "python",
+      })
+    end,
+  },
+  
+  -- NOTE: notify error syntax in code 
+  {
+    "microsoft/pyright",
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
+        "python",
+      })
+    end,
+  },
+  
+  -- NOTE: format code plugin
+  {
+    "psf/black",
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
+        "python",
+      })
+    end,
+  },
 }
