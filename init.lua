@@ -53,7 +53,7 @@ return {
     },
     setup_handlers = {
       -- add custom handler
-      -- NOTE: remove warning of pycodestyle like E501 e.g
+      -- NOTE: Ignore warning of pycodestyle like E501 e.g
       pylsp = function(_, opts)
         require("lspconfig").pylsp.setup {
           settings = {

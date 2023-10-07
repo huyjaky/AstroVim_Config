@@ -29,11 +29,18 @@ return {
     },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
+    --
     -- TODO: this need more focus to get new keymap
-    ["<leader>b"] = { name = "Buffers" },
-  },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
+    ["<leader>o"] = {
+      function()
+        if vim.bo.filetype == "neo-tree" then
+          vim.cmd.wincmd "p"
+        else
+          vim.cmd "Neotree focus last"
+        end
+      end,
+      desc = "Toggle Explorer Tab And Switch Tabs",
+    },
+    ["<leader>e"] = { "<cmd>Neotree toggle last<cr>", desc = "Toggle Explorer Last" },
   },
 }
