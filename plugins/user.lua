@@ -1,13 +1,31 @@
--- @dependencies global var for lib scroll animate
+-- @NOTE: global var for lib scroll animate
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
 
--- @dependencies global var for lib trouble
+-- @NOTE: global var for lib trouble
 local prefix = "<leader>x"
 local maps = { n = {} }
 local icon = vim.g.icons_enabled and "󱍼 " or ""
 maps.n[prefix] = { desc = icon .. "Trouble" }
 require("astronvim.utils").set_mappings(maps)
+
+-- @NOTr: config for blankline plugins
+local highlight = {
+  "RainbowRed",
+  "RainbowBlue",
+  "RainbowGreen",
+  "RainbowCyan",
+}
+
+local hooks = require "ibl.hooks"
+-- create the highlight groups in the highlight setup hook, so they are reset
+-- every time the colorscheme changes
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+end)
 
 return {
   -- You can also add new plugins here as well:
@@ -94,14 +112,25 @@ return {
   -- @desc lib for highlight tab for code
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     event = "User AstroFile",
     opts = {
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-      show_trailing_blankline_indent = false,
-      space_char_blankline = "   ",
-      show_current_context = true,
-      show_current_context_start = true,
+      indent = {
+        char = "|",
+        smart_indent_cap = true,
+      },
+      debounce = 100,
+      scope = {
+        -- @WARNING: test code
+        enabled = true,
+        show_start = true,
+        show_end = false,
+        injected_languages = false,
+        highlight = { "Function", "Label" },
+        priority = 500,
+      },
     },
+    -- config = function() require("ibl").setup { indent = { highlight = highlight } } end,
   },
 
   -- @desc Lib for highlight variables input through function
@@ -134,6 +163,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      enable_git_status = false,
       filesystem = {
         filtered_items = {
           visible = true,
@@ -150,13 +180,26 @@ return {
       },
     },
   },
-  
+
   {
-    "psf/black",
+    "rebelot/heirline.nvim",
+    opts = function(_, opts)
+      opts.tabline = nil
+      return opts
+    end,
+  },
+
+  {
+    "SirVer/ultisnips",
+    opts = function(_, opts) return opts end,
+  },
+
+  {
+    "mlaursen/vim-react-snippets",
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        "python",
+        "SirVer/ultisnips",
       })
     end,
   },
