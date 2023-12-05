@@ -9,6 +9,8 @@ local icon = vim.g.icons_enabled and "󱍼 " or ""
 maps.n[prefix] = { desc = icon .. "Trouble" }
 require("astronvim.utils").set_mappings(maps)
 
+
+
 -- @NOTr: config for blankline plugins
 local highlight = {
   "RainbowRed",
@@ -203,4 +205,6 @@ return {
       })
     end,
   },
+  
 }
+
