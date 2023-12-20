@@ -9,8 +9,6 @@ local icon = vim.g.icons_enabled and "󱍼 " or ""
 maps.n[prefix] = { desc = icon .. "Trouble" }
 require("astronvim.utils").set_mappings(maps)
 
-
-
 -- @NOTr: config for blankline plugins
 local highlight = {
   "RainbowRed",
@@ -118,7 +116,6 @@ return {
     event = "User AstroFile",
     opts = {
       indent = {
-        char = "|",
         smart_indent_cap = true,
       },
       debounce = 100,
@@ -196,15 +193,35 @@ return {
     opts = function(_, opts) return opts end,
   },
 
+  --@NOTE: Debugger python setup
   {
-    "mlaursen/vim-react-snippets",
-    opts = function(_, opts)
-      -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        "SirVer/ultisnips",
-      })
+    "rcarriga/nvim-dap-ui",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+      dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+      dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
     end,
   },
-  
+  {
+    "mfussenegger/nvim-dap",
+    enabled = true
+    -- config = function(_, opts) require("dap.utils").load_mappings "dap" end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function(_, opts)
+      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+      -- require("core.utils").load_mappings "dap_python"
+    end,
+  },
 }
-

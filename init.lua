@@ -1,14 +1,14 @@
-
+-- @NOTE: fix bug cannot copy text in neovim to clipboard windows11
 vim.g.clipboard = {
-  name = 'WslClipboard',
+  name = "WslClipboard",
   copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
+    ["+"] = "clip.exe",
+    ["*"] = "clip.exe",
   },
   paste = {
-    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
-  }
+    ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  },
 }
 
 return {
@@ -43,7 +43,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
+        enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -113,5 +113,3 @@ return {
     -- }
   end,
 }
-
-
