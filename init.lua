@@ -11,7 +11,11 @@ vim.g.clipboard = {
   },
 }
 
+vim.g.python3_host_prog = "/usr/bin/python3"
+vim.opt.swapfile = false
+
 return {
+
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
