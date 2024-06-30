@@ -19,7 +19,7 @@ local ignore_buftypes = {
   "quickfix",
   "terminal",
 }
-local char = "|"
+local char = "||"
 
 return {
   {
