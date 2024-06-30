@@ -23,6 +23,7 @@ return {
           -- quick save
           -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
           ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle term (open)" },
+          ["<Leader>x"] = { "<cmd>qa<cr>", desc = "exit all" },
         },
         t = {
           -- setting a mapping to false will disable it
