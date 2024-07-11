@@ -1,5 +1,5 @@
 return {
   "m4xshen/autoclose.nvim",
-  event = "TextChanged",
+  event = "VimEnter",
   opts = { enabled = true },
 }
