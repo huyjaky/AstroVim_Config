@@ -10,4 +10,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   -- { import = "astrocommunity.indent.indent-tools-nvim" },
   -- import/override with your plugins folder
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.typescript" },
 }
