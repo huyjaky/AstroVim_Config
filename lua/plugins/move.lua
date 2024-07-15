@@ -1,22 +1,40 @@
 return {
-  "fedepujol/move.nvim",
+  "echasnovski/mini.move",
+  keys = function(_, keys)
+    local plugin = require("lazy.core.config").spec.plugins["mini.move"]
+    local opts = require("lazy.core.plugin").values(plugin, "opts", false) -- resolve mini.clue options
+    -- Populate the keys based on the user's options
+    local mappings = {
+      { opts.mappings.line_left, desc = "Move line left" },
+      { opts.mappings.line_right, desc = "Move line right" },
+      { opts.mappings.line_down, desc = "Move line down" },
+      { opts.mappings.line_up, desc = "Move line up" },
+      { opts.mappings.left, desc = "Move selection left", mode = "v" },
+      { opts.mappings.right, desc = "Move selection right", mode = "v" },
+      { opts.mappings.down, desc = "Move selection down", mode = "v" },
+      { opts.mappings.up, desc = "Move selection up", mode = "v" },
+    }
+    mappings = vim.tbl_filter(function(m) return m[1] and #m[1] > 0 end, mappings)
+    return vim.list_extend(mappings, keys)
+  end,
   opts = {
-    noremap = true,
-    silent = true,
+    mappings = {
+      left = "<A-h>",
+      right = "<A-l>",
+      down = "<A-j>",
+      up = "<A-k>",
+      line_left = "<A-h>",
+      line_right = "<A-l>",
+      line_down = "<A-j>",
+      line_up = "<A-k>",
+    },
   },
-  keys = {
-    -- Normal-mode commands
-    { "<A-j>", ":MoveLine(1)<CR>", mode = "n", desc = "Move line down" },
-    { "<A-k>", ":MoveLine(-1)<CR>", mode = "n", desc = "Move line up" },
-    { "<A-h>", ":MoveHChar(-1)<CR>", mode = "n", desc = "Move character left" },
-    { "<A-l>", ":MoveHChar(1)<CR>", mode = "n", desc = "Move character right" },
-    { "<leader>wf", ":MoveWord(1)<CR>", mode = "n", desc = "Move word forward" },
-    { "<leader>wb", ":MoveWord(-1)<CR>", mode = "n", desc = "Move word backward" },
-
-    -- Visual-mode commands
-    { "<A-j>", ":MoveBlock(1)<CR>", mode = "v", desc = "Move block down" },
-    { "<A-k>", ":MoveBlock(-1)<CR>", mode = "v", desc = "Move block up" },
-    { "<A-h>", ":MoveHBlock(-1)<CR>", mode = "v", desc = "Move block left" },
-    { "<A-l>", ":MoveHBlock(1)<CR>", mode = "v", desc = "Move block right" },
+  specs = {
+    {
+      "catppuccin",
+      optional = true,
+      ---@type CatppuccinOptions
+      opts = { integrations = { mini = true } },
+    },
   },
 }
