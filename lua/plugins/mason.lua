@@ -10,8 +10,27 @@ return {
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = {
       ensure_installed = {
-        "lua_ls",
-        -- add more arguments for adding more language servers
+        "codelldb", -- CodeLLDB
+        "debugpy", -- Debugpy for Python
+        "eslint-lsp",
+        "eslint", -- ESLint
+        "isort", -- Isort for Python
+        "js-debug-adapter", -- JS Debug Adapter
+        "json-lsp",
+        "jsonls", -- JSON Language Server
+        "lua-language-server",
+        "lua_ls", -- Lua Language Server
+        "prettierd", -- Prettier Daemon
+        "pyright", -- Pyright for Python
+        "ruff", -- Ruff for Python
+        "ruff_lsp", -- Ruff Language Server
+        "selene", -- Selene for Lua
+        "stylua", -- StyLua for Lua
+        "taplo", -- Taplo for TOML
+        "ts-standard", -- TypeScript Standard
+        "typescript-language-server",
+        "tsserver", -- TypeScript Language Server
+        "vtsls", -- VTSLS for TypeScript
       },
     },
   },

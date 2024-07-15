@@ -39,7 +39,6 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "pylsp",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -48,11 +47,9 @@ return {
       -- pylsp = {
       --   plugins = {
       --     autopep8 = { enabled = false },
-      --     YAPF = { enabled = false },
       --     black = { enabled = false },
-      --     pydocstyle = { enabled = false },
-      --     Rope = { enabled = false },
       --     pyflakes = { enabled = false },
+      --     yapf = { enabled = false },
       --   },
       -- },
     },

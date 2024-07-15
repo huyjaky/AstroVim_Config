@@ -2,6 +2,13 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {
+    sources = {
+      "filesystem",
+      -- "buffers",
+      -- "git_status",
+      -- "document_symbols",
+    },
+
     filesystem = {
       filtered_items = {
         visible = true,
@@ -16,5 +23,8 @@ return {
         never_show = {},
       },
     },
+    enable_git_status = false,
+    enable_diagnostics = false,
+    git_status_async = false,
   },
 }
