@@ -12,4 +12,6 @@ return {
   -- { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
+  -- { import = "astrocommunity.media.pets-nvim" },
 }
