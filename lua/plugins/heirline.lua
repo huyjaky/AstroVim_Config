@@ -1,3 +1,5 @@
+local condition = require "astroui.status.condition"
+
 local ViMode = {
   -- get vim current mode, this information will be required by the provider
   -- and the highlight functions, so we compute it only once per component
@@ -84,26 +86,32 @@ local ViMode = {
     callback = vim.schedule_wrap(function() vim.cmd "redrawstatus" end),
   },
 }
+
+local remove_bg = { surround = { separator = "left", color = "", update = { "ModeChanged" } } }
+local config_lsp = { surround = { color = "" } }
+
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
     local status = require "astroui.status"
 
     opts.statusline = { -- statusline
-      hl = { fg = "fg", bg = "bg" },
+      -- hl = { fg = "fg", bg = "bg" },
+      hl = { fg = "fg", bg = "None" },
       status.component.mode(ViMode),
       -- vi_mode_colors = ViMode,
-      status.component.git_branch(),
-      status.component.git_diff(),
-      status.component.file_info(),
-      status.component.diagnostics(),
-      status.component.fill(),
-      status.component.cmd_info(),
-      status.component.fill(),
-      status.component.lsp(),
+      status.component.git_branch(remove_bg),
+      status.component.git_diff(remove_bg),
+      status.component.file_info(remove_bg),
+      status.component.diagnostics(remove_bg),
+      status.component.fill(remove_bg),
+      status.component.cmd_info(remove_bg),
+      status.component.fill(remove_bg),
+      status.component.lsp(config_lsp),
+      status.component.fill { provider = "  " },
       status.component.virtual_env(),
-      status.component.treesitter(),
-      status.component.nav { ruler = false },
+      status.component.treesitter(remove_bg),
+      status.component.nav { surround = { separator = "right", color = "None" } },
     }
 
     opts.winbar = { -- winbar

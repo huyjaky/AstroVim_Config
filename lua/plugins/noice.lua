@@ -2,9 +2,46 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   dependencies = { "MunifTanjim/nui.nvim" },
+
+  config = function()
+    require("noice").setup {
+      -- Configuration here, or leave empty to use defaults
+      views = {
+        cmdline_popup = {
+          position = {
+            row = "50%",
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = "auto",
+          },
+        },
+        popupmenu = {
+          relative = "editor",
+          position = {
+            row = 8,
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = 10,
+          },
+          border = {
+            style = "rounded",
+            padding = { 0, 1 },
+          },
+          win_options = {
+            winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+          },
+        },
+      },
+    }
+  end,
   opts = function(_, opts)
     local utils = require "astrocore"
     return utils.extend_tbl(opts, {
+
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -19,6 +56,11 @@ return {
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = utils.is_available "inc-rename.nvim", -- enables an input dialog for inc-rename.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
+      },
+      messages = {
+        -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+        -- This is a current Neovim limitation.
+        enabled = false, -- enables the Noice messages UI
       },
     })
   end,
@@ -42,6 +84,7 @@ return {
         local noice_opts = require("astrocore").plugin_opts "noice.nvim"
         -- disable the necessary handlers in AstroLSP
         if not opts.lsp_handlers then opts.lsp_handlers = {} end
+
         if vim.tbl_get(noice_opts, "lsp", "hover", "enabled") ~= false then
           opts.lsp_handlers["textDocument/hover"] = false
         end
