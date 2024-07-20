@@ -3,6 +3,7 @@
 ---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
+  -- commit = "6e53eec",
   opts = {
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
@@ -21,7 +22,7 @@ return {
     -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
     highlight = {
-      enable = false,
+      enable = true,
 
       -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
       -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is

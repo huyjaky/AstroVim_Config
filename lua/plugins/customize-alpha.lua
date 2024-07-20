@@ -188,7 +188,7 @@ return {
   "goolord/alpha-nvim",
   opts = function(_, opts)
     -- customize the dashboard header
-    opts.section.header.val = random_banner(banners)
+    opts.section.header.val = banners[3]
     opts.section.buttons.val = {}
     return opts
   end,
