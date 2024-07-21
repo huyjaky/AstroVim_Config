@@ -110,6 +110,7 @@ return {
       status.component.lsp(config_lsp),
       status.component.fill { provider = "  " },
       status.component.virtual_env(),
+      status.component.fill { provider = "  " },
       status.component.treesitter(remove_bg),
       status.component.nav { surround = { separator = "right", color = "None" } },
     }

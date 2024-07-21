@@ -7,7 +7,7 @@ return {
         local dap = require "dap"
         dap.adapters.python = {
           type = "executable",
-          command = "/usr/bin/python3",
+          command = "/home/duckq/.conda/envs/pytorch/bin/python3.12",
           args = {
             "-m",
             "debugpy.adapter",
