@@ -1,9 +1,10 @@
 -- Customize Treesitter
+-- if true then return end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 ---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
-  -- commit = "6e53eec",
+  commit = "2883d0c03f4d0f80bbc1eacff61675cde7ed255b",
   opts = {
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
@@ -13,11 +14,11 @@ return {
 
     -- Automatically install missing parsers when entering buffer
     -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = true,
+    auto_install = false,
 
     -- List of parsers to ignore installing (or "all")
-    ignore_install = { "javascript", "typescript", "tsx" , "python"},
-    
+    ignore_install = { "javascript", "typescript", "tsx", "python" },
+
     ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
     -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
@@ -29,8 +30,8 @@ return {
       -- the name of the parser)
       -- list of language that will be disabled
       -- disable = { "c", "rust", "typescript", "tsx" },
-      disable = { "c", "rust"},
-      
+      disable = { "c", "rust" },
+
       -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
       -- disable = function(lang, buf)
       --   local max_filesize = 100 * 1024 -- 100 KB
@@ -42,7 +43,7 @@ return {
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
       -- Instead of true it can also be a list of languages
-      -- additional_vim_regex_highlighting = false,
+      additional_vim_regex_highlighting = true,
     },
   },
 }
