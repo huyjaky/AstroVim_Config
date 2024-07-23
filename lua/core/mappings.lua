@@ -25,6 +25,7 @@ return function()
   mappings.n["<C-z>"] = { "u", desc = "Undo" }
   -- mappings.n["<S-k>"] = { "u", desc = "Undo" }
   mappings.n["K"] = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details"}
+  
   mappings.i["<C-z>"] = { "<C-o>u", desc = "Undo" }
   mappings.i["<C-Del>"] = { "<C-o>dw", desc = "Delete a word backward" }
   mappings.i["<C-s>"] = { "<Cmd>w!<CR>", desc = "Save file" }
