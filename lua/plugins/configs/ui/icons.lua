@@ -14,7 +14,7 @@ return {
   LSPLoading9 = "⠇",
   LSPLoading10 = "⠏",
   -- Git
-  Github = "",
+  Github = "  ",
   GitAdd = "",
   GitBranch = "",
   GitChange = "",
@@ -43,7 +43,7 @@ return {
   DapLogPoint = "",
   DapStopped = "",
   -- Diagnostics
-  Diagnostic = "󰒡",
+  Diagnostic = " 󰒡 ",
   DiagnosticError = "",
   DiagnosticHint = "",
   DiagnosticInfo = "󰋼",

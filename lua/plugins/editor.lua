@@ -76,14 +76,15 @@ return {
             vertical_line = "┃",
             left_top = "┏",
             left_bottom = "┗",
-            right_arrow = "➤",
+            -- right_arrow = "➤",
           },
-          style = "#cba6f7",
-          delay = 100,
+          style = "#06D001",
+          delay = 50,
         },
         indent = {
           enable = true,
-          chars = { "┃" },
+          chars = { "|" },
+          style = "#5A639C"
         },
         blank = {
           enable = false,
