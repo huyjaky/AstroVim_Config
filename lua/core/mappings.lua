@@ -23,13 +23,14 @@ return function()
   ----------- Utility functions -------------
   -------------------------------------------
   mappings.n["<C-z>"] = { "u", desc = "Undo" }
+  -- mappings.n["<S-k>"] = { "u", desc = "Undo" }
+  mappings.n["K"] = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details"}
   mappings.i["<C-z>"] = { "<C-o>u", desc = "Undo" }
   mappings.i["<C-Del>"] = { "<C-o>dw", desc = "Delete a word backward" }
   mappings.i["<C-s>"] = { "<Cmd>w!<CR>", desc = "Save file" }
   mappings.i["<S-Tab>"] = { "<C-d>", desc = "Unindent line" }
   mappings.v["<Tab>"] = { ">gv", desc = "Indent line" }
   mappings.v["<S-Tab>"] = { "<gv", desc = "Unindent line" }
-
   -- Separate cut and delete motion
   for key, map in pairs {
     ["d"] = { '"_d', desc = "Delete" },
@@ -40,15 +41,15 @@ return function()
   end
 
   ------ Motions related to jumping or selecting ------
-  for key, map in pairs {
-    ["H"] = { "^", desc = "Jump to beginning of line" },
-    ["L"] = { "$", desc = "Jump to end of line" },
-    ["K"] = { "5k", desc = "Move up 5 lines" },
-    ["J"] = { "5j", desc = "Move down 5 lines" },
-  } do
-    mappings.n[key] = map
-    mappings.v[key] = map
-  end
+  -- for key, map in pairs {
+  --   ["H"] = { "^", desc = "Jump to beginning of line" },
+  --   ["L"] = { "$", desc = "Jump to end of line" },
+  --   ["K"] = { "5k", desc = "Move up 5 lines" },
+  --   ["J"] = { "5j", desc = "Move down 5 lines" },
+  -- } do
+  --   mappings.n[key] = map
+  --   mappings.v[key] = map
+  -- end
   mappings.n["<C-a>"] = { "ggVG", desc = "Select all lines" }
 
   return mappings

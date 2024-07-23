@@ -68,6 +68,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function(_, opts)
       require("hlchunk").setup(require("astrocore").extend_tbl(opts, {
+        ignore ={},
         chunk = {
           enable = true,
           notify = false,
