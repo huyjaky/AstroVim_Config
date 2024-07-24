@@ -26,7 +26,7 @@ return {
     "akinsho/toggleterm.nvim",
     opts = function(_, opts)
       -- Use powershell for toggleterm on windows
-      if vim.fn.has "win32" then opts.shell = "pwsh.exe" end
+      -- if vim.fn.has "win32" then opts.shell = "pwsh.exe" end
     end,
   },
   -- File tagging and navigation
@@ -68,7 +68,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function(_, opts)
       require("hlchunk").setup(require("astrocore").extend_tbl(opts, {
-        ignore ={},
+        ignore = {},
         chunk = {
           enable = true,
           notify = false,
@@ -85,7 +85,7 @@ return {
         indent = {
           enable = true,
           chars = { "|" },
-          style = "#5A639C"
+          style = "#5A639C",
         },
         blank = {
           enable = false,
