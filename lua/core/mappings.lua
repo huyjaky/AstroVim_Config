@@ -32,14 +32,15 @@ return function()
   mappings.i["<S-Tab>"] = { "<C-d>", desc = "Unindent line" }
   mappings.v["<Tab>"] = { ">gv", desc = "Indent line" }
   mappings.v["<S-Tab>"] = { "<gv", desc = "Unindent line" }
+  
   -- Separate cut and delete motion
-  for key, map in pairs {
-    ["d"] = { '"_d', desc = "Delete" },
-    ["X"] = { "d", desc = "Cut" },
-  } do
-    mappings.n[key] = map
-    mappings.v[key] = map
-  end
+  -- for key, map in pairs {
+  --   ["d"] = { '"_d', desc = "Delete" },
+  --   ["X"] = { "d", desc = "Cut" },
+  -- } do
+  --   mappings.n[key] = map
+  --   mappings.v[key] = map
+  -- end
 
   ------ Motions related to jumping or selecting ------
   -- for key, map in pairs {
