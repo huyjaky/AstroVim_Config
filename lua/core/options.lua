@@ -17,9 +17,9 @@ return {
     mousemoveevent = true, -- enable mousemove event
     laststatus = 3, -- only show one statusline
     swapfile = false, -- don't use swapfile
-    shiftwidth = 4, -- number of space inserted for indentation; when zero the 'tabstop' value will be used
+    shiftwidth = 2, -- number of space inserted for indentation; when zero the 'tabstop' value will be used
     tabstop = 2, -- set the number of space in a tab to 4
-    softtabstop = 4, -- can be differnt from tabstop
+    softtabstop = 2, -- can be differnt from tabstop
     showtabline = 2, -- always show tabline
     expandtab = true, -- use spaces instead of tab
     undofile = true, -- enable persistent undo

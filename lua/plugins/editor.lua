@@ -85,25 +85,25 @@ return {
         },
         indent = {
           enable = true,
-          use_treesitter = false,
+          use_treesitter = true,
           chars = {
             "│",
           },
-          style = {
-            "#FF0000",
-            "#FF7F00",
-            "#FFFF00",
-            -- "#00FF00",
-            "#00FFFF",
-            "#0000FF",
-            "#8B00FF",
-          },
         },
         blank = {
-          enable = false,
+          enable = true,
+          chars = {
+            " ",
+          },
+          style = {
+            { bg = "#434437" },
+            { bg = "#2f4440" },
+            { bg = "#433054" },
+            { bg = "#284251" },
+          },
         },
         line_num = {
-          enable = true,
+          enable = false,
         },
       }))
     end,
