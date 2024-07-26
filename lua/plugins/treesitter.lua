@@ -12,5 +12,15 @@ return {
       "python",
       -- "javascript",
     })
+    opts.highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+      custom_captures = {
+        -- Highlight local variables
+        ["variable.local"] = "Identifier",
+      },
+    }
+
+    vim.api.nvim_set_hl(0, "Identifier", { fg = "#55ffff" })
   end,
 }
