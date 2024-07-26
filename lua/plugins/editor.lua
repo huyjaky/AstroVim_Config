@@ -1,3 +1,4 @@
+local rainbow = require "plugins.ts-rainbow"
 -- Plugins that enhance editor experience
 return {
   {
@@ -73,19 +74,30 @@ return {
           enable = true,
           notify = false,
           chars = {
-            horizontal_line = "━",
-            vertical_line = "┃",
-            left_top = "┏",
-            left_bottom = "┗",
+            -- horizontal_line = "━",
+            -- vertical_line = "┃",
+            -- left_top = "┏",
+            -- left_bottom = "┗",
             -- right_arrow = "➤",
           },
           style = "#06D001",
-          delay = 50,
+          delay = 25,
         },
         indent = {
           enable = true,
-          chars = { "|" },
-          style = "#5A639C",
+          use_treesitter = false,
+          chars = {
+            "│",
+          },
+          style = {
+            "#FF0000",
+            "#FF7F00",
+            "#FFFF00",
+            -- "#00FF00",
+            "#00FFFF",
+            "#0000FF",
+            "#8B00FF",
+          },
         },
         blank = {
           enable = false,

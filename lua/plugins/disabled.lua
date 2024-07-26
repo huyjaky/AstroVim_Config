@@ -1,7 +1,7 @@
 -- Plugins to disable
 return {
   { "nvim-neo-tree/neo-tree.nvim", enabled = true },
-  { "lukas-reineke/indent-blankline.nvim", enabled = false },
+  { "lukas-reineke/indent-blankline.nvim", enabled = false},
   { "s1n7ax/nvim-window-picker", enabled = false },
   { "akinsho/toggleterm.nvim", enabled = false },
   { "NvChad/nvim-colorizer.lua", enabled = false },
