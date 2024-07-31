@@ -1,5 +1,9 @@
 # nvim-config
 
+  ```powershell
+    vi" hightlight inline on """
+  ```
+
 My personal neovim config
 
 ## Installation

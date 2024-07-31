@@ -1,4 +1,6 @@
--- if true then return {} end
+if true then return {} end
+
+-- NOTE: control remote pc 
 
 return {
   "chipsenkbeil/distant.nvim",
