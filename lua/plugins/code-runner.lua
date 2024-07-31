@@ -19,7 +19,6 @@ return {
     },
   },
   keys = {
-
     { "<leader>r", ":RunCode<CR>", mode = "n", noremap = true, silent = false, desc = "Run code" },
     { "<leader>rf", ":RunFile<CR>", mode = "n", noremap = true, silent = false, desc = "Run file" },
     { "<leader>rft", ":RunFile tab<CR>", mode = "n", noremap = true, silent = false, desc = "Run file in new tab" },
