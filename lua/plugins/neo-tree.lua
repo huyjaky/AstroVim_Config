@@ -19,7 +19,7 @@ return {
         never_show = {},
       },
     },
-    enable_git_status = true,
+    enable_git_status = false,
     enable_diagnostics = false,
     git_status_async = false,
   },
