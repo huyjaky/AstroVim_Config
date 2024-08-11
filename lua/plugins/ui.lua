@@ -20,13 +20,17 @@ return {
     opts = function(_, opts)
       -- Do this to prevent the warning
       opts.background_colour = "#000000"
+      opts.timeout = 2000
+      opts.fps = 60
+      opts.render = "compact"
+      opts.top_down = false
     end,
   },
   -- Icons support
   {
     "echasnovski/mini.icons",
     opts = function(_, opts)
-      if vim.g.icons_enabled == false then opts.style = "ascii" end
+      if vim.g.icons_enabled == false then opts.style = "glyph" end
     end,
     lazy = true,
     specs = {

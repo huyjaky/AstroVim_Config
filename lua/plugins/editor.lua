@@ -64,50 +64,50 @@ return {
   --   },
   -- },
   -- Better indent blankline
-  {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function(_, opts)
-      require("hlchunk").setup(require("astrocore").extend_tbl(opts, {
-        ignore = {},
-        chunk = {
-          enable = true,
-          notify = false,
-          chars = {
-            -- horizontal_line = "━",
-            -- vertical_line = "┃",
-            -- left_top = "┏",
-            -- left_bottom = "┗",
-            -- right_arrow = "➤",
-          },
-          style = "#06D001",
-          delay = 25,
-        },
-        indent = {
-          enable = false,
-          use_treesitter = true,
-          chars = {
-            "│",
-          },
-        },
-        blank = {
-          enable = false,
-          chars = {
-            " ",
-          },
-          style = {
-            { bg = "#434437" },
-            { bg = "#2f4440" },
-            { bg = "#433054" },
-            { bg = "#284251" },
-          },
-        },
-        line_num = {
-          enable = false,
-        },
-      }))
-    end,
-  },
+  -- {
+  --   "shellRaining/hlchunk.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   config = function(_, opts)
+  --     require("hlchunk").setup(require("astrocore").extend_tbl(opts, {
+  --       ignore = {},
+  --       chunk = {
+  --         enable = true,
+  --         notify = false,
+  --         chars = {
+  --           -- horizontal_line = "━",
+  --           -- vertical_line = "┃",
+  --           -- left_top = "┏",
+  --           -- left_bottom = "┗",
+  --           -- right_arrow = "➤",
+  --         },
+  --         style = "#06D001",
+  --         delay = 25,
+  --       },
+  --       indent = {
+  --         enable = false,
+  --         use_treesitter = true,
+  --         chars = {
+  --           "│",
+  --         },
+  --       },
+  --       blank = {
+  --         enable = false,
+  --         chars = {
+  --           " ",
+  --         },
+  --         style = {
+  --           { bg = "#434437" },
+  --           { bg = "#2f4440" },
+  --           { bg = "#433054" },
+  --           { bg = "#284251" },
+  --         },
+  --       },
+  --       line_num = {
+  --         enable = false,
+  --       },
+  --     }))
+  --   end,
+  -- },
   -- AI code completion
   -- {
   --   "monkoose/neocodeium",
@@ -249,17 +249,17 @@ return {
     },
   },
   -- Markdown preview support
-  {
-    "OXY2DEV/markview.nvim",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-          opts.ensure_installed =
-            require("astrocore").list_insert_unique(opts.ensure_installed, { "markdown", "markdown_inline" })
-        end,
-      },
-    },
-    ft = { "markdown" },
-  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   dependencies = {
+  --     {
+  --       "nvim-treesitter/nvim-treesitter",
+  --       opts = function(_, opts)
+  --         opts.ensure_installed =
+  --           require("astrocore").list_insert_unique(opts.ensure_installed, { "markdown", "markdown_inline" })
+  --       end,
+  --     },
+  --   },
+  --   ft = { "markdown" },
+  -- },
 }

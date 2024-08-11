@@ -7,34 +7,34 @@ return {
     require("noice").setup {
       -- Configuration here, or leave empty to use defaults
       views = {
-        cmdline_popup = {
-          position = {
-            row = "50%",
-            col = "50%",
-          },
-          size = {
-            width = 60,
-            height = "auto",
-          },
-        },
-        popupmenu = {
-          relative = "editor",
-          position = {
-            row = 8,
-            col = "50%",
-          },
-          size = {
-            width = 60,
-            height = 10,
-          },
-          border = {
-            style = "rounded",
-            padding = { 0, 1 },
-          },
-          win_options = {
-            winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-          },
-        },
+        -- cmdline_popup = {
+        --   position = {
+        --     row = "50%",
+        --     col = "50%",
+        --   },
+        --   size = {
+        --     width = 60,
+        --     height = "auto",
+        --   },
+        -- },
+        -- popupmenu = {
+        --   relative = "editor",
+        --   position = {
+        --     row = 8,
+        --     col = "50%",
+        --   },
+        --   size = {
+        --     width = 60,
+        --     height = 10,
+        --   },
+        --   border = {
+        --     style = "rounded",
+        --     padding = { 0, 1 },
+        --   },
+        --   win_options = {
+        --     winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+        --   },
+        -- },
       },
       messages = {
         enabled = false, -- disables the Noice messages UI
@@ -57,7 +57,7 @@ return {
         },
       },
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
+        bottom_search = false, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = false, -- long messages will be sent to a split
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
@@ -91,65 +91,6 @@ return {
         },
       },
     }
-  end,
-  opts = function(_, opts)
-    local utils = require "astrocore"
-    return utils.extend_tbl(opts, {
-      lsp = {
-        progress = {
-          enabled = false,
-        },
-        hover = {
-          enabled = false, -- disables Noice LSP hover
-        },
-        signature = {
-          enabled = false, -- disables Noice LSP signature help
-        },
-        message = {
-          enabled = false,
-        },
-      },
-      presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
-        long_message_to_split = false, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
-      },
-      messages = {
-        enabled = false, -- disables the Noice messages UI
-      },
-      notify = {
-        enabled = false, -- disables Noice notifications
-      },
-
-      routes = {
-        -- disable "written" notification
-        {
-          filter = { event = "msg_show", kind = "", find = "written" },
-          opts = { skip = true },
-        },
-        -- disable paste/undo notification
-        {
-          filter = { event = "msg_show", find = "^%d+ more lines" },
-          opts = { skip = true },
-        },
-        -- disable delete/undo notification
-        {
-          filter = { event = "msg_show", find = "^%d+ fewer lines" },
-          opts = { skip = true },
-        },
-        -- disable yank notification
-        {
-          filter = { event = "msg_show", find = "^%d+ lines yanked$" },
-          opts = { skip = true },
-        },
-        -- disable move notification
-        {
-          filter = { event = "msg_show", find = "^%d+ lines moved$" },
-        },
-      },
-    })
   end,
   specs = {
     {
