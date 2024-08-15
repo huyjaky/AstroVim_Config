@@ -37,68 +37,68 @@ return {
       { "gs", "<Cmd>TSJToggle<CR>", mode = { "n" }, desc = "Toggle splitjoin" },
     },
   },
-  {
-    "echasnovski/mini.ai",
-    event = "User AstroFile",
-    opts = function()
-      -- Register to which-key
-      local i = {
-        [" "] = "Whitespace",
-        ["?"] = "User Prompt",
-        _ = "Underscore",
-        a = "Argument",
-        b = "Paired ), ], }",
-        c = "Class",
-        d = "Digit(s)",
-        e = "Word in CamelCase & snake_case",
-        f = "Function",
-        g = "Entire file",
-        o = "Block, conditional, loop",
-        q = "Quote `, \", '",
-        t = "Tag",
-        u = "Use/call function & method",
-        U = "Use/call without dot in name",
-      }
-      local a = vim.deepcopy(i)
-      for k, v in pairs(a) do
-        a[k] = v:gsub(" including.*", "")
-      end
+  -- {
+  --   "echasnovski/mini.ai",
+  --   event = "User AstroFile",
+  --   opts = function()
+  --     -- Register to which-key
+  --     local i = {
+  --       [" "] = "Whitespace",
+  --       ["?"] = "User Prompt",
+  --       _ = "Underscore",
+  --       a = "Argument",
+  --       b = "Paired ), ], }",
+  --       c = "Class",
+  --       d = "Digit(s)",
+  --       e = "Word in CamelCase & snake_case",
+  --       f = "Function",
+  --       g = "Entire file",
+  --       o = "Block, conditional, loop",
+  --       q = "Quote `, \", '",
+  --       t = "Tag",
+  --       u = "Use/call function & method",
+  --       U = "Use/call without dot in name",
+  --     }
+  --     local a = vim.deepcopy(i)
+  --     for k, v in pairs(a) do
+  --       a[k] = v:gsub(" including.*", "")
+  --     end
 
-      local ic = vim.deepcopy(i)
-      local ac = vim.deepcopy(a)
-      for key, name in pairs { n = "Next", l = "Last" } do
-        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
-      end
-      require("which-key").register {
-        mode = { "o", "x" },
-        i = i,
-        a = a,
-      }
+  --     local ic = vim.deepcopy(i)
+  --     local ac = vim.deepcopy(a)
+  --     for key, name in pairs { n = "Next", l = "Last" } do
+  --       i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+  --       a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+  --     end
+  --     require("which-key").register {
+  --       mode = { "o", "x" },
+  --       i = i,
+  --       a = a,
+  --     }
 
-      -- define custom textobjects
-      local ai = require "mini.ai"
-      return {
-        n_lines = 500,
-        custom_textobjects = {
-          o = ai.gen_spec.treesitter { -- code block
-            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-          },
-          f = ai.gen_spec.treesitter { a = "@function.outer", i = "@function.inner" }, -- function
-          c = ai.gen_spec.treesitter { a = "@class.outer", i = "@class.inner" }, -- class
-          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
-          d = { "%f[%d]%d+" }, -- digits
-          e = { -- Word with case
-            { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
-            "^().*()$",
-          },
-          u = ai.gen_spec.function_call(), -- u for "Usage"
-          U = ai.gen_spec.function_call { name_pattern = "[%w_]" }, -- without dot in function name
-        },
-      }
-    end,
-  },
+  --     -- define custom textobjects
+  --     local ai = require "mini.ai"
+  --     return {
+  --       n_lines = 500,
+  --       custom_textobjects = {
+  --         o = ai.gen_spec.treesitter { -- code block
+  --           a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+  --           i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+  --         },
+  --         f = ai.gen_spec.treesitter { a = "@function.outer", i = "@function.inner" }, -- function
+  --         c = ai.gen_spec.treesitter { a = "@class.outer", i = "@class.inner" }, -- class
+  --         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
+  --         d = { "%f[%d]%d+" }, -- digits
+  --         e = { -- Word with case
+  --           { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
+  --           "^().*()$",
+  --         },
+  --         u = ai.gen_spec.function_call(), -- u for "Usage"
+  --         U = ai.gen_spec.function_call { name_pattern = "[%w_]" }, -- without dot in function name
+  --       },
+  --     }
+  --   end,
+  -- },
   -- Better move by word
   {
     "chrisgrieser/nvim-spider",
