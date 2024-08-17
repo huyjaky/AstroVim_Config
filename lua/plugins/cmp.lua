@@ -21,7 +21,7 @@ return {
         window = {
           completion = {
             winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,Search:None",
-            border = "none",
+            -- border = "none",
             side_padding = 0,
           },
         },
@@ -67,6 +67,9 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+        },
+        experimental = {
+          ghost_text = false, -- this feature conflict with copilot.vim's preview.
         },
       })
     end,

@@ -4,7 +4,7 @@ return {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       -- customize the dashboard header
-      opts.section.header.val = require("plugins.configs.ui.alpha")[3]
+      opts.section.header.val = require("plugins.configs.ui.alpha")[10]
       opts.section.buttons.val = {}
     end,
   },
