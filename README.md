@@ -26,3 +26,4 @@ grub>reboot
 ```bash
 mv grub.cfg.off grub.cfg
 ```
+remember install linux-zen-headers and linux-headers idk but but just do it 
