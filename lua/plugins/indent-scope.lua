@@ -19,8 +19,7 @@ local ignore_buftypes = {
   "quickfix",
   "terminal",
 }
-local char = "||"
-
+local char = "󰸊"
 
 return {
   "echasnovski/mini.indentscope",
@@ -32,7 +31,11 @@ return {
     }
   end,
   dependencies = {
-    { "lukas-reineke/indent-blankline.nvim", optional = true, opts = { scope = { enabled = false } } },
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      optional = true,
+      opts = { scope = { enabled = false } },
+    },
     {
       "AstroNvim/astrocore",
       opts = {

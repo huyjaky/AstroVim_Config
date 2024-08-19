@@ -4,6 +4,9 @@ vim.api.nvim_create_augroup("auto_wrap", { clear = true })
 vim.api.nvim_create_augroup("disable_suspend_with_c_z", { clear = true })
 vim.api.nvim_create_augroup("clear_last_search", { clear = true })
 
+-- NOTE: CursorLineNr setting
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFD700", bg = "none", bold = true })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable auto insert comment newline",
   group = "disable_comment_newline",

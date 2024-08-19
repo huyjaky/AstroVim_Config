@@ -1,4 +1,5 @@
 require("lazy").setup({
+
   {
     "AstroNvim/AstroNvim",
     version = "^4", -- Remove version tracking to elect for nighly AstroNvim
@@ -15,7 +16,18 @@ require("lazy").setup({
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrodark", "habamax" } },
-  ui = { backdrop = 100 },
+
+  ui = {
+    backdrop = 100,
+    border = "single",
+    size = { width = 0.8, height = 0.8 },
+  },
+    
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+
   performance = {
     rtp = {
       -- disable some rtp plugins, add more to your liking

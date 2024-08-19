@@ -37,14 +37,14 @@ M.statusline = {
     },
   },
   -- Add a icon to represent diagnostic and git git diff
-  status.component.builder {
-    provider = function() return get_icon "Diagnostic" .. "/" .. get_icon "Github" end,
-    hl = { fg = "black" },
-    surround = {
-      separator = { " ", "" },
-      color = "#81ab9e",
-    },
-  },
+  -- status.component.builder {
+  --   provider = function() return get_icon "Diagnostic" .. "/" .. get_icon "Github" end,
+  --   hl = { fg = "black" },
+  --   surround = {
+  --     separator = { " ", "" },
+  --     color = "#81ab9e",
+  --   },
+  -- },
   status.component.diagnostics {
     surround = {
       separator = "none",
