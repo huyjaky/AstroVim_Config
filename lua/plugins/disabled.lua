@@ -16,6 +16,9 @@ return {
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   { "chipsenkbeil/distant.nvim", enabled = false },
   { "gen740/SmoothCursor.nvim", enabled = false },
+  { "stevearc/resession.nvim", enabled = false },
+  { "AstroNvim/astrotheme", enabled = false },
+  { "echasnovski/mini.move", enabled = false },
 
   -- { "hrsh7th/nvim-cmp", enabled = false },
 }

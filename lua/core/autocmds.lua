@@ -7,6 +7,11 @@ vim.api.nvim_create_augroup("clear_last_search", { clear = true })
 -- NOTE: CursorLineNr setting
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFD700", bg = "none", bold = true })
 
+-- NOTE: Set colors for hightlights for similar words 
+-- vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FF0000" })
+-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "#FF0000" })
+-- vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#FF0000" })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable auto insert comment newline",
   group = "disable_comment_newline",
