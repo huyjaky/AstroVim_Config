@@ -6,5 +6,6 @@ return {
     hide_fillchars = true,
     borderless_telescope = false,
     terminal_colors = false,
+    integrations = { rainbow_delimiters = true },
   },
 }
