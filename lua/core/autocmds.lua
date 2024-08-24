@@ -6,6 +6,8 @@ vim.api.nvim_create_augroup("clear_last_search", { clear = true })
 
 -- NOTE: CursorLineNr setting
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFD700", bg = "none", bold = true })
+-- NOTE: visual line colors
+vim.api.nvim_set_hl(0, "Visual", { fg = "#000000", bg = "#FFFFFF", bold = true })
 
 -- NOTE: Set colors for hightlights for similar words 
 -- vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FF0000" })

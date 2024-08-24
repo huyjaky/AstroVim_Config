@@ -13,10 +13,7 @@ if not pcall(require, "lazy") then
   vim.api.nvim_echo({ { ("Unable to load lazy from: %s\n"):format(lazypath), "ErrorMsg" }, { "Press any key to exit...", "MoreMs" } }, true, {})
   vim.fn.getchar()
   vim.cmd.quit()
-  
 end
 
 require "lazy_setup"
 require "polish"
-
-
