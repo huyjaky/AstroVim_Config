@@ -27,3 +27,6 @@ grub>reboot
 mv grub.cfg.off grub.cfg
 ```
 remember install linux-zen-headers and linux-headers idk but but just do it 
+
+-> recopy newest vmlinuz from /usr/lib/modules/<latest kerner>/vmlinuz /boot/vmlinuz-linux -> do for all linux kernel vmware
+-> reinstall amd-ucode pacman -S amd-ucode
