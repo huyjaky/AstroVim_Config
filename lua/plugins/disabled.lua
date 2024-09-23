@@ -19,7 +19,10 @@ return {
   { "stevearc/resession.nvim", enabled = false },
   { "AstroNvim/astrotheme", enabled = false },
   { "echasnovski/mini.move", enabled = false },
-
+  { "scottmckendry/cyberdream.nvim", enabled = false },
+  { "HiPhish/rainbow-delimiters.nvim", enabled = false },
+  { "xiyaowong/transparent.nvim", enabled = false },
+  
   -- { "hrsh7th/nvim-cmp", enabled = false },
 }
 

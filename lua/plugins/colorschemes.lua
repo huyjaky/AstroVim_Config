@@ -61,4 +61,31 @@ return {
       },
     },
   },
+
+  {
+    "scottmckendry/cyberdream.nvim",
+    opts = {
+      transparent = true,
+      italic_comments = true,
+      hide_fillchars = true,
+      borderless_telescope = false,
+      terminal_colors = false,
+      integrations = { rainbow_delimiters = true },
+    },
+  },
+  
+ {
+  "loctvl842/monokai-pro.nvim",
+  opts = {
+    terminal_colors = true,
+    devicons = true, -- highlight the icons of `nvim-web-devicons`
+    filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
+    plugins = {
+      indent_blankline = {
+        context_highlight = "pro", -- default | pro
+        context_start_underline = false,
+      },
+    },
+  },
+} 
 }
