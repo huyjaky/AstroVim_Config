@@ -27,11 +27,11 @@ return function(opts)
     },
     -- table: additional groups that should be cleared
     extra_groups = {
-      "NormalFloat",
-      "NvimTreeNormal",
-      "NeoTreeNormal",
-      "NeoTreeFloatBorder",
-      "NeoTreeNormalNC",
+      -- "NormalFloat",
+      -- "NvimTreeNormal",
+      -- "NeoTreeNormal",
+      -- "NeoTreeFloatBorder",
+      -- "NeoTreeNormalNC",
     },
     -- table: groups you don't want to clear
     exclude_groups = {},

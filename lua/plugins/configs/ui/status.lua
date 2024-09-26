@@ -25,6 +25,7 @@ return {
     hl.nav_fg = "black"
     hl.nav_bg = get_hlgroup("String").fg
     hl.nav_icon_bg = hl.nav_bg
+    hl.normal = "#ade8f4"
     return hl
   end,
   attributes = {
