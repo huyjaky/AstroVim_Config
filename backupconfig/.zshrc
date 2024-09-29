@@ -2,6 +2,10 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # zmodload zsh/zprof
 # export TERM=screen-256color
+export PYOPENGL_PLATFORM=osmesa
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export XMODIFIERS=@im=fcitx
 
 SESSION_NAME="duckq"
 
@@ -76,16 +80,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # HACK: Alias config area 
-alias rs='zsh'
 alias nv='nvim'
 alias lz='lazygit'
-# alias cls='clear'
-
-cls(){
-  clear
-  neofetch
-}
-
 # alias la='eza --color=always --long --git --no-filesize --icons=always --no-time --no-permissions -a'
 alias la='eza -a --icons=always --color=always --git'
 alias hh='cd ~'
@@ -93,6 +89,20 @@ alias tmat='tmux at -t'
 alias tmdt='tmux detach'
 alias showport='sudo lsof -i -P -n | grep LISTEN'
 alias shutdown='sudo shutdown -h +60'
+alias docs='cd ~/Documents/'
+
+appearance(){
+  pokemon-colorscripts -n charizard -f mega-x
+  cat ~/.conda/environments.txt
+}
+cls(){
+  clear
+  appearance
+}
+rs(){
+  zsh
+  appearance
+}
 reloadbar(){
   exec
   killall ags ydotool
@@ -105,12 +115,10 @@ alias listpkg='pacman -Qm'
 
 # HACK: Init command
 # 
-neofetch
 # Display Pokemon-colorscripts
 # Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
-pokemon-colorscripts --no-title -s -r
+pokemon-colorscripts -n charizard -f mega-x
 cat ~/.conda/environments.txt
-echo ~/usr/base
 
 # HACK: Keybindings
 bindkey '^g' autosuggest-accept
@@ -120,7 +128,6 @@ bindkey '^[w' kill-region
 # zprof
 # conda env list
 
-
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # >>> conda initialize >>>
@@ -129,10 +136,10 @@ __conda_setup="$('/home/duckq1/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/duckq1/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/duckq1/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/duckq1u/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/duckq1u/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/duckq1/miniconda3/bin:$PATH"
+        export PATH="/home/duckq1u/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
