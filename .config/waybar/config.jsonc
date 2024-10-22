@@ -25,7 +25,6 @@
     "memory",
     "cpu",
     "custom/r_end",
-    
     "custom/l_end",
     "custom/cava",
     "custom/r_end",
@@ -40,18 +39,14 @@
   ],
   "modules-right": [
     "custom/padd",
-    
-    
     "custom/l_end",
     "hyprland/workspaces",
     "custom/r_end",
-    
     "custom/l_end",
     "backlight",
     "network",
     "pulseaudio",
     "custom/r_end",
-    
     "custom/l_end",
     "privacy",
     "tray",
@@ -59,20 +54,13 @@
     "custom/padd",
   ],
   // sourced from modules based on config.ctl //
-  
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "rotate": 0,
-        "all-outputs": true,
-        "active-only": false,
-        "on-click": "activate",
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
-        "persistent-workspaces": {
-        }
-    },
-  
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "rotate": 0,
+    "all-outputs": true,
+    "active-only": false,
+    "persistent-workspaces": {},
+  },
   "custom/cava": {
     "format": "{}",
     "exec": "waybar_cava.sh",
@@ -99,16 +87,7 @@
     "format": "󰍛 {usage}%",
     "rotate": 0,
     "format-alt": "{icon0}{icon1}{icon2}{icon3}",
-    "format-icons": [
-      "▁",
-      "▂",
-      "▃",
-      "▄",
-      "▅",
-      "▆",
-      "▇",
-      "█"
-    ],
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
   "memory": {
     "states": {
@@ -155,9 +134,7 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": [
-      "Alacritty"
-    ],
+    "ignore-list": ["Alacritty"],
     "app_ids-mapping": {
       "firefoxdeveloperedition": "firefox-developer-edition",
       "jetbrains-datagrip": "DataGrip",
@@ -242,35 +219,13 @@
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ],
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   },
   "backlight": {
     "device": "intel_backlight",
     "rotate": 0,
     "format": "{icon} {percent}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-scroll-up": "brightnessctl set 1%+",
     "on-scroll-down": "brightnessctl set 1%-",
     "min-length": 6,
@@ -291,9 +246,11 @@
     "format": "{icon} {volume}",
     "rotate": 0,
     "format-muted": "婢",
-    "on-click": "pavucontrol -t 3",
+    // "on-click": "pavucontrol -t 3",
+    "on-click": "volumecontrol.sh -s ''",
     "on-click-right": "volumecontrol.sh -s ''",
-    "on-click-middle": "volumecontrol.sh -o m",
+    // "on-click-middle": "volumecontrol.sh -o m",
+    "on-click-middle": "pavucontrol -t 3",
     "on-scroll-up": "volumecontrol.sh -o i",
     "on-scroll-down": "volumecontrol.sh -o d",
     "tooltip-format": "{icon} {desc} // {volume}%",
@@ -305,11 +262,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [
-        " ",
-        " ",
-        " "
-      ],
+      "default": [" ", " ", " "],
     },
   },
   "pulseaudio#microphone": {
