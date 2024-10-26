@@ -12,3 +12,4 @@ if [ $window_state -eq 1 ]; then
 fi
 
 hyprctl dispatch movefocus l
+exit 0

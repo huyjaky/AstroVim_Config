@@ -25,10 +25,10 @@ if [ $window_x_position -eq 14 ] && [ $window_state -eq 1 ]; then
   if [ $current_workspace -eq 1 ]; then
     exit 1
   fi
-  hyprctl dispatch movetoworkspace $((window_at_workspace-1))
-  hyprctl dispatch focusmonitor 0
-  hyprctl dispatch workspace $((current_workspace-2))
-  hyprctl dispatch focusmonitor 1
+  hyprctl dispatch movetoworkspace $((window_at_workspace-1)) \
+  && hyprctl dispatch focusmonitor 0 \
+  && hyprctl dispatch workspace $((current_workspace-2)) \
+  && hyprctl dispatch focusmonitor 1
   exit 0
 fi
 
@@ -37,10 +37,10 @@ if [ $window_x_position -eq 14 ] && [ $window_width -eq 1892 ]; then
   if [ $current_workspace -eq 1 ]; then
     exit 1
   fi
-  hyprctl dispatch movetoworkspace $((window_at_workspace-1))
-  hyprctl dispatch focusmonitor 0
-  hyprctl dispatch workspace $((current_workspace-2))
-  hyprctl dispatch focusmonitor 1
+  hyprctl dispatch movetoworkspace $((window_at_workspace-1)) \
+  && hyprctl dispatch focusmonitor 0 \
+  && hyprctl dispatch workspace $((current_workspace-2)) \
+  && hyprctl dispatch focusmonitor 1
   exit 0
 fi
 
@@ -50,12 +50,13 @@ if [ $window_x_position -eq 14 ]; then
   if [ $current_workspace -eq 1 ]; then
     exit 1
   fi
-  hyprctl dispatch movetoworkspace $((window_at_workspace-1))
-  hyprctl dispatch focusmonitor 0
-  hyprctl dispatch workspace $((current_workspace-2))
-  hyprctl dispatch focusmonitor 1
+  hyprctl dispatch movetoworkspace $((window_at_workspace-1)) \
+  && hyprctl dispatch focusmonitor 0 \
+  && hyprctl dispatch workspace $((current_workspace-2)) \
+  && hyprctl dispatch focusmonitor 1
   exit 0
 fi
 
 # Nếu không thoả điều kiện di chuyển, di chuyển cửa sổ sang phải
 hyprctl dispatch movewindow l
+exit 0

@@ -25,14 +25,12 @@ if [ "$primary_monitor_workspace" -le 0 ] || [ "$secondary_monitor_workspace" -g
   exit 1
 fi
 
+hyprctl dispatch fullscreenstate 0 \
+&&hyprctl dispatch focusmonitor 0 \
+&&hyprctl dispatch workspace $primary_monitor_workspace \
+&&hyprctl dispatch focusmonitor 1 \
+&&hyprctl dispatch workspace $secondary_monitor_workspace \
+&&hyprctl dispatch focusmonitor $current_monitor
+exit 0
 
-hyprctl dispatch fullscreenstate 0 # minimize trước khi di chuyển
-# Switch focus and workspace for both monitors
-hyprctl dispatch focusmonitor 0
-hyprctl dispatch workspace $primary_monitor_workspace
 
-hyprctl dispatch focusmonitor 1
-hyprctl dispatch workspace $secondary_monitor_workspace
-
-# Optionally focus back to the original monitor if desired (adjust this part if needed)
-hyprctl dispatch focusmonitor $current_monitor

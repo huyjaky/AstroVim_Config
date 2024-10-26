@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Lấy thông tin của cửa sổ hiện tại chỉ một lần
 window_info=$(hyprctl activewindow)
 
@@ -25,10 +24,10 @@ if [ $window_x_position -eq 1934 ] && [ $window_state -eq 1 ]; then
   if [ $current_workspace -eq 6 ]; then
     exit 1
   fi
-  hyprctl dispatch movetoworkspace $((window_at_workspace+1))
-  hyprctl dispatch focusmonitor 1
-  hyprctl dispatch workspace $((current_workspace+2))
-  hyprctl dispatch focusmonitor 0
+  hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \
+  && hyprctl dispatch focusmonitor 1 \
+  && hyprctl dispatch workspace $((current_workspace+2)) \
+  && hyprctl dispatch focusmonitor 0
   exit 0
 fi
 
@@ -37,10 +36,10 @@ if [ $window_x_position -eq 1934 ] && [ $window_width -eq 1892 ]; then
   if [ $current_workspace -eq 6 ]; then
     exit 1
   fi
-  hyprctl dispatch movetoworkspace $((window_at_workspace+1))
-  hyprctl dispatch focusmonitor 1
-  hyprctl dispatch workspace $((current_workspace+2))
-  hyprctl dispatch focusmonitor 0
+  hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \
+  && hyprctl dispatch focusmonitor 1 \
+  && hyprctl dispatch workspace $((current_workspace+2)) \
+  && hyprctl dispatch focusmonitor 0
   exit 0
 fi
 
@@ -50,12 +49,13 @@ if [ $window_x_position -eq 2990 ]; then
   if [ $current_workspace -eq 6 ]; then
     exit 1
   fi
-  hyprctl dispatch movetoworkspace $((window_at_workspace+1))
-  hyprctl dispatch focusmonitor 1
-  hyprctl dispatch workspace $((current_workspace+2))
-  hyprctl dispatch focusmonitor 0
+  hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \
+  && hyprctl dispatch focusmonitor 1 \
+  && hyprctl dispatch workspace $((current_workspace+2)) \
+  && hyprctl dispatch focusmonitor 0
   exit 0
 fi
 
 # Nếu không thoả điều kiện di chuyển, di chuyển cửa sổ sang phải
 hyprctl dispatch movewindow r
+exit 0
