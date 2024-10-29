@@ -17,6 +17,7 @@ arch-chroot /mnt/
 second, remove all initframs and vmlinuz, amd-ucode on `\boot`
 
 third, copy each vmlinuz from `usr\lib\modules` to boot
+
 example:
 ```bash
 cp \usr\lib\modules\6.10.10-lts..\vmlinuz \boot\vmlinuz-linux-lts

@@ -21,15 +21,14 @@ fi
 
 # Check if primary_monitor_workspace is less than or equal to 0
 # or if secondary_monitor_workspace is greater than or equal to 11
-if [ "$primary_monitor_workspace" -le 0 ] || [ "$secondary_monitor_workspace" -ge 7 ]; then
+if [ "$primary_monitor_workspace" -le 0 ] || [ "$secondary_monitor_workspace" -ge 9 ]; then
   exit 1
 fi
 
 
-hyprctl dispatch fullscreenstate 0 \
-&&hyprctl dispatch focusmonitor 1 \
+hyprctl dispatch focusmonitor 0 \
 &&hyprctl dispatch workspace $primary_monitor_workspace \
-&&hyprctl dispatch focusmonitor 0 \
+&&hyprctl dispatch focusmonitor 1 \
 &&hyprctl dispatch workspace $secondary_monitor_workspace \
-&&hyprctl dispatch focusmonitor $current_monitor \
+&&hyprctl dispatch focusmonitor $current_monitor
 exit 0

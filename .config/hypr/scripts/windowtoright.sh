@@ -21,7 +21,7 @@ hyprctl dispatch fullscreenstate 0 # minimize trước khi di chuyển
 # NOTE: Di chuyển cửa sổ nếu vị trí X vượt qua ngưỡng
 if [ $window_x_position -eq 1934 ] && [ $window_state -eq 1 ]; then
   
-  if [ $current_workspace -eq 6 ]; then
+  if [ $current_workspace -eq 8 ]; then
     exit 1
   fi
   hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \
@@ -33,7 +33,7 @@ fi
 
 if [ $window_x_position -eq 1934 ] && [ $window_width -eq 1892 ]; then
   
-  if [ $current_workspace -eq 6 ]; then
+  if [ $current_workspace -eq 8 ]; then
     exit 1
   fi
   hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \
@@ -46,7 +46,7 @@ fi
 
 if [ $window_x_position -eq 2990 ]; then
   
-  if [ $current_workspace -eq 6 ]; then
+  if [ $current_workspace -eq 8 ]; then
     exit 1
   fi
   hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \

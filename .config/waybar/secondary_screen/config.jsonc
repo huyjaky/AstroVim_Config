@@ -154,7 +154,7 @@
     },
   },
   "clock": {
-    "format": "{:%I:%M %p}",
+    "format": "{:%I:%M %p | 󰃭 %d·%m·%y}",
     "rotate": 0,
     "format-alt": "{:%R 󰃭 %d·%m·%y}",
     "tooltip-format": "<span>{calendar}</span>",
@@ -169,6 +169,7 @@
         "today": "<span color='#ff6699'><b>{}</b></span>",
       },
     },
+    
     "actions": {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",

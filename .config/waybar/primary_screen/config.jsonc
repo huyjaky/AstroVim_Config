@@ -184,6 +184,7 @@
         "today": "<span color='#ff6699'><b>{}</b></span>",
       },
     },
+    
     "actions": {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",
