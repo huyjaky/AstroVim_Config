@@ -16,13 +16,14 @@ return {
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   { "chipsenkbeil/distant.nvim", enabled = false },
   { "gen740/SmoothCursor.nvim", enabled = false },
-  { "stevearc/resession.nvim", enabled = false },
+  { "stevearc/resession.nvim", enabled = true },
   { "AstroNvim/astrotheme", enabled = false },
   { "echasnovski/mini.move", enabled = false },
   { "scottmckendry/cyberdream.nvim", enabled = false },
   { "HiPhish/rainbow-delimiters.nvim", enabled = false },
-  { "xiyaowong/transparent.nvim", enabled = false },
-  
+  { "xiyaowong/transparent.nvim", enabled = true },
+  { "MagicDuck/grug-far.nvim", enabled = false },
+
   -- { "hrsh7th/nvim-cmp", enabled = false },
 }
 
