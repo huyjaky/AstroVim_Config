@@ -20,7 +20,7 @@ return {
     shiftwidth = 2, -- number of space inserted for indentation; when zero the 'tabstop' value will be used
     tabstop = 2, -- set the number of space in a tab to 4
     softtabstop = 2, -- can be differnt from tabstop
-    showtabline = 2, -- always show tabline
+    showtabline = 0, -- always show tabline
     expandtab = true, -- use spaces instead of tab
     undofile = true, -- enable persistent undo
   },
