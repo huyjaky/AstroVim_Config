@@ -19,15 +19,21 @@ local ignore_buftypes = {
   "quickfix",
   "terminal",
 }
-local char = "󰸊"
+local char = "󰥓"
 
 return {
   "echasnovski/mini.indentscope",
   event = "User AstroFile",
   opts = function()
+    
+    vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#FF4500" }) -- Replace #FF4500 with your desired color
     return {
-      options = { try_as_border = true },
+      options = { try_as_border = true, border = "both" },
       symbol = require("astrocore").plugin_opts("indent-blankline.nvim").context_char or char,
+      draw = {
+        delay = 0,
+        animation = function(s, n) return 10 end,
+      },
     }
   end,
   dependencies = {
@@ -81,12 +87,4 @@ return {
       },
     },
   },
-  -- specs = {
-  --   {
-  --     "catppuccin",
-  --     optional = true,
-  --     ---@type CatppuccinOptions
-  --     opts = { integrations = { mini = true } },
-  --   },
-  -- },
 }
