@@ -6,36 +6,7 @@ return {
   config = function()
     require("noice").setup {
       -- Configuration here, or leave empty to use defaults
-      views = {
-        -- cmdline_popup = {
-        --   position = {
-        --     row = "50%",
-        --     col = "50%",
-        --   },
-        --   size = {
-        --     width = 60,
-        --     height = "auto",
-        --   },
-        -- },
-        -- popupmenu = {
-        --   relative = "editor",
-        --   position = {
-        --     row = 8,
-        --     col = "50%",
-        --   },
-        --   size = {
-        --     width = 60,
-        --     height = 10,
-        --   },
-        --   border = {
-        --     style = "rounded",
-        --     padding = { 0, 1 },
-        --   },
-        --   win_options = {
-        --     winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-        --   },
-        -- },
-      },
+      views = { },
       messages = {
         enabled = false, -- disables the Noice messages UI
       },
@@ -133,12 +104,6 @@ return {
           filter = function(_, win) return vim.api.nvim_win_get_config(win).relative == "" end,
         })
       end,
-    },
-    {
-      "catppuccin",
-      optional = true,
-      ---@type CatppuccinOptions
-      opts = { integrations = { noice = true } },
     },
   },
 }
