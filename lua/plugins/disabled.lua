@@ -18,9 +18,9 @@ return {
   { "gen740/SmoothCursor.nvim", enabled = false },
   { "stevearc/resession.nvim", enabled = true },
   { "AstroNvim/astrotheme", enabled = false },
-  { "echasnovski/mini.move", enabled = false },
+  { "echasnovski/mini.move", enabled = true },
   { "scottmckendry/cyberdream.nvim", enabled = false },
-  { "HiPhish/rainbow-delimiters.nvim", enabled = false },
+  { "HiPhish/rainbow-delimiters.nvim", enabled = true },
   { "xiyaowong/transparent.nvim", enabled = true },
   { "MagicDuck/grug-far.nvim", enabled = false },
 

@@ -1,16 +1,5 @@
 -- Plugins related to motion
 return {
-  -- Move lines up/down/left/right
-  {
-    "echasnovski/mini.move",
-    opts = {},
-    keys = {
-      { "<A-h>", mode = { "n", "x" }, desc = "Move line/block left" },
-      { "<A-l>", mode = { "n", "x" }, desc = "Move line/block right" },
-      { "<A-j>", mode = { "n", "x" }, desc = "Move line/block down" },
-      { "<A-k>", mode = { "n", "x" }, desc = "Move line/block up" },
-    },
-  },
   -- Faster change/delete/replace delimiter pairs
   {
     "echasnovski/mini.surround",

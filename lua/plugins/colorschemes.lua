@@ -89,5 +89,5 @@ return {
     },
   },
 
-  { "ribru17/bamboo.nvim", lazy = true },
+  { "ribru17/bamboo.nvim", lazy = true, opts = { integrations = { mini = true } } },
 }

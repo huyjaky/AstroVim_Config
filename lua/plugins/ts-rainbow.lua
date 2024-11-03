@@ -1,8 +1,6 @@
 return {
   {
     "HiPhish/rainbow-delimiters.nvim",
-    -- event = { "InsertLeave", "TextChanged" },
-    event = "TextChanged",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       {
@@ -28,14 +26,7 @@ return {
         },
       },
     },
-    -- specs = {
-    --   {
-    --     "catppuccin",
-    --     optional = true,
-    --     ---@type CatppuccinOptions
-    --     opts = { integrations = { rainbow_delimiters = true } },
-    --   },
-    -- },
+    event = "User AstroFile",
     main = "rainbow-delimiters.setup",
     opts = {},
   },
