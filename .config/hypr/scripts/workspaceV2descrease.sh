@@ -25,10 +25,18 @@ if [ "$primary_monitor_workspace" -le 0 ] || [ "$secondary_monitor_workspace" -g
   exit 1
 fi
 
+# hyprctl dispatch focusmonitor 0 \
+# &&hyprctl dispatch workspace $primary_monitor_workspace \
+# &&hyprctl dispatch focusmonitor 1 \
+# &&hyprctl dispatch workspace $secondary_monitor_workspace \
+# &&hyprctl dispatch focusmonitor $current_monitor
 
-hyprctl dispatch focusmonitor 0 \
-&&hyprctl dispatch workspace $primary_monitor_workspace \
-&&hyprctl dispatch focusmonitor 1 \
-&&hyprctl dispatch workspace $secondary_monitor_workspace \
-&&hyprctl dispatch focusmonitor $current_monitor
+hyprctl --batch "
+  dispatch focusmonitor 0 ; 
+  dispatch workspace $primary_monitor_workspace ; 
+  dispatch dispatch focusmonitor 1 ; 
+  dispatch workspace $secondary_monitor_workspace ; 
+  dispatch focusmonitor $current_monitor
+"
+
 exit 0
