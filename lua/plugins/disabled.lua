@@ -24,7 +24,9 @@ return {
   { "xiyaowong/transparent.nvim", enabled = true },
   { "MagicDuck/grug-far.nvim", enabled = false },
   { "loctvl842/monokai-pro.nvim", enabled = false },
-  {"xiyaowong/transparent.nvim", enabled = false}
+  { "xiyaowong/transparent.nvim", enabled = false },
+  { "iamcco/markdown-preview.nvim", enabled = false },
+  { "max397574/better-escape.nvim", enabled = false },
 
   -- { "hrsh7th/nvim-cmp", enabled = false },
 }

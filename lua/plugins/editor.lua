@@ -171,6 +171,7 @@ return {
       end,
     },
   },
+  
   -- Better split navigation and resize
   {
     "mrjones2014/smart-splits.nvim",
@@ -230,36 +231,36 @@ return {
       },
     },
   },
-  -- Find and replace
-  {
-    "MagicDuck/grug-far.nvim",
-    cmd = "GrugFar",
-    config = function()
-      require("grug-far").setup {
-        windowCreationCommand = "tabnew",
-      }
-    end,
-    keys = {
-      {
-        "<Leader>R",
-        function() require("grug-far").grug_far { prefills = { search = vim.fn.expand "<cword>" } } end,
-        mode = { "n" },
-        desc = "Open GrugFar",
-      },
-    },
-  },
-  -- Markdown preview support
+  -- -- Find and replace
   -- {
-  --   "OXY2DEV/markview.nvim",
-  --   dependencies = {
+  --   "MagicDuck/grug-far.nvim",
+  --   cmd = "GrugFar",
+  --   config = function()
+  --     require("grug-far").setup {
+  --       windowCreationCommand = "tabnew",
+  --     }
+  --   end,
+  --   keys = {
   --     {
-  --       "nvim-treesitter/nvim-treesitter",
-  --       opts = function(_, opts)
-  --         opts.ensure_installed =
-  --           require("astrocore").list_insert_unique(opts.ensure_installed, { "markdown", "markdown_inline" })
-  --       end,
+  --       "<Leader>R",
+  --       function() require("grug-far").grug_far { prefills = { search = vim.fn.expand "<cword>" } } end,
+  --       mode = { "n" },
+  --       desc = "Open GrugFar",
   --     },
   --   },
-  --   ft = { "markdown" },
   -- },
+  -- Markdown preview support
+  {
+    "OXY2DEV/markview.nvim",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter",
+        opts = function(_, opts)
+          opts.ensure_installed =
+            require("astrocore").list_insert_unique(opts.ensure_installed, { "markdown", "markdown_inline" })
+        end,
+      },
+    },
+    ft = { "markdown" },
+  },
 }

@@ -29,6 +29,8 @@ return function()
   mappings.i["<C-z>"] = { "<C-o>u", desc = "Undo" }
   mappings.i["<C-Del>"] = { "<C-o>dw", desc = "Delete a word backward" }
   mappings.i["<C-s>"] = { "<Cmd>w!<CR>", desc = "Save file" }
+  mappings.i["jj"] = { "<Esc>", desc = "Normal mode" }
+  
   mappings.i["<S-Tab>"] = { "<C-d>", desc = "Unindent line" }
   mappings.v["<Tab>"] = { ">gv", desc = "Indent line" }
   mappings.v["<S-Tab>"] = { "<gv", desc = "Unindent line" }

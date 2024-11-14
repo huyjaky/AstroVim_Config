@@ -2,11 +2,13 @@
 return {
   {
     "goolord/alpha-nvim",
+    dependencies = { "echasnovski/mini.icons" },
     opts = function(_, opts)
       -- customize the dashboard header
       opts.section.header.val = require("plugins.configs.ui.alpha")[10]
       opts.section.buttons.val = {}
     end,
+    -- config = function() require("alpha").setup(require("alpha.themes.startify").config) end,
   },
   {
     "rebelot/heirline.nvim",
@@ -26,7 +28,7 @@ return {
       opts.top_down = false
     end,
   },
-  
+
   -- Transparent background
   {
     "xiyaowong/transparent.nvim",
