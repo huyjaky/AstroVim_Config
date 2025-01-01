@@ -10,7 +10,7 @@ return {
     -- Configuration table of features provided by AstroLSP
     features = {
       autoformat = false, -- enable or disable auto formatting on start
-      codelens = true, -- enable/disable codelens refresh on start
+      codelens = false, -- enable/disable codelens refresh on start
       inlay_hints = true, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
@@ -21,8 +21,25 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      clangd = require "plugins.configs.lsp.config.clangd",
-      basedpyright = require "plugins.configs.lsp.config.basedpyright",
+      -- clangd = require "plugins.configs.lsp.config.clangd",
+      -- basedpyright = require "plugins.configs.lsp.config.basedpyright",
+      jedi_language_server = {
+        init_options = {
+          completion = {
+            disableSnippets = true,
+          },
+        },
+      },
+      ruff_lsp = {
+        init_options = {
+          settings = {
+            args = {
+              "--extend-select=W,COM,ICN",
+              "--ignore=E501,E722,COM812",
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {

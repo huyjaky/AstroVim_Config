@@ -4,7 +4,7 @@ return {
   { "s1n7ax/nvim-window-picker", enabled = false },
   { "akinsho/toggleterm.nvim", enabled = false },
   { "NvChad/nvim-colorizer.lua", enabled = false },
-  { "catppuccin/nvim", name = "catppuccin", enabled = false },
+  { "catppuccin/nvim", name = "catppuccin", enabled = false},
   { "rebelot/kanagawa.nvim", enabled = false },
   { "folke/tokyonight.nvim", enabled = false },
   { "f4z3r/gruvbox-material.nvim", name = "gruvbox-material", enabled = false },
@@ -27,6 +27,7 @@ return {
   { "xiyaowong/transparent.nvim", enabled = false },
   { "iamcco/markdown-preview.nvim", enabled = false },
   { "max397574/better-escape.nvim", enabled = false },
+  { "ribru17/bamboo.nvim", enabled = true },
 
   -- { "hrsh7th/nvim-cmp", enabled = false },
 }

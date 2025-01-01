@@ -89,5 +89,18 @@ return {
     },
   },
 
-  { "ribru17/bamboo.nvim", lazy = true, opts = { integrations = { mini = true } } },
+  -- Using lazy.nvim
+  {
+    "ribru17/bamboo.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("bamboo").setup {
+        -- optional configuration here
+        integrations = { mini = true },
+        terminal_colors = false
+      }
+      require("bamboo").load()
+    end,
+  },
 }
