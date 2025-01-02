@@ -74,4 +74,22 @@ return {
       })
     end,
   },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = function(_, opts)
+  --     local lspconfig = require "lspconfig"
+
+  --     -- Setup `jedi-language-server` for Python files
+  --     lspconfig.jedi_language_server.setup {
+  --       on_attach = opts.on_attach,
+  --       capabilities = opts.capabilities,
+  --       filetypes = { "python" },
+  --     }
+
+  --     -- Optionally, you can disable pyright
+  --     lspconfig.pyright.setup {
+  --       filetypes = {},
+  --     }
+  --   end,
+  -- },
 }

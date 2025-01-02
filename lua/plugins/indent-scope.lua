@@ -25,7 +25,6 @@ return {
   "echasnovski/mini.indentscope",
   event = "User AstroFile",
   opts = function()
-    
     vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#FF4500" }) -- Replace #FF4500 with your desired color
     return {
       options = { try_as_border = true, border = "both" },

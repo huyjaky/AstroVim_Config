@@ -12,9 +12,7 @@ return {
         "lua_ls",
         "jedi_language_server",
         "ruff",
-        -- "clangd",
-        -- "basedpyright",
-        -- "ruff",
+        "basedpyright",
       })
     end,
   },

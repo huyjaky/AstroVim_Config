@@ -22,15 +22,19 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = require "plugins.configs.lsp.config.clangd",
-      -- basedpyright = require "plugins.configs.lsp.config.basedpyright",
+      basedpyright = require "plugins.configs.lsp.config.basedpyright",
+
       jedi_language_server = {
         init_options = {
           completion = {
             disableSnippets = true,
           },
+          -- diagnostics = {
+          --   enable = fa,
+          -- }
         },
       },
-      ruff_lsp = {
+      ruff = {
         init_options = {
           settings = {
             args = {
