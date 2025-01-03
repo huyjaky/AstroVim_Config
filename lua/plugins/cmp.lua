@@ -16,6 +16,29 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
       end
 
+      cmp.setup.filetype("python", {
+        sources = cmp.config.sources {
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry, ctx)
+              local kind = cmp.get_registered_sources()
+
+              -- if kind.sources == 'jedi_language_server' then return true end return false
+              for _, source in ipairs(kind) do
+                -- Kiểm tra nếu nguồn là 'jedi_language_server'
+                if source.name == "nvim_lsp" and source.source.client.name == "jedi_language_server" then
+                  return true
+                end
+              end
+
+              return false
+            end,
+          },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
+        },
+      })
+
       return require("astrocore").extend_tbl(opts, {
         -- Configure window style
         window = {
@@ -74,22 +97,4 @@ return {
       })
     end,
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = function(_, opts)
-  --     local lspconfig = require "lspconfig"
-
-  --     -- Setup `jedi-language-server` for Python files
-  --     lspconfig.jedi_language_server.setup {
-  --       on_attach = opts.on_attach,
-  --       capabilities = opts.capabilities,
-  --       filetypes = { "python" },
-  --     }
-
-  --     -- Optionally, you can disable pyright
-  --     lspconfig.pyright.setup {
-  --       filetypes = {},
-  --     }
-  --   end,
-  -- },
 }

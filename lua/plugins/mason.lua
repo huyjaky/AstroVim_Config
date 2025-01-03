@@ -10,9 +10,9 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "lua_ls",
-        "jedi_language_server",
+        -- "jedi_language_server",
         "ruff",
-        "basedpyright",
+        -- "basedpyright",
       })
     end,
   },
@@ -23,7 +23,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "stylua",
+        -- "stylua",
         -- "clang-format",
         -- "black",
         -- "prettier",
@@ -38,7 +38,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "codelldb",
+        -- "codelldb",
         "python",
       })
     end,

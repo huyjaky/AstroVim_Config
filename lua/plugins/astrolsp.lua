@@ -11,7 +11,7 @@ return {
     features = {
       autoformat = false, -- enable or disable auto formatting on start
       codelens = false, -- enable/disable codelens refresh on start
-      inlay_hints = true, -- enable/disable inlay hints on start
+      inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
@@ -23,23 +23,76 @@ return {
     config = {
       -- clangd = require "plugins.configs.lsp.config.clangd",
       basedpyright = require "plugins.configs.lsp.config.basedpyright",
-
+      
       jedi_language_server = {
         init_options = {
           completion = {
-            disableSnippets = true,
+            -- disableSnippets = true,
           },
-          -- diagnostics = {
-          --   enable = fa,
-          -- }
+          
+          diagnostics = {
+            enable = false,
+          }
         },
       },
       ruff = {
         init_options = {
           settings = {
-            args = {
-              "--extend-select=W,COM,ICN",
-              "--ignore=E501,E722,COM812",
+            lint = {
+              select = {
+                "ALL",
+              },
+              ignore = {
+                "ANN",
+                "COM",
+                "C90",
+                "DJ",
+                "EXE",
+                "T10",
+                "TID",
+                "D100",
+                "D101",
+                "D102",
+                "D103",
+                "D104",
+                "D105",
+                "D106",
+                "D107",
+                "D200",
+                "D205",
+                "D212",
+                "D400",
+                "D401",
+                "D415",
+                "E402",
+                "E501",
+                "TRY003",
+                "TD002",
+                "TD003",
+                "FIX002",
+                "N803",
+                "PD901"
+              },
+              fixable = { "ALL" },
+            },
+
+            args = {},
+          },
+        },
+      },
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              mccabe = { enabled = false },
+              -- pylint = { enabled = false },
+              pylsp_mypy = { enabled = false },
+              pylsp_black = { enabled = false },
+              pylsp_isort = { enabled = false },
             },
           },
         },

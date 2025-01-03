@@ -3,6 +3,10 @@
 ---@type LazySpec
 return {
   "nvimtools/none-ls.nvim",
+  dependencies = {
+    "nvimtools/none-ls-extras.nvim",
+    "jay-babu/mason-null-ls.nvim",
+  },
   opts = function(_, opts)
     -- config variable is the default configuration table for the setup function call
     local null_ls = require "null-ls"
@@ -11,7 +15,8 @@ return {
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     opts.sources = {
-      -- Set a formatter
+      require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'F' } },
+      require 'none-ls.formatting.ruff_format',  -- Set a formatter
     }
     return opts
   end,
