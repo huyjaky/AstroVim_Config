@@ -9,7 +9,7 @@ return {
       open = "o",
       remove = "d",
       repl = "r",
-      toggle = "t"
+      toggle = "t",
     },
 
     layouts = {
@@ -47,4 +47,22 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    local dap = require "dap"
+    local dapui = require "dapui"
+
+    -- Initialize dap-ui
+    dapui.setup(opts)
+
+    -- Prevent UI from closing when debugging session ends
+    dap.listeners.after.event_terminated["dapui"] = function()
+      -- Do nothing, keeping the UI open
+    end
+    dap.listeners.after.event_exited["dapui"] = function()
+      -- Do nothing, keeping the UI open
+    end
+
+    -- Optionally, open dap-ui when session starts
+    dap.listeners.after.event_initialized["dapui"] = function() dapui.open() end
+  end,
 }
