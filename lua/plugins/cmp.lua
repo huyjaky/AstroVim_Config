@@ -20,9 +20,10 @@ return {
         sources = cmp.config.sources {
           {
             name = "nvim_lsp",
+            priority = 700,
             entry_filter = function(entry, ctx)
-              local kind = cmp.get_registered_sources()
 
+              local kind = cmp.get_registered_sources()
               -- if kind.sources == 'jedi_language_server' then return true end return false
               for _, source in ipairs(kind) do
                 -- Kiểm tra nếu nguồn là 'jedi_language_server'
