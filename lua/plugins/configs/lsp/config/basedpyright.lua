@@ -9,7 +9,7 @@ return {
 
       disableOrganizeImports = true,
       -- disableLanguageServices = true,
-      disableTaggedHints = true,
+      -- disableTaggedHints = true,
       analysis = {
         -- diagnosticMode = "workspace",
         diagnosticMode = "openFilesOnly",
@@ -27,6 +27,7 @@ return {
         useLibraryCodeForTypes = false,
         deprecateTypingAliases = false,
         enableReachabilityAnalysis = false,
+
         strictListInference = true,
         strictDictionaryInference = true,
         strictSetInference = true,
@@ -47,7 +48,7 @@ return {
           reportArgumentType = false,
           reportAttributeAccessIssue = false,
 
-          reportCallIssue = false,
+          -- reportCallIssue = false,
           -- reportNoOverloadImplementation = false,
           -- reportOverlappingOverload = false,
           -- reportInconsistentOverload = false,
