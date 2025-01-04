@@ -8,7 +8,8 @@ return {
     basedpyright = {
 
       disableOrganizeImports = true,
-
+      -- disableLanguageServices = true,
+      disableTaggedHints = true,
       analysis = {
         -- diagnosticMode = "workspace",
         diagnosticMode = "openFilesOnly",
@@ -26,24 +27,45 @@ return {
         useLibraryCodeForTypes = false,
         deprecateTypingAliases = false,
         enableReachabilityAnalysis = false,
-
         strictListInference = true,
         strictDictionaryInference = true,
         strictSetInference = true,
 
         analyzeUnannotatedFunctions = false,
         -- ignore = { "**/*.py" },
-
+        reportGeneralTypeIssues = false,
         diagnosticSeverityOverrides = {
-          reportUnusedImport = "none",
-          reportUnusedFunction = "none",
-          reportUnusedVariable = "none",
-          reportGeneralTypeIssues = "none",
-          reportOptionalMemberAccess = "none",
-          reportOptionalSubscript = "none",
-          reportPrivateImportUsage = "none",
-          reportInvalidStubStatement = "none",
-          reportIncompleteStub = "none",
+          reportUnusedImport = false,
+          reportUnusedFunction = false,
+          reportUnusedVariable = false,
+          reportGeneralTypeIssues = false,
+          reportOptionalMemberAccess = false,
+          reportOptionalSubscript = false,
+          reportPrivateImportUsage = false,
+          reportInvalidStubStatement = false,
+          reportIncompleteStub = false,
+          reportArgumentType = false,
+          reportAttributeAccessIssue = false,
+
+          reportCallIssue = false,
+          -- reportNoOverloadImplementation = false,
+          -- reportOverlappingOverload = false,
+          -- reportInconsistentOverload = false,
+          -- reportUnknownMemberType = false,
+          -- reportFunctionMemberAccess = false,
+          -- reportPropertyTypeMismatch = false,
+          -- reportMatchNotExhaustive = false,
+          -- reportInvalidTypeForm = false,
+          -- reportAbstractUsage = false,
+
+          -- reportAssertTypeFailure = false,
+          -- reportAssignmentType = false,
+
+          -- reportIndexIssue = false,
+          -- reportInvalidTypeArguments = false,
+          -- reportOperatorIssue = false,
+          -- reportOptionalCall = false,
+          -- reportOptionalIterable = false,
         },
       },
     },

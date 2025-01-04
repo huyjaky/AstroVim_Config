@@ -9,7 +9,6 @@ return {
         bind = true,
         handler_opts = { border = "rounded" },
         hint_enable = true,
-
         hint_prefix = "🐼 ",
         debug = true,
         verbose = true,

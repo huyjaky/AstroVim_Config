@@ -36,8 +36,6 @@ return {
             autoImportModules = {
               "numpy",
               "pandas",
-              "torch",
-              "sklearn",
             },
           },
         },
@@ -80,6 +78,8 @@ return {
                 "N803",
                 "PD901",
                 "F401",
+                "I001",
+                "RET504",
               },
               fixable = { "ALL" },
             },
