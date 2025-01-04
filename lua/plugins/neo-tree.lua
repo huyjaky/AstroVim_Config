@@ -25,6 +25,7 @@ return {
           '*.rar',
           '*.pdf',
         },
+        
       },
     },
     enable_git_status = false,

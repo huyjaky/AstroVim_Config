@@ -14,7 +14,7 @@ return {
     })
     opts.highlight = {
       enable = true,
-      disable = { "c", "rust", "tsx", "javascript", "python"},
+      disable = { "c", "rust", "tsx", "javascript"},
       additional_vim_regex_highlighting = false,
       custom_captures = {
         -- Highlight local variables

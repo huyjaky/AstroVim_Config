@@ -7,10 +7,12 @@ return {
   settings = {
     basedpyright = {
 
+      disableOrganizeImports = true,
+
       analysis = {
         -- diagnosticMode = "workspace",
         diagnosticMode = "openFilesOnly",
-        typeCheckingMode = "off",
+        typeCheckingMode = "basic",
         autoImportCompletions = false,
         autoSearchPath = false,
         logLevel = "error",
@@ -18,14 +20,19 @@ return {
         inlayHints = {
           variableTypes = true,
           functionReturnTypes = true,
-          callArgumentNames = true,
+          callArgumentNames = false,
           pytestParameters = true,
         },
         useLibraryCodeForTypes = false,
-        strictListInference = true,
-        strictDictionaryInference = true,
         deprecateTypingAliases = false,
         enableReachabilityAnalysis = false,
+
+        strictListInference = true,
+        strictDictionaryInference = true,
+        strictSetInference = true,
+
+        analyzeUnannotatedFunctions = false,
+        -- ignore = { "**/*.py" },
 
         diagnosticSeverityOverrides = {
           reportUnusedImport = "none",

@@ -12,7 +12,7 @@ return {
       autoformat = false, -- enable or disable auto formatting on start
       codelens = false, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
-      semantic_tokens = true, -- enable/disable semantic token highlighting
+      semantic_tokens = false, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
     formatting = require "plugins.configs.lsp.formatting",
@@ -23,16 +23,23 @@ return {
     config = {
       -- clangd = require "plugins.configs.lsp.config.clangd",
       basedpyright = require "plugins.configs.lsp.config.basedpyright",
-      
+
       jedi_language_server = {
         init_options = {
           completion = {
             -- disableSnippets = true,
           },
-          
           diagnostics = {
             enable = false,
-          }
+          },
+          jediSettings = {
+            autoImportModules = {
+              "numpy",
+              "pandas",
+              "torch",
+              "sklearn",
+            },
+          },
         },
       },
       ruff = {
@@ -71,7 +78,8 @@ return {
                 "TD003",
                 "FIX002",
                 "N803",
-                "PD901"
+                "PD901",
+                "F401",
               },
               fixable = { "ALL" },
             },
