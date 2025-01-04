@@ -6,7 +6,7 @@ return {
   config = function()
     require("noice").setup {
       -- Configuration here, or leave empty to use defaults
-      views = { },
+      views = {},
       messages = {
         enabled = false, -- disables the Noice messages UI
       },
@@ -18,7 +18,20 @@ return {
           enabled = false,
         },
         hover = {
-          enabled = false, -- disables Noice LSP hover
+          -- enabled = false, -- disables Noice LSP hover
+          enabled = true, -- bật Noice hover
+          silent = true, -- thông báo nếu không có tài liệu hover
+          view = "hover", -- chế độ hiển thị mặc định cho hover
+          opts = { -- tùy chỉnh hiển thị
+            border = {
+              style = "rounded", -- bo góc viền
+              text = { top = " Documents ", top_align = "center" }, -- tiêu đề hover
+            },
+            win_options = {
+              wrap = true, -- bật tự động xuống dòng
+              linebreak = true, -- ngắt dòng ở khoảng trắng
+            },
+          },
         },
         signature = {
           enabled = false, -- disables Noice LSP signature help
