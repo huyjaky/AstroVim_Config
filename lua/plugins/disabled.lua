@@ -1,6 +1,5 @@
 -- Plugins to disable
 return {
-  { "nvim-neo-tree/neo-tree.nvim", enabled = true },
   { "s1n7ax/nvim-window-picker", enabled = false },
   { "akinsho/toggleterm.nvim", enabled = false },
   { "NvChad/nvim-colorizer.lua", enabled = false },
@@ -15,19 +14,26 @@ return {
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   { "chipsenkbeil/distant.nvim", enabled = false },
   { "gen740/SmoothCursor.nvim", enabled = false },
-  { "stevearc/resession.nvim", enabled = true },
   { "AstroNvim/astrotheme", enabled = false },
-  { "echasnovski/mini.move", enabled = true },
   { "scottmckendry/cyberdream.nvim", enabled = false },
-  { "HiPhish/rainbow-delimiters.nvim", enabled = true },
-  { "xiyaowong/transparent.nvim", enabled = true },
+  { "xiyaowong/transparent.nvim", enabled = false },
   { "MagicDuck/grug-far.nvim", enabled = false },
   { "loctvl842/monokai-pro.nvim", enabled = false },
   { "xiyaowong/transparent.nvim", enabled = false },
   { "iamcco/markdown-preview.nvim", enabled = false },
   { "max397574/better-escape.nvim", enabled = false },
-  { "ribru17/bamboo.nvim", enabled = true },
   { "hinell/duplicate.nvim", enabled = false },
+  { "CRAG666/code_runner.nvim", enabled = false },
+
+  -- interface
+  { "HiPhish/rainbow-delimiters.nvim", enabled = true },
+  { "ribru17/bamboo.nvim", enabled = true },
+
+  -- service
+  { "stevearc/resession.nvim", enabled = true },
+  { "echasnovski/mini.move", enabled = true },
+  { "nvim-neo-tree/neo-tree.nvim", enabled = true },
+  { "folke/flash.nvim", enabled = true },
 
 }
 

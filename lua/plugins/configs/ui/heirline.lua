@@ -140,12 +140,12 @@ M.statusline = {
     hl = { fg = "text_fg" },
     padding = { right = 1 },
   },
-  status.component.lsp {
-    lsp_client_names = {
-      icon = { kind = "ActiveLSP", padding = { right = 1 } },
-    },
-    surround = { separator = "left" },
-  },
+  -- status.component.lsp {
+  --   lsp_client_names = {
+  --     icon = { kind = "ActiveLSP", padding = { right = 1 } },
+  --   },
+  --   surround = { separator = "left" },
+  -- },
   {
     status.component.builder {
       { provider = get_icon "ScrollText" },

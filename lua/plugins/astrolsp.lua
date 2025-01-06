@@ -27,7 +27,7 @@ return {
       jedi_language_server = {
         init_options = {
           completion = {
-            -- disableSnippets = true,
+            disableSnippets = true,
           },
           diagnostics = {
             enable = false,
@@ -36,6 +36,8 @@ return {
             autoImportModules = {
               "numpy",
               "pandas",
+              "torch",
+              "sklearn"
             },
           },
         },
@@ -44,6 +46,7 @@ return {
         init_options = {
           settings = {
             lint = {
+              unfixable = { "F401" },
               select = {
                 "ALL",
               },
@@ -77,31 +80,13 @@ return {
                 "FIX002",
                 "N803",
                 "PD901",
-                "F401",
+                -- "F401",
                 "I001",
                 "RET504",
               },
-              fixable = { "ALL" },
             },
 
             args = {},
-          },
-        },
-      },
-      pylsp = {
-        settings = {
-          pylsp = {
-            plugins = {
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              mccabe = { enabled = false },
-              -- pylint = { enabled = false },
-              pylsp_mypy = { enabled = false },
-              pylsp_black = { enabled = false },
-              pylsp_isort = { enabled = false },
-            },
           },
         },
       },
@@ -189,9 +174,11 @@ return {
     on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
-
       -- Disable ruff_lsp hover in favor of pyright
       if client.name == "ruff_lsp" then client.server_capabilities.hoverProvider = false end
+
+      -- Disable completion feature of pyright
+      if client.name == "basedpyright" then client.server_capabilities.completionProvider = false end
     end,
   },
 }

@@ -18,9 +18,22 @@ return {
 
       cmp.setup.filetype("python", {
         sources = cmp.config.sources {
-          { name = "nvim_lsp", priority = 700 },
+          { name = "nvim_lsp", priority = 700},
           { name = "buffer", priority = 500 },
           { name = "path", priority = 250 },
+        },
+        sorting = {
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+
+          },
+          priority_weight = 1000
         },
       })
 

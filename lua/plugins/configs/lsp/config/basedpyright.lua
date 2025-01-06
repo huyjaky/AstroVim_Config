@@ -6,18 +6,18 @@ return {
   end,
   settings = {
     basedpyright = {
-
       disableOrganizeImports = true,
       -- disableLanguageServices = true,
-      -- disableTaggedHints = true,
+      autoImportCompletions = false,
+      disableTaggedHints = true,
+      useLibraryCodeForTypes = false,
       analysis = {
         -- diagnosticMode = "workspace",
         diagnosticMode = "openFilesOnly",
         typeCheckingMode = "basic",
         autoImportCompletions = false,
         autoSearchPath = false,
-        logLevel = "error",
-        indexing = true,
+        indexing = false,
         inlayHints = {
           variableTypes = true,
           functionReturnTypes = true,
