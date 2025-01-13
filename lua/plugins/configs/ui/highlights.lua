@@ -10,12 +10,13 @@ return {
       DiagnosticVirtualTextHint = { fg = get_hlgroup("DiagnosticHint").fg, bg = "none" },
       DiagnosticVirtualTextInfo = { fg = get_hlgroup("DiagnosticInfo").fg, bg = "none" },
       DiagnosticVirtualTextWarn = { fg = get_hlgroup("DiagnosticWarn").fg, bg = "none" },
+
       CursorLineNr = { fg = "#FFD700", bg = "none", bold = true },
       CursorLine = { fg = "none", bg = "#004C4C", bold = true },
       Visual = { fg = "#000000", bg = "#FFFFFF", bold = true },
 
       -- remove background of inlay hints
-      LspInlayHint = { fg = get_hlgroup("LspInlayHint").fg, bg = "none" },
+      LspInlayHint = { fg = "#FF748B", bg = "none" },
     }
 
     return hl

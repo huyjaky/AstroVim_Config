@@ -6,6 +6,9 @@ return {
     },
   },
   {
+    "github/copilot.vim",
+  },
+  {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       local cmp = require "cmp"
@@ -18,22 +21,9 @@ return {
 
       cmp.setup.filetype("python", {
         sources = cmp.config.sources {
-          { name = "nvim_lsp", priority = 700},
+          { name = "nvim_lsp", priority = 1000 },
           { name = "buffer", priority = 500 },
           { name = "path", priority = 250 },
-        },
-        sorting = {
-          comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-
-          },
-          priority_weight = 1000
         },
       })
 
@@ -65,14 +55,16 @@ return {
         mapping = {
           -- Esc to close completion menu
           ["<Esc>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
+
           -- Tab to select completion
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() and has_words_before() then
-              cmp.confirm { select = true }
+              fallback()
             else
               fallback()
             end
           end, { "i", "s" }),
+
           -- Use <C-n> and <C-p> to select luasnip
           ["<C-n>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
@@ -88,6 +80,14 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+          ["<C-f>"] = cmp.mapping(function(fallback)
+            -- Check if Copilot is suggesting something
+            if vim.fn["copilot#Accept"]() ~= "" then
+              vim.api.nvim_set_keymap("i", "<C-f>", "copilot#Accept(“<CR>”)", { expr = true, silent = true })
+            else
+              fallback() -- If no suggestion, fallback to default behavior
+            end
+          end, { "i", "s" }), -- Enable in insert and command-line mode
         },
         experimental = {
           ghost_text = false, -- this feature conflict with copilot.vim's preview.

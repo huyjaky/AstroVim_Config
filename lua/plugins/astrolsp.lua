@@ -27,7 +27,7 @@ return {
       jedi_language_server = {
         init_options = {
           completion = {
-            disableSnippets = true,
+            disableSnippets = false,
           },
           diagnostics = {
             enable = false,
@@ -37,7 +37,7 @@ return {
               "numpy",
               "pandas",
               "torch",
-              "sklearn"
+              "sklearn",
             },
           },
         },
@@ -74,15 +74,18 @@ return {
                 "D415",
                 "E402",
                 "E501",
+                "ERA001",
                 "TRY003",
                 "TD002",
                 "TD003",
+                "T201",
                 "FIX002",
                 "N803",
                 "PD901",
                 -- "F401",
                 "I001",
                 "RET504",
+                "PLR2004",
               },
             },
 

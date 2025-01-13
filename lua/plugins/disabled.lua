@@ -34,7 +34,7 @@ return {
   { "echasnovski/mini.move", enabled = true },
   { "nvim-neo-tree/neo-tree.nvim", enabled = true },
   { "folke/flash.nvim", enabled = true },
-
+  { "github/copilot.vim", enabled = true },
 }
 
 -- if true then return {} end

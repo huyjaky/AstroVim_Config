@@ -20,7 +20,7 @@ return {
         indexing = false,
         inlayHints = {
           variableTypes = true,
-          functionReturnTypes = true,
+          functionReturnTypes = false,
           callArgumentNames = false,
           pytestParameters = true,
         },
