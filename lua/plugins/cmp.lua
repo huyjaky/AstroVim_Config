@@ -6,13 +6,22 @@ return {
     },
   },
   {
-    "github/copilot.vim",
+    "hrsh7th/cmp-cmdline",
+    event = "CmdlineEnter",
   },
   {
-    "hrsh7th/cmp-cmdline",
+    "github/copilot.vim",
+    event = "BufRead",
   },
   {
     "hrsh7th/nvim-cmp",
+    event = "VimEnter",
+    depedencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "saadparwaiz1/cmp_luasnip",
+    },
     opts = function(_, opts)
       local cmp = require "cmp"
       local luasnip = require "luasnip"
@@ -22,35 +31,46 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
       end
 
-      -- `/` cmdline setup.
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
+      cmp.config.sources {
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "luasnip", priority = 900 },
+        { name = "cmdline", priority = 800 },
+        { name = "buffer", priority = 500 },
+        { name = "path", priority = 250 },
+      }
 
       -- `:` cmdline setup.
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline {
+          ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.confirm { select = true }
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+            else
+              fallback()
+            end
+          end, { "i", "c" }),
+        },
         sources = cmp.config.sources({
           { name = "path" },
         }, {
           {
             name = "cmdline",
             option = {
-              ignore_cmds = { "Man", "!" },
+              -- code for me options for processing command when press enter
+
+              ignore_cmds = {
+                "q",
+                "qa",
+                "qall",
+                "quitall",
+                "quit",
+                "wall",
+                "wq",
+              },
             },
           },
         }),
-      })
-
-      cmp.setup.filetype("python", {
-        sources = cmp.config.sources {
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "buffer", priority = 500 },
-          { name = "path", priority = 250 },
-        },
       })
 
       return require("astrocore").extend_tbl(opts, {
@@ -106,14 +126,15 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<C-f>"] = cmp.mapping(function(fallback)
-            -- Check if Copilot is suggesting something
-            if vim.fn["copilot#Accept"]() ~= "" then
-              vim.api.nvim_set_keymap("i", "<C-f>", "copilot#Accept(“<CR>”)", { expr = true, silent = true })
-            else
-              fallback() -- If no suggestion, fallback to default behavior
-            end
-          end, { "i", "s" }), -- Enable in insert and command-line mode
+
+          -- ["<C-f>"] = cmp.mapping(function(fallback)
+          --   -- Check if Copilot is suggesting something
+          --   if vim.fn["copilot#Accept"]() ~= "" then
+          --     vim.api.nvim_set_keymap("i", "<C-f>", "copilot#Accept('')", { expr = true, silent = true })
+          --   else
+          --     fallback() -- If no suggestion, fallback to default behavior
+          --   end
+          -- end, { "i", "s" }), -- Enable in insert and command-line mode
         },
         experimental = {
           ghost_text = false, -- this feature conflict with copilot.vim's preview.

@@ -35,10 +35,10 @@ return {
   { "nvim-neo-tree/neo-tree.nvim", enabled = true },
   { "folke/flash.nvim", enabled = true },
   { "github/copilot.vim", enabled = true },
+
   { "rafamadriz/friendly-snippets", enabled = false },
   { "JoosepAlviste/nvim-ts-context-commentstring", enabled = false },
-  { "windwp/nvim-ts-autotag", enabled = true },
-  
+  { "windwp/nvim-ts-autotag", enabled = false},
 }
 
 -- if true then return {} end
