@@ -38,7 +38,9 @@ return {
 
   { "rafamadriz/friendly-snippets", enabled = false },
   { "JoosepAlviste/nvim-ts-context-commentstring", enabled = false },
-  { "windwp/nvim-ts-autotag", enabled = false},
+  { "windwp/nvim-ts-autotag", enabled = false },
+  { "saadparwaiz1/cmp_luasnip", enabled = false },
+  { "L3MON4D3/LuaSnip", enabled = true },
 }
 
 -- if true then return {} end

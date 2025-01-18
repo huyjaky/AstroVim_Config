@@ -1,6 +1,6 @@
 return {
   "brenton-leighton/multiple-cursors.nvim",
-  event = 'VimEnter',
+  event = "BufRead",
   cmd = {
     "MultipleCursorsAddDown",
     "MultipleCursorsAddUp",

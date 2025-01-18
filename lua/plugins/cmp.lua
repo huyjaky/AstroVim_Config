@@ -5,22 +5,15 @@ return {
       symbol_map = require "plugins.configs.ui.lspkind",
     },
   },
-  {
-    "hrsh7th/cmp-cmdline",
-    event = "CmdlineEnter",
-  },
-  {
-    "github/copilot.vim",
-    event = "BufRead",
-  },
+  { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
+  { "github/copilot.vim", event = "BufRead" },
+  { "hrsh7th/cmp-buffer", event = "BufRead" },
+  { "hrsh7th/cmp-path", event = "BufRead" },
   {
     "hrsh7th/nvim-cmp",
     event = "VimEnter",
     depedencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
     },
     opts = function(_, opts)
       local cmp = require "cmp"
@@ -33,7 +26,6 @@ return {
 
       cmp.config.sources {
         { name = "nvim_lsp", priority = 1000 },
-        { name = "luasnip", priority = 900 },
         { name = "cmdline", priority = 800 },
         { name = "buffer", priority = 500 },
         { name = "path", priority = 250 },
