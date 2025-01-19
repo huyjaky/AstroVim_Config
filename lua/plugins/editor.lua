@@ -1,4 +1,3 @@
-local rainbow = require "plugins.ts-rainbow"
 -- Plugins that enhance editor experience
 return {
   {
