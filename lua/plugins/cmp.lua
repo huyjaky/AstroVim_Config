@@ -27,7 +27,6 @@ return {
       cmp.config.sources {
         { name = "nvim_lsp", priority = 1000 },
         { name = "cmdline", priority = 800 },
-        { name = "buffer", priority = 500 },
         { name = "path", priority = 250 },
       }
 

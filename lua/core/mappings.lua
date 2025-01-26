@@ -18,13 +18,14 @@ return function()
   mappings.n["<C-Right>"] = false
   mappings.n["<C-Up>"] = false
   mappings.n["<C-Down>"] = false
+  mappings.n["K"] = false
 
   -------------------------------------------
   ----------- Utility functions -------------
   -------------------------------------------
   mappings.n["<C-z>"] = { "u", desc = "Undo" }
   -- mappings.n["<S-k>"] = { "u", desc = "Undo" }
-  mappings.n["K"] = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details"}
+  -- mappings.n["K"] = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details"}
   
   mappings.i["<C-z>"] = { "<C-o>u", desc = "Undo" }
   mappings.i["<C-Del>"] = { "<C-o>dw", desc = "Delete a word backward" }
@@ -34,6 +35,7 @@ return function()
   mappings.i["<S-Tab>"] = { "<C-d>", desc = "Unindent line" }
   mappings.v["<Tab>"] = { ">gv", desc = "Indent line" }
   mappings.v["<S-Tab>"] = { "<gv", desc = "Unindent line" }
+
   
   -- Separate cut and delete motion
   -- for key, map in pairs {
@@ -56,5 +58,14 @@ return function()
   -- end
   mappings.n["<C-a>"] = { "ggVG", desc = "Select all lines" }
 
-  return mappings
+
+  ------ My customs keybinding ------
+  mappings.n["<leader>xn"] = { "<Cmd>Telescope notify<CR>", desc = "Notifications" }
+
+  mappings.i["VK"] = false
+  mappings.v["VK"] = false
+  mappings.n["VK"] = false
+
+
+ return mappings
 end

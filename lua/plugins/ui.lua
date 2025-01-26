@@ -30,14 +30,14 @@ return {
   },
 
   -- Transparent background
-  {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-    opts = function(_, opts) opts = require "plugins.configs.ui.transparent"(opts) end,
-    keys = {
-      { "<Leader>uT", "<Cmd>TransparentToggle<CR>", desc = "Toggle transparent" },
-    },
-  },
+  -- {
+  --   "xiyaowong/transparent.nvim",
+  --   lazy = false,
+  --   opts = function(_, opts) opts = require "plugins.configs.ui.transparent"(opts) end,
+  --   keys = {
+  --     { "<Leader>uT", "<Cmd>TransparentToggle<CR>", desc = "Toggle transparent" },
+  --   },
+  -- },
   {
     {
       "HiPhish/rainbow-delimiters.nvim",

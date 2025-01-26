@@ -170,14 +170,15 @@ return {
       end,
     },
   },
-  
+
   -- Better split navigation and resize
   {
     "mrjones2014/smart-splits.nvim",
     event = "VeryLazy", -- load on very lazy for mux detection
     opts = function(_, opts)
-      opts.ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" }
+      opts.ignored_filetypes = { "nofile", "quickfix", "qf", "prompt", "NvimTree" }
       opts.ignored_buftypes = { "nofile" }
+      opts.log_level = "error"
     end,
     keys = {
       {

@@ -17,18 +17,17 @@ return {
           enabled = false,
         },
         hover = {
-          -- enabled = false, -- disables Noice LSP hover
-          enabled = true, -- bật Noice hover
-          silent = true, -- thông báo nếu không có tài liệu hover
-          view = "hover", -- chế độ hiển thị mặc định cho hover
-          opts = { -- tùy chỉnh hiển thị
+          enabled = true, 
+          silent = true, 
+          view = "hover", 
+          opts = { 
             border = {
-              style = "rounded", -- bo góc viền
-              text = { top = " Documents ", top_align = "center" }, -- tiêu đề hover
+              style = "rounded", 
+              text = { top = " Documents ", top_align = "center" }, 
             },
             win_options = {
-              wrap = true, -- bật tự động xuống dòng
-              linebreak = true, -- ngắt dòng ở khoảng trắng
+              wrap = true, 
+              linebreak = true, 
             },
           },
         },
