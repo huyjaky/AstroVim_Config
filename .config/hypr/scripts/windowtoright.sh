@@ -15,14 +15,9 @@ window_width=$(echo "$window_info" | grep 'size:' | awk '{print $2}' | cut -d','
 hyprctl dispatch fullscreenstate 0 # minimize trước khi di chuyển
 
 move(){
-  # hyprctl dispatch movetoworkspace $((window_at_workspace+1)) \
-  # && hyprctl dispatch focusmonitor 1 \
-  # && hyprctl dispatch workspace $((current_workspace+2)) \
-  # && hyprctl dispatch focusmonitor 0
 
   hyprctl --batch "
     dispatch movetoworkspace $((window_at_workspace+1)) ;
-    dispatch focusmonitor 1 ;
     dispatch workspace $((current_workspace+2)) ;
     dispatch focusmonitor 0
   "

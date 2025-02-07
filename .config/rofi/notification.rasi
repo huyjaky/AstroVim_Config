@@ -3,7 +3,7 @@ configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
-    font:                        "JetBrainsMono Nerd Font 9";
+    font:                        "JetBrainsMono Nerd Font 10";
 }
 
 @theme "~/.config/rofi/theme.rasi"
@@ -13,35 +13,36 @@ configuration {
 window {
     enabled:                     true;
     fullscreen:                  false;
-    width:                       40em;
-    height:                      25.5em;
     transparency:                "real";
     cursor:                      "default";
     spacing:                     0em;
     padding:                     0em;
-    border:                      0.5em;
-    border-radius:               1em;
-    border-color:                #686156;
-    background-color:            #2d2a2e;
+    border:                      0.3em;
+    border-radius:               0.5em;
+    border-color:                @main-br;
+    background-color:            @main-bg;
 }
+
 mainbox {
     enabled:                     true;
     orientation:                 vertical;
     children:                    [ "frame" ];
-    background-color:            #2d2a2e;
+    background-color:            @main-bg;
 }
+
 frame {
     enabled:                     true;
     orientation:                 vertical;
     children:                    [ "dummy2" , "listview" , "dummy2" ];
-    background-color:            #2d2a2e;
+    background-color:            @main-bg;
 }
 
+ 
 // Lists //
 listview {
     enabled:                     true;
     spacing:                     0em;
-    padding:                     0em;
+    padding:                     0.5em;
     columns:                     1;
     lines:                       4;
     cycle:                       true;

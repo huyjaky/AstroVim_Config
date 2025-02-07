@@ -22,12 +22,14 @@ window {
     border-color:                transparent;
     background-color:            @main-bg;
 }
+
 mainbox {
     enabled:                     true;
     orientation:                 horizontal;
     children:                    [ "dummy", "frame", "dummy" ];
     background-color:            transparent;
 }
+
 frame {
     children:                    [ "listview" ];
     background-color:            transparent;
@@ -49,6 +51,7 @@ listview {
     background-color:            transparent;
     text-color:                  @main-fg;
 }
+
 dummy {
     width:                       2em;
     expand:                      false;

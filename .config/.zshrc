@@ -1,14 +1,15 @@
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# zmodload zsh/zprof
-# export TERM=screen-256color
 export PYOPENGL_PLATFORM=osmesa
-# export GTK_IM_MODULE=fcitx
-# export QT_IM_MODULE=fcitx
-# export XMODIFIERS=@im=fcitx
 export PRIMARY_MONITOR_WORKSPACE=1 
 export SECONDARY_MONITOR_WORKSPACE=2
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export MYPYPATH="/home/duckq1u/miniconda3/envs/pytorch"
+
+export ROCM_PATH="/opt/rocm"
+# export CMAKE_PREFIX_PATH="/home/duckq1u/miniconda3/envs/pytorch/lib/cmake"
+export PYTORCH_ROCM_ARCH="gfx1010"
+# export HSA_OVERRIDE_GFX_VERSION=10.1.0
+# export HIP_VISIBLE_DEVICES=0
+export LD_LIBRARY_PATH="/opt/rocm/"
 
 # HACK: Config auto-suggestion as well as oh-my-posh
 eval "$(oh-my-posh init zsh --config ~/montys.omp.json)"
@@ -71,12 +72,15 @@ zstyle ':completion:*' menu select
 alias nv='nvim'
 alias lz='lazygit'
 # alias la='eza --color=always --long --git --no-filesize --icons=always --no-time --no-permissions -a'
-alias la='eza -a --icons=always --color=always --git'
+alias ls='eza -a --icons=always --color=always --git'
 alias hh='cd ~'
 alias showport='sudo lsof -i -P -n | grep LISTEN'
-alias shutdown='sudo shutdown -h +60'
+alias shutdowntime='sudo shutdown -h +60'
 alias docs='cd ~/Documents/'
 alias zrok='~/Documents/appimage/zrok'
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 jointmux(){
   SESSION_NAME="duckq"
@@ -87,7 +91,7 @@ jointmux(){
   else
     # Check if the tmux session already exists
     if tmux has-session -t $SESSION_NAME 2>/dev/null; then
-      # Attach to the existing tmux session
+     # Attach to the existing tmux session
       tmux attach-session -t $SESSION_NAME
     else
       # Start a new tmux session
@@ -98,13 +102,16 @@ jointmux(){
 }
 
 appearance(){
-  pokemon-colorscripts -n charizard -f mega-x
+  # pokemon-colorscripts -n charizard -f mega-x
+  pokemon-colorscripts -n darkrai --no-title
   cat ~/.conda/environments.txt
 }
+
 cls(){
   clear
   appearance
 }
+
 rs(){
   zsh
   appearance
@@ -115,25 +122,22 @@ reloadbar(){
   ags &
 }
 alias listpkg='pacman -Qm'
-
+alias vesktop='vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-v3' # bsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime'
+alias obsidian='obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-v3'
+alias llm='~/Documents/appimage/LM_Studio-0.3.5.AppImage'
+alias via='~/Documents/appimage/via-3.0.0-linux.AppImage --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-v3'
 alias tmat='jointmux'
 alias tmdt='tmux detach'
 
-# HACK: init tmux
-# tmat duckq
-
 # HACK: Init command
-# 
-# Display Pokemon-colorscripts
-# Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
-pokemon-colorscripts -n charizard -f mega-x
-cat ~/.conda/environments.txt
+appearance
 
 # HACK: Keybindings
 bindkey '^g' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+bindkey "^H" backward-delete-word
 # zprof
 # conda env list
 
@@ -155,3 +159,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 conda activate pytorch 
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/duckq1u/.cache/lm-studio/bin"

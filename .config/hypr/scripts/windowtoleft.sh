@@ -23,7 +23,6 @@ move(){
 
   hyprctl --batch "
     dispatch movetoworkspace $((window_at_workspace-1)) ;
-    dispatch focusmonitor 0 ;
     dispatch workspace $((current_workspace-2)) ;
     dispatch focusmonitor 1
   "

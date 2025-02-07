@@ -13,38 +13,43 @@
   // positions generated based on config.ctl //
   "modules-left": [
     "custom/padd",
-    
     "custom/l_end",
     "wlr/taskbar",
     "custom/r_end",
-    
     "custom/l_end",
     "hyprland/workspaces",
     "custom/r_end",
-    
     "custom/padd",
   ],
   "modules-center": [
     "custom/padd",
-    "custom/padd",
+    "custom/padd"
   ],
   "modules-right": [
     "custom/padd",
-    
+    "custom/l_end",
+    "memory",
+    "cpu",
+    "custom/r_end",
+    "custom/l_end",
+    "custom/notifications",
+    "custom/r_end",
     "custom/l_end",
     "idle_inhibitor",
     "clock",
     "custom/spotify",
     "custom/r_end",
-    
     "custom/l_end",
     "custom/cava",
     "mpris",
     "custom/r_end",
-    
     "custom/padd",
   ],
   // sourced from modules based on config.ctl //
+  "custom/notifications": {
+    "format": "󰂞 ",
+    "on-click": "swaync-client -t",
+  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "rotate": 0,
@@ -78,7 +83,16 @@
     "format": "󰍛 {usage}%",
     "rotate": 0,
     "format-alt": "{icon0}{icon1}{icon2}{icon3}",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
   },
   "memory": {
     "states": {
@@ -125,7 +139,9 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["Alacritty"],
+    "ignore-list": [
+      "Alacritty"
+    ],
     "app_ids-mapping": {
       "firefoxdeveloperedition": "firefox-developer-edition",
       "jetbrains-datagrip": "DataGrip",
@@ -169,7 +185,6 @@
         "today": "<span color='#ff6699'><b>{}</b></span>",
       },
     },
-    
     "actions": {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",
@@ -211,13 +226,35 @@
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
   },
   "backlight": {
     "device": "intel_backlight",
     "rotate": 0,
     "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "on-scroll-up": "brightnessctl set 1%+",
     "on-scroll-down": "brightnessctl set 1%-",
     "min-length": 6,
@@ -254,7 +291,11 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [" ", " ", " "],
+      "default": [
+        " ",
+        " ",
+        " "
+      ],
     },
   },
   "pulseaudio#microphone": {

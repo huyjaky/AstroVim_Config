@@ -7,7 +7,6 @@ window_info=$(hyprctl activewindow)
 window_state=$(echo "$window_info" | grep 'fullscreen:' | awk '{print $2}')
 
 
-
 # NOTE: Di chuyển cửa sổ nếu vị trí X vượt qua ngưỡng
 if [ $window_state -eq 1 ]; then
   hyprctl dispatch focusmonitor 1
@@ -15,4 +14,5 @@ if [ $window_state -eq 1 ]; then
 fi
 
 hyprctl dispatch movefocus r
+
 exit 0
