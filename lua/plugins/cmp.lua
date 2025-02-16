@@ -118,10 +118,11 @@ return {
             end
           end, { "i", "s" }),
 
+          vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true }),
+          -- vim.g.copilot_no_tab_map = true,
           -- ["<C-f>"] = cmp.mapping(function(fallback)
           --   -- Check if Copilot is suggesting something
           --   if vim.fn["copilot#Accept"]() ~= "" then
-          --     vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
           --   else
           --     fallback() -- If no suggestion, fallback to default behavior
           --   end
