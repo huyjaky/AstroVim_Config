@@ -1,40 +1,36 @@
+export QT_IM_MODULE=fcitx # For those who bundle qt im module, e.g. WPS, Anki, you should find a .so file with fcitx in the file name
+export QT_IM_MODULE=ibus # For those who bundle ibus im module shipped with Qt, you should find libibusplatforminputcontextplugin.so in the package.
+export QT_QPA_PLATFORM=xcb QT_IM_MODULE=ibus # Enforce it to run on X11/XWayland and use ibus im module
+export QT_IM_MODULES="wayland;fcitx;ibus"
+export SETUPTOOLS_USE_DISTUTILS=1
+export DISABLE_AUTO_UPDATE="true"
+
+# HACK: Export ENV
+export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 export PYOPENGL_PLATFORM=osmesa
 export PRIMARY_MONITOR_WORKSPACE=1 
 export SECONDARY_MONITOR_WORKSPACE=2
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export MYPYPATH="/home/duckq1u/miniconda3/envs/pytorch"
 
-export ROCM_PATH="/opt/rocm"
-# export CMAKE_PREFIX_PATH="/home/duckq1u/miniconda3/envs/pytorch/lib/cmake"
-export PYTORCH_ROCM_ARCH="gfx1010"
-# export HSA_OVERRIDE_GFX_VERSION=10.1.0
-# export HIP_VISIBLE_DEVICES=0
-export LD_LIBRARY_PATH="/opt/rocm/"
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/duckq1u/.cache/lm-studio/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/duckq1/.lmstudio/bin"
+
+# HACK:: Show up startup packaging 
+# zmodload zsh/zprof
+
 
 # HACK: Config auto-suggestion as well as oh-my-posh
 eval "$(oh-my-posh init zsh --config ~/montys.omp.json)"
 
-# HACK: Export ENV
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # HACK: Config Zinit
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-
-# HACK: NVM config init
-# Initialize fast node manager (fnm)
-export NVM_LAZY=1
-export NVM_AUTO_USE=false
-
-[[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd --log-level=quiet)"
-# load my nvm to fnm shim
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-
-# HACK: Shell intergrations
-eval eval "$(fzf --zsh)"
 
 # NOTE: Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -42,6 +38,16 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light agkozak/zsh-z
+
+
+# HACK: NVM config init
+# Initialize fast node manager (fnm)
+[[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd --log-level=quiet)"
+
+
+# HACK: Shell intergrations
+eval eval "$(fzf --zsh)"
+
 
 # HACK: Load completions
 autoload -U compinit && compinit
@@ -103,7 +109,7 @@ jointmux(){
 
 appearance(){
   # pokemon-colorscripts -n charizard -f mega-x
-  pokemon-colorscripts -n darkrai --no-title
+  # pokemon-colorscripts -n darkrai --no-title
   cat ~/.conda/environments.txt
 }
 
@@ -138,10 +144,12 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey "^H" backward-delete-word
+bindkey -s "^L" "/C-l"
+
 # zprof
 # conda env list
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -156,9 +164,6 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
-conda activate pytorch 
 
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/duckq1u/.cache/lm-studio/bin"
+# zprof
