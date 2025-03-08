@@ -22,7 +22,6 @@ export PATH="$PATH:/home/duckq1/.lmstudio/bin"
 # HACK:: Show up startup packaging 
 # zmodload zsh/zprof
 
-
 # HACK: Config auto-suggestion as well as oh-my-posh
 eval "$(oh-my-posh init zsh --config ~/montys.omp.json)"
 

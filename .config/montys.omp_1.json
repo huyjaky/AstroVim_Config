@@ -24,23 +24,12 @@
             "home_icon": "",
             "style": "full"
           },
-          "template": " {{ .Path }} ",
+          "template": " \udb80\ude4b {{ .Path }} ",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "background": "#DA627D",
           "type": "path",
           "style": "powerline"
-        },
-        {
-          "type": "python",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#100e23",
-          "background": "#906cff",
-          "template": " \uE235 {{ .Full }} {{ if .Venv }}{{ .Venv }}{{ end }} ",
-          "properties": {
-            "fetch_virtual_env": true
-          }
         },
         {
           "properties": {
@@ -67,6 +56,17 @@
           "background": "#76b367",
           "type": "node",
           "style": "powerline"
+        },
+        {
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#906cff",
+          "template": " \uE235 {{ .Full }} {{ if .Venv }}{{ .Venv }}{{ end }} ",
+          "properties": {
+            "fetch_virtual_env": true
+          }
         },
         {
           "properties": {
