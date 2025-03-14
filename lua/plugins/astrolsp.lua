@@ -9,20 +9,20 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      autoformat = false, -- enable or disable auto formatting on start
-      codelens = false, -- enable/disable codelens refresh on start
+      autoformat = false,  -- enable or disable auto formatting on start
+      codelens = false,    -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
-    formatting = require "plugins.configs.lsp.formatting",
+    formatting = require("plugins.configs.lsp.formatting"),
     -- enable servers that you already have installed without mason
     servers = {},
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = require "plugins.configs.lsp.config.clangd",
-      basedpyright = require "plugins.configs.lsp.config.basedpyright",
+      basedpyright = require("plugins.configs.lsp.config.basedpyright"),
 
       jedi_language_server = {
         init_options = {
@@ -87,7 +87,8 @@ return {
                 "RET504",
                 "PLR2004",
                 "W291",
-                "PLW2901"
+                "PLW2901",
+                "D213",
               },
             },
 
@@ -121,12 +122,16 @@ return {
           event = { "CursorHold", "CursorHoldI" },
           -- the rest of the autocmd options (:h nvim_create_autocmd)
           desc = "Document Highlighting",
-          callback = function() vim.lsp.buf.document_highlight() end,
+          callback = function()
+            vim.lsp.buf.document_highlight()
+          end,
         },
         {
           event = { "CursorMoved", "CursorMovedI", "BufLeave" },
           desc = "Document Highlighting Clear",
-          callback = function() vim.lsp.buf.clear_references() end,
+          callback = function()
+            vim.lsp.buf.clear_references()
+          end,
         },
       },
       -- disable inlay hints in insert mode
@@ -149,7 +154,9 @@ return {
               vim.api.nvim_create_autocmd("InsertLeave", {
                 buffer = args.buf,
                 once = true,
-                callback = function() vim.lsp.inlay_hint.enable(true, filter) end,
+                callback = function()
+                  vim.lsp.inlay_hint.enable(true, filter)
+                end,
               })
             end
           end,
@@ -159,18 +166,35 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        gh = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details", cond = "textDocument/hover" },
-        gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
+        gh = {
+          function()
+            vim.lsp.buf.hover()
+          end,
+          desc = "Hover symbol details",
+          cond = "textDocument/hover",
+        },
+        gl = {
+          function()
+            vim.diagnostic.open_float()
+          end,
+          desc = "Hover diagnostics",
+        },
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         gD = {
-          function() vim.lsp.buf.declaration() end,
+          function()
+            vim.lsp.buf.declaration()
+          end,
           desc = "Declaration of current symbol",
           cond = "textDocument/declaration",
         },
         ["<Leader>uY"] = {
-          function() require("astrolsp.toggles").buffer_semantic_tokens() end,
+          function()
+            require("astrolsp.toggles").buffer_semantic_tokens()
+          end,
           desc = "Toggle LSP semantic highlight (buffer)",
-          cond = function(client) return client.server_capabilities.semanticTokensProvider and vim.lsp.semantic_tokens end,
+          cond = function(client)
+            return client.server_capabilities.semanticTokensProvider and vim.lsp.semantic_tokens
+          end,
         },
       },
     },
@@ -180,10 +204,14 @@ return {
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
       -- Disable ruff_lsp hover in favor of pyright
-      if client.name == "ruff_lsp" then client.server_capabilities.hoverProvider = false end
+      if client.name == "ruff_lsp" then
+        client.server_capabilities.hoverProvider = false
+      end
 
       -- Disable completion feature of pyright
-      if client.name == "basedpyright" then client.server_capabilities.completionProvider = false end
+      if client.name == "basedpyright" then
+        client.server_capabilities.completionProvider = false
+      end
     end,
   },
 }
