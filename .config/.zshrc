@@ -1,7 +1,10 @@
-export QT_IM_MODULE=fcitx # For those who bundle qt im module, e.g. WPS, Anki, you should find a .so file with fcitx in the file name
-export QT_IM_MODULE=ibus # For those who bundle ibus im module shipped with Qt, you should find libibusplatforminputcontextplugin.so in the package.
-export QT_QPA_PLATFORM=xcb QT_IM_MODULE=ibus # Enforce it to run on X11/XWayland and use ibus im module
-export QT_IM_MODULES="wayland;fcitx;ibus"
+# export QT_IM_MODULES="wayland;fcitx;ibus"
+export QT_QPA_PLATFORM=ibus
+export QT_IM_MODULE=fcitx
+export GLFW_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export OBSIDIAN_USE_WAYLAND=1
+
 export SETUPTOOLS_USE_DISTUTILS=1
 export DISABLE_AUTO_UPDATE="true"
 
@@ -12,6 +15,7 @@ export PRIMARY_MONITOR_WORKSPACE=1
 export SECONDARY_MONITOR_WORKSPACE=2
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export MYPYPATH="/home/duckq1u/miniconda3/envs/pytorch"
+export EDITOR='nvim'
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/duckq1u/.cache/lm-studio/bin"
@@ -126,6 +130,17 @@ reloadbar(){
   killall ags ydotool
   ags &
 }
+
+gh(){
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+
 alias listpkg='pacman -Qm'
 alias vesktop='vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-v3' # bsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime'
 alias obsidian='obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-v3'
@@ -138,7 +153,7 @@ alias tmdt='tmux detach'
 appearance
 
 # HACK: Keybindings
-bindkey '^g' autosuggest-accept
+bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
@@ -163,6 +178,5 @@ else
     fi
 fi
 unset __conda_setup
-
 
 # zprof

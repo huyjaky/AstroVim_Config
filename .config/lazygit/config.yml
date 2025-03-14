@@ -1,6 +1,6 @@
 gui: 
   showIcons: true
-  screenMode: half
+  # screenMode: half
 
 git: 
   paging: 
