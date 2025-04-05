@@ -30,7 +30,7 @@ return {
             disableSnippets = false,
           },
           diagnostics = {
-            enable = false,
+            enable = true,
           },
           jediSettings = {
             autoImportModules = {
@@ -42,6 +42,7 @@ return {
           },
         },
       },
+
       ruff = {
         init_options = {
           settings = {
@@ -89,6 +90,7 @@ return {
                 "W291",
                 "PLW2901",
                 "D213",
+                "PLR0402",
               },
             },
 
