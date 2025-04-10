@@ -1,25 +1,23 @@
 #!/bin/bash
-# Extract workspace ID from the output of hyprctl activewindow
-current_workspace=$(hyprctl activeworkspace | grep 'workspace' | awk '{print $3}')
 
-# Determine the second workspace based on whether the current workspace is even or odd
-if [ $((current_workspace % 2)) -eq 0 ]; then
-  second_workspace=$((current_workspace - 1))
-else
-  second_workspace=$((current_workspace + 1)) 
-fi
+# Tắt globbing để tăng tốc
+set -f
 
+# Lấy current_workspace trực tiếp từ JSON
+current_workspace=$(hyprctl activeworkspace -j | jq -r '.id')
+
+# Tính toán second_workspace dựa trên chẵn/lẻ
+second_workspace=$((current_workspace % 2 == 0 ? current_workspace - 1 : current_workspace + 1))
+
+# Tính toán workspace cho các monitor
 primary_monitor_workspace=$((current_workspace - 2))
 secondary_monitor_workspace=$((second_workspace - 2))
 
-# Check if primary_monitor_workspace is less than or equal to 0
-# or if secondary_monitor_workspace is greater than or equal to 11
-if [ "$primary_monitor_workspace" -le 0 ] || [ "$secondary_monitor_workspace" -ge 9 ]; then
-  exit 1
-fi
+# Kiểm tra giới hạn workspace
+[ "$primary_monitor_workspace" -le 0 ] || [ "$secondary_monitor_workspace" -ge 9 ] && exit 1
 
-hyprctl --batch "
-  dispatch workspace $secondary_monitor_workspace ; 
-  dispatch workspace $primary_monitor_workspace ; 
-"
+# Thực thi chuyển đổi workspace với tối ưu animation
+hyprctl dispatch workspace "$primary_monitor_workspace"
+hyprctl dispatch workspace "$secondary_monitor_workspace"
+
 exit 0

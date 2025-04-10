@@ -1,55 +1,38 @@
 #!/bin/bash
-# Lấy thông tin của cửa sổ hiện tại chỉ một lần
-window_info=$(hyprctl activewindow)
 
-# Trích xuất giá trị cần thiết từ window_info 
-# 1892
-window_x_position=$(echo "$window_info" | grep -oP '(?<=at: )\d+')
-window_at_monitor=$(echo "$window_info" | grep 'monitor' | awk '{print $2}')
-window_at_workspace=$(echo "$window_info" | grep 'workspace' | awk '{print $2}')
-window_state=$(echo "$window_info" | grep 'fullscreen:' | awk '{print $2}')
+# Tắt globbing để tăng tốc
+set -f
 
-current_workspace=$(hyprctl activeworkspace | grep 'workspace' | awk '{print $3}')
-window_width=$(echo "$window_info" | grep 'size:' | awk '{print $2}' | cut -d',' -f1)
+# Lấy thông tin cửa sổ và workspace bằng JSON
+window_info=$(hyprctl activewindow -j)
+current_workspace=$(hyprctl activeworkspace -j | jq -r '.id')
 
-hyprctl dispatch fullscreenstate 0 # minimize trước khi di chuyển
+# Trích xuất thông tin cần thiết
+window_x_position=$(echo "$window_info" | jq -r '.at[0]')
+window_state=$(echo "$window_info" | jq -r '.fullscreen')
+window_width=$(echo "$window_info" | jq -r '.size[0]')
+window_at_workspace=$(echo "$window_info" | jq -r '.workspace.id')
 
-move(){
+# Tắt fullscreen nếu cần trước khi di chuyển
+[ "$window_state" -eq 1 ] && hyprctl dispatch fullscreenstate 0
 
-  hyprctl --batch "
-    dispatch movetoworkspace $((window_at_workspace+1)) ;
-    dispatch workspace $((current_workspace+2)) ;
-    dispatch focusmonitor 0
-  "
-  exit 0
+# Hàm di chuyển được tối ưu
+move() {
+    hyprctl dispatch movetoworkspace "$((window_at_workspace+1))"
+    hyprctl dispatch workspace "$((current_workspace+2))"
+    hyprctl dispatch focusmonitor 0
+    exit 0
 }
 
-# NOTE: Di chuyển cửa sổ nếu vị trí X vượt qua ngưỡng
-if [ $window_x_position -eq 1934 ] && [ $window_state -eq 1 ]; then
-  
-  if [ $current_workspace -eq 8 ]; then
-    exit 1
-  fi
-  move
+# Logic di chuyển được đơn giản hóa
+if [ "$current_workspace" -ne 8 ]; then
+    if [ "$window_x_position" -eq 1934 ] && { [ "$window_state" -eq 1 ] || [ "$window_width" -eq 1892 ]; }; then
+        move
+    elif [ "$window_x_position" -eq 2990 ]; then
+        move
+    fi
 fi
 
-if [ $window_x_position -eq 1934 ] && [ $window_width -eq 1892 ]; then
-  
-  if [ $current_workspace -eq 8 ]; then
-    exit 1
-  fi
-  move
-fi
-
-
-if [ $window_x_position -eq 2990 ]; then
-  
-  if [ $current_workspace -eq 8 ]; then
-    exit 1
-  fi
-  move
-fi
-
-# Nếu không thoả điều kiện di chuyển, di chuyển cửa sổ sang phải
+# Default action
 hyprctl dispatch movewindow r
 exit 0

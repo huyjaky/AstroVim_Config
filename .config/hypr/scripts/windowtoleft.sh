@@ -1,60 +1,38 @@
 #!/bin/bash
 
-# Lấy thông tin của cửa sổ hiện tại chỉ một lần
-window_info=$(hyprctl activewindow)
+# Tắt globbing để tăng tốc
+set -f
 
-# Trích xuất giá trị cần thiết từ window_info 
-# 1892
-window_x_position=$(echo "$window_info" | grep -oP '(?<=at: )\d+')
-window_at_monitor=$(echo "$window_info" | grep 'monitor' | awk '{print $2}')
-window_at_workspace=$(echo "$window_info" | grep 'workspace' | awk '{print $2}')
-window_state=$(echo "$window_info" | grep 'fullscreen:' | awk '{print $2}')
+# Lấy thông tin cửa sổ và workspace bằng JSON
+window_info=$(hyprctl activewindow -j)
+current_workspace=$(hyprctl activeworkspace -j | jq -r '.id')
 
-current_workspace=$(hyprctl activeworkspace | grep 'workspace' | awk '{print $3}')
-window_width=$(echo "$window_info" | grep 'size:' | awk '{print $2}' | cut -d',' -f1)
+# Trích xuất thông tin cần thiết
+window_x_position=$(echo "$window_info" | jq -r '.at[0]')
+window_state=$(echo "$window_info" | jq -r '.fullscreen')
+window_width=$(echo "$window_info" | jq -r '.size[0]')
+window_at_workspace=$(echo "$window_info" | jq -r '.workspace.id')
 
-hyprctl dispatch fullscreenstate 0 # minimize trước khi di chuyển
-
-move(){
-  # hyprctl dispatch movetoworkspace $((window_at_workspace-1)) \
-  # && hyprctl dispatch focusmonitor 0 \
-  # && hyprctl dispatch workspace $((current_workspace-2)) \
-  # && hyprctl dispatch focusmonitor 1
-
-  hyprctl --batch "
-    dispatch movetoworkspace $((window_at_workspace-1)) ;
-    dispatch workspace $((current_workspace-2)) ;
-    dispatch focusmonitor 1
-  "
-  exit 0
+# Hàm di chuyển được sửa lại
+move() {
+    # Đảm bảo thứ tự lệnh đúng: di chuyển window trước, rồi chuyển workspace
+    hyprctl dispatch movetoworkspace "$((window_at_workspace-1))"
+    hyprctl dispatch workspace "$((current_workspace-2))"
+    hyprctl dispatch focusmonitor 1
+    exit 0
 }
 
-# NOTE: Di chuyển cửa sổ nếu vị trí X vượt qua ngưỡng
-if [ $window_x_position -eq 14 ] && [ $window_state -eq 1 ]; then
-  
-  if [ $current_workspace -eq 1 ]; then
-    exit 1
-  fi
-  move
+# Tắt fullscreen nếu đang bật
+[ "$window_state" -eq 1 ] && hyprctl dispatch fullscreenstate 0
+
+# Logic di chuyển
+if [ "$window_x_position" -eq 14 ] && [ "$current_workspace" -ne 1 ]; then
+    # Kiểm tra các điều kiện để di chuyển
+    if [ "$window_state" -eq 1 ] || [ "$window_width" -eq 1892 ] || true; then
+        move
+    fi
 fi
 
-if [ $window_x_position -eq 14 ] && [ $window_width -eq 1892 ]; then
-  
-  if [ $current_workspace -eq 1 ]; then
-    exit 1
-  fi
-  move
-fi
-
-
-if [ $window_x_position -eq 14 ]; then
-  
-  if [ $current_workspace -eq 1 ]; then
-    exit 1
-  fi
-  move
-fi
-
-# Nếu không thoả điều kiện di chuyển, di chuyển cửa sổ sang phải
+# Default action
 hyprctl dispatch movewindow l
 exit 0
