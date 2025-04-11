@@ -33,3 +33,9 @@ cp \usr\lib\modules\6.10.10-lts..\vmlinuz \boot\vmlinuz-linux-lts
 
 done!
 
+--- 
+
+config mhz for gpu ignore tearing when inactivity
+```bash
+sudo pacman -S lact
+```
