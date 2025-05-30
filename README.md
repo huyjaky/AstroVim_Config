@@ -39,3 +39,22 @@ config mhz for gpu ignore tearing when inactivity
 ```bash
 sudo pacman -S lact
 ```
+
+---
+
+config firewall for open ports 
+
+```bash
+sudo pacman -S firewalld ipset ebtables
+sudo systemctl enable --now firewalld
+sudo systemctl start firewalld
+
+sudo firewall-cmd --permanent --zone=public --add-service=ssh
+sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
+sudo firewall-cmd --add-port=2424/udp --permanent 
+sudo firewall-cmd --add-port=2424/tcp --permanent
+sudo firewall-cmd --zone=public --add-forward-port=port=2424:proto=tcp:toport=22 --permanent
+sudo firewall-cmd --zone=public --add-forward-port=port=2424:proto=udp:toport=22 --permanent
+sudo firewall-cmd --reload
+```
+
