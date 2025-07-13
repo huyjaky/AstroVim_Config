@@ -93,9 +93,12 @@ return {
           -- Esc to close completion menu
           ["<Esc>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
 
+
           -- Tab to select completion
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() and has_words_before() then
+
+              vim.g.copilot_no_tab_map = true -- NOTE: disable copilot's tab mapping PART1
               fallback()
             else
               fallback()
@@ -118,8 +121,9 @@ return {
             end
           end, { "i", "s" }),
 
+          -- NOTE: disable tabl when using copilot PART2
           vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true }),
-          -- vim.g.copilot_no_tab_map = true,
+          vim.keymap.del("i", "<Tab>"),
           -- ["<C-f>"] = cmp.mapping(function(fallback)
           --   -- Check if Copilot is suggesting something
           --   if vim.fn["copilot#Accept"]() ~= "" then
@@ -130,6 +134,7 @@ return {
         },
         experimental = {
           ghost_text = false, -- this feature conflict with copilot.vim's preview.
+
         },
       })
     end,

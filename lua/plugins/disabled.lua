@@ -23,8 +23,7 @@ return {
 	{ "CRAG666/code_runner.nvim", enabled = false },
 	{ "RRethy/vim-illuminate", enabled = false },
 	{ "OXY2DEV/markview.nvim", enabled = false },
-
-	-- { "kevinhwang91/nvim-ufo", enabled = false },
+	{ "kevinhwang91/nvim-ufo", enabled = false },
 
 	-- interface
 	-- { "HiPhish/rainbow-delimiters.nvim", enabled = true },

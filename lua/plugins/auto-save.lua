@@ -1,33 +1,50 @@
 return {
   "okuuva/auto-save.nvim",
-  cmd = "ASToggle", -- optional for lazy loading on command
-  event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
-  lazy = true,
-  opts = {
-    -- your config goes here
-    -- or just leave it empty :)
-    enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
-    trigger_events = { -- See :h events
-      immediate_save = { "BufLeave", "FocusLost" }, -- vim events that trigger an immediate save
-      defer_save = {"TextChanged" }, -- vim events that trigger a deferred save (saves after `debounce_delay`)
-      cancel_deferred_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
-    },
-    -- function that takes the buffer handle and determines whether to save the current buffer or not
-    -- return true: if buffer is ok to be saved
-    -- return false: if it's not ok to be saved
-    -- if set to `nil` then no specific condition is applied
-    --
-    condition = function(buf)
-      -- Check if vim-visual-multi is active
-      local visual_multi_active = vim.g.VM_is_active or false
-      if visual_multi_active then return false end
-      -- Additional conditions can be added here if needed
-      return true
-    end,
+  event = { "User AstroFile", "InsertEnter" },
+  dependencies = {
+    "AstroNvim/astrocore",
+    opts = {
+      autocmds = {
+        autoformat_toggle = {
+          -- Disable autoformat before saving
+          {
+            event = "User",
+            desc = "Disable autoformat before saving",
+            pattern = "AutoSaveWritePre",
+            callback = function()
+              -- Save global autoformat status
+              vim.g.OLD_AUTOFORMAT = vim.g.autoformat
+              vim.g.autoformat = false
 
-    write_all_buffers = false, -- write all buffers when the current one meets `condition`
-    noautocmd = false, -- do not execute autocmds when saving
-    lockmarks = false, -- lock marks when saving, see `:h lockmarks` for more details
-    debounce_delay = 10000, -- delay after which a pending save is executed
+              local old_autoformat_buffers = {}
+              -- Disable all manually enabled buffers
+              for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+                if vim.b[bufnr].autoformat then
+                  table.insert(old_autoformat_buffers, bufnr)
+                  vim.b[bufnr].autoformat = false
+                end
+              end
+
+              vim.g.OLD_AUTOFORMAT_BUFFERS = old_autoformat_buffers
+            end,
+          },
+          -- Re-enable autoformat after saving
+          {
+            event = "User",
+            desc = "Re-enable autoformat after saving",
+            pattern = "AutoSaveWritePost",
+            callback = function()
+              -- Restore global autoformat status
+              vim.g.autoformat = vim.g.OLD_AUTOFORMAT
+              -- Re-enable all manually enabled buffers
+              for _, bufnr in ipairs(vim.g.OLD_AUTOFORMAT_BUFFERS or {}) do
+                vim.b[bufnr].autoformat = true
+              end
+            end,
+          },
+        },
+      },
+    },
   },
+  opts = {},
 }
