@@ -18,7 +18,6 @@ return function()
   mappings.n["<C-Right>"] = false
   mappings.n["<C-Up>"] = false
   mappings.n["<C-Down>"] = false
-  mappings.n["K"] = false
 
   -------------------------------------------
   ----------- Utility functions -------------

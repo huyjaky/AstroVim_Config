@@ -27,7 +27,7 @@ return {
       jedi_language_server = {
         init_options = {
           completion = {
-            disableSnippets = false,
+            disableSnippets = true,
           },
           diagnostics = {
             enable = true,
@@ -40,6 +40,9 @@ return {
               "sklearn",
             },
           },
+          workspace = {
+            environmentPath = "/home/duckq1u/miniconda3/envs/OCR3/bin/python"
+          }
         },
       },
 

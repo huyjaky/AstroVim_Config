@@ -50,8 +50,8 @@ return {
         },
       },
       config = function(_, opts)
-        local dap = require "dap"
-        local dapui = require "dapui"
+        local dap = require("dap")
+        local dapui = require("dapui")
 
         -- Initialize dap-ui
         dapui.setup(opts)
@@ -65,7 +65,9 @@ return {
         end
 
         -- Optionally, open dap-ui when session starts
-        dap.listeners.after.event_initialized["dapui"] = function() dapui.open() end
+        dap.listeners.after.event_initialized["dapui"] = function()
+          dapui.open()
+        end
       end,
     },
     {

@@ -19,13 +19,11 @@ return {
           -- 'thumbs.db',
         },
         never_show = {},
-
         never_show_by_pattern = { -- uses glob style patterns
-          '*.zip',
-          '*.rar',
-          '*.pdf',
+          "*.zip",
+          "*.rar",
+          "*.pdf",
         },
-        
       },
     },
     enable_git_status = false,
