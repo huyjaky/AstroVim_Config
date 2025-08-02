@@ -18,6 +18,7 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+
 -- NOTE: ENV
 -- Disable Copilot tab mapping
 vim.g.copilot_no_tab_map = true

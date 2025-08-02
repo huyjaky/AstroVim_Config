@@ -38,39 +38,39 @@ return {
   --     { "<Leader>uT", "<Cmd>TransparentToggle<CR>", desc = "Toggle transparent" },
   --   },
   -- },
-  {
-    {
-      "HiPhish/rainbow-delimiters.nvim",
-      dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        {
-          "AstroNvim/astrocore",
-          opts = {
-            mappings = {
-              n = {
-                ["<Leader>u("] = {
-                  function()
-                    local bufnr = vim.api.nvim_get_current_buf()
-                    require("rainbow-delimiters").toggle(bufnr)
-                    require("astrocore").notify(
-                      string.format(
-                        "Buffer rainbow delimeters %s",
-                        require("rainbow-delimiters").is_enabled(bufnr) and "on" or "off"
-                      )
-                    )
-                  end,
-                  desc = "Toggle rainbow delimeters (buffer)",
-                },
-              },
-            },
-          },
-        },
-      },
-      event = "User AstroFile",
-      main = "rainbow-delimiters.setup",
-      opts = {},
-    },
-  },
+  -- {
+  --   {
+  --     "HiPhish/rainbow-delimiters.nvim",
+  --     dependencies = {
+  --       "nvim-treesitter/nvim-treesitter",
+  --       {
+  --         "AstroNvim/astrocore",
+  --         opts = {
+  --           mappings = {
+  --             n = {
+  --               ["<Leader>u("] = {
+  --                 function()
+  --                   local bufnr = vim.api.nvim_get_current_buf()
+  --                   require("rainbow-delimiters").toggle(bufnr)
+  --                   require("astrocore").notify(
+  --                     string.format(
+  --                       "Buffer rainbow delimeters %s",
+  --                       require("rainbow-delimiters").is_enabled(bufnr) and "on" or "off"
+  --                     )
+  --                   )
+  --                 end,
+  --                 desc = "Toggle rainbow delimeters (buffer)",
+  --               },
+  --             },
+  --           },
+  --         },
+  --       },
+  --     },
+  --     event = "User AstroFile",
+  --     main = "rainbow-delimiters.setup",
+  --     opts = {},
+  --   },
+  -- },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -108,7 +108,9 @@ return {
           -- disable in comments
           -- https://github.com/altermo/ultimate-autopair.nvim/blob/6fd0d6aa976a97dd6f1bed4d46be1b437613a52f/Q%26A.md?plain=1#L26
           cond = {
-            function(fn) return not fn.in_node "comment" end,
+            function(fn)
+              return not fn.in_node("comment")
+            end,
           },
         },
         -- get fly mode working on strings:
@@ -136,14 +138,21 @@ return {
                 desc = "Toggle Ultimate Autopair",
                 function()
                   local notify = require("astrocore").notify
-                  local function bool2str(bool) return bool and "on" or "off" end
+                  local function bool2str(bool)
+                    return bool and "on" or "off"
+                  end
                   local ok, ultimate_autopair = pcall(require, "ultimate-autopair")
                   if ok then
                     ultimate_autopair.toggle()
                     vim.g.ultimate_autopair_enabled = require("ultimate-autopair.core").disable
-                    notify(string.format("ultimate-autopair %s", bool2str(not vim.g.ultimate_autopair_enabled)))
+                    notify(
+                      string.format(
+                        "ultimate-autopair %s",
+                        bool2str(not vim.g.ultimate_autopair_enabled)
+                      )
+                    )
                   else
-                    notify "ultimate-autopair not available"
+                    notify("ultimate-autopair not available")
                   end
                 end,
               },

@@ -1,8 +1,8 @@
 return {
   init = function() -- this table overrides highlights in all themes
     local get_hlgroup = require("astroui").get_hlgroup
-    local ui = require "astroui"
-    local utils = require "astrocore"
+    local ui = require("astroui")
+    local utils = require("astrocore")
 
     local hl = {
       -- remove background of virtual texts
