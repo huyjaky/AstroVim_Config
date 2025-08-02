@@ -33,6 +33,9 @@ return {
   { "theHamsta/nvim-dap-virtual-text",             enabled = false },
   { "rcarriga/nvim-dap-ui",                        enabled = false },
   { "jay-babu/mason-nvim-dap.nvim",                enabled = false },
+  { "jay-babu/mason-null-ls.nvim",                 enabled = false },
+  { "b0o/schemastore.nvim",                        enabled = false },
+  { "Wansmer/treesj",                              enabled = false },
 
   -- interface
   -- { "HiPhish/rainbow-delimiters.nvim", enabled = true },
