@@ -15,5 +15,7 @@ return {
     -- Icons can be configured throughout the interface
     icons = require "plugins.configs.ui.icons",
     status = require "plugins.configs.ui.status",
+    lazygit = false,
+
   },
 }

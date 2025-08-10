@@ -1,74 +1,38 @@
 return {
-  before_init = function(_, c)
-    if not c.settings then c.settings = {} end
-    if not c.settings.python then c.settings.python = {} end
-    c.settings.python.pythonPath = vim.fn.exepath "python"
-  end,
-  settings = {
-    basedpyright = {
-      disableOrganizeImports = true,
-      -- disableLanguageServices = true,
-      autoImportCompletions = false,
-      disableTaggedHints = true,
-      useLibraryCodeForTypes = false,
-      analysis = {
-        -- diagnosticMode = "workspace",
-        diagnosticMode = "openFilesOnly",
-        typeCheckingMode = "basic",
-        autoImportCompletions = false,
-        autoSearchPath = false,
-        indexing = false,
-        inlayHints = {
-          variableTypes = true,
-          functionReturnTypes = false,
-          callArgumentNames = false,
-          pytestParameters = true,
-        },
-        useLibraryCodeForTypes = false,
-        deprecateTypingAliases = false,
-        enableReachabilityAnalysis = false,
+	before_init = function(_, c)
+		if not c.settings then
+			c.settings = {}
+		end
+		if not c.settings.python then
+			c.settings.python = {}
+		end
+		c.settings.python.pythonPath = vim.fn.exepath("python")
+	end,
+	settings = {
+		basedpyright = {
+			disableLanguageServices = false,
+			disableOrganizeImports = true,
+			disableTaggedHints = true,
 
-        strictListInference = true,
-        strictDictionaryInference = true,
-        strictSetInference = true,
-
-        analyzeUnannotatedFunctions = false,
-        -- ignore = { "**/*.py" },
-        reportGeneralTypeIssues = false,
-        diagnosticSeverityOverrides = {
-          reportUnusedImport = false,
-          reportUnusedFunction = false,
-          reportUnusedVariable = false,
-          reportGeneralTypeIssues = false,
-          reportOptionalMemberAccess = false,
-          reportOptionalSubscript = false,
-          reportPrivateImportUsage = false,
-          reportInvalidStubStatement = false,
-          reportIncompleteStub = false,
-          reportArgumentType = false,
-          reportAttributeAccessIssue = false,
-
-          -- reportCallIssue = false,
-          -- reportNoOverloadImplementation = false,
-          -- reportOverlappingOverload = false,
-          -- reportInconsistentOverload = false,
-          -- reportUnknownMemberType = false,
-          -- reportFunctionMemberAccess = false,
-          -- reportPropertyTypeMismatch = false,
-          -- reportMatchNotExhaustive = false,
-          -- reportInvalidTypeForm = false,
-          -- reportAbstractUsage = false,
-
-          -- reportAssertTypeFailure = false,
-          -- reportAssignmentType = false,
-
-          -- reportIndexIssue = false,
-          -- reportInvalidTypeArguments = false,
-          -- reportOperatorIssue = false,
-          -- reportOptionalCall = false,
-          -- reportOptionalIterable = false,
-        },
-      },
-    },
-  },
+			analysis = {
+				autoSearchPath = false,
+				logLevel = "Trace",
+				typeCheckingMode = "standard",
+				deprecateTypingAliases = false,
+				inlayHints = {
+					variableTypes = true,
+					functionReturnTypes = true,
+					callArgumentNames = true,
+					pytestParameters = true,
+				},
+				ignore = {
+					"unsloth_compiled_cache",
+					"__pycache__",
+					"__index__",
+				},
+				useLibraryCodeForTypes = true,
+			},
+			autoImportCompletions = false,
+		},
+	},
 }
