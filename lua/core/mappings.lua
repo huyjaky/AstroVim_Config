@@ -61,10 +61,6 @@ return function()
   ------ My customs keybinding ------
   mappings.n["<leader>xn"] = { "<Cmd>Telescope notify<CR>", desc = "Notifications" }
 
-  mappings.i["VK"] = false
-  mappings.v["VK"] = false
-  mappings.n["VK"] = false
-
 
  return mappings
 end

@@ -4,9 +4,7 @@ vim.api.nvim_create_augroup("auto_wrap", { clear = true })
 vim.api.nvim_create_augroup("disable_suspend_with_c_z", { clear = true })
 vim.api.nvim_create_augroup("clear_last_search", { clear = true })
 
-vim.g.vim_markdown_math = 1
-vim.g.vim_markdown_conceal = 2
-vim.g.vim_markdown_conceal_code_blocks = 0
+vim.keymap.set("v", "K", "<Nop>", { silent = true })
 
 -- NOTE: Set colors for hightlights for similar words
 -- vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FF0000" })
@@ -14,31 +12,31 @@ vim.g.vim_markdown_conceal_code_blocks = 0
 -- vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#FF0000" })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-	desc = "Disable auto insert comment newline",
-	group = "disable_comment_newline",
-	command = "set formatoptions-=cro",
+  desc = "Disable auto insert comment newline",
+  group = "disable_comment_newline",
+  command = "set formatoptions-=cro",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	desc = "Enable wrap and spell for text like documents",
-	group = "auto_wrap",
-	pattern = { "gitcommit", "markdown", "text", "plaintext" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-	end,
+  desc = "Enable wrap and spell for text like documents",
+  group = "auto_wrap",
+  pattern = { "gitcommit", "markdown", "text", "plaintext" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-	desc = "Remap <C-z> to nothing so that it doesn't suspend terminal",
-	group = "disable_suspend_with_c_z",
-	command = "nnoremap <c-z> <nop>",
+  desc = "Remap <C-z> to nothing so that it doesn't suspend terminal",
+  group = "disable_suspend_with_c_z",
+  command = "nnoremap <c-z> <nop>",
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-	desc = "Clear last search pattern",
-	group = "clear_last_search",
-	pattern = "*",
-	command = "let @/ = ''",
+  desc = "Clear last search pattern",
+  group = "clear_last_search",
+  pattern = "*",
+  command = "let @/ = ''",
 })
 

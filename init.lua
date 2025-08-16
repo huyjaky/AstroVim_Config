@@ -27,3 +27,22 @@ vim.g.copilot_no_tab_map = true
 require("lazy_setup")
 require("polish")
 require("core.lsp")
+
+
+-- local function silent_hover()
+--   local params = vim.lsp.util.make_position_params()
+--   vim.lsp.buf_request(0, 'textDocument/hover', params, function(err, result, ctx, config)
+--     if err then
+--       -- Silently ignore errors instead of showing them
+--       return
+--     end
+--     if result and result.contents then
+--       vim.lsp.util.stylize_markdown(result.contents.value or result.contents, {})
+--     end
+--   end)
+-- end
+
+-- -- Remap K to use silent hover
+-- vim.keymap.set({'n', 'v'}, 'K', silent_hover, { silent = true })
+
+-- Keep K for documentation in normal mode, but disable in visual mode

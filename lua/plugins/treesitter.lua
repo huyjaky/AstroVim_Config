@@ -2,33 +2,32 @@
 
 ---@type LazySpec
 return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		dependencies = {},
-		opts = function(_, opts)
-			-- add more things to the ensure_installed table protecting against community packs modifying it
-			opts.ignore_install = { "help" }
-			opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-				-- "lua",
-				-- "c",
-				-- "cpp",
-				"python",
-				"latex",
-				"bibtex",
-				-- "javascript",
-			})
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {},
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ignore_install = { "help" }
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        -- "lua",
+        -- "c",
+        -- "cpp",
+        "python",
+        "latex",
+        -- "javascript",
+      })
 
-			opts.highlight = {
-				enable = true,
-				disable = { "c", "rust", "tsx", "javascript" },
-				additional_vim_regex_highlighting = false,
-				custom_captures = {
-					-- Highlight local variables
-					["variable.local"] = "Identifier",
-				},
-			}
+      opts.highlight = {
+        enable = true,
+        disable = { "c", "rust", "tsx", "javascript" },
+        additional_vim_regex_highlighting = false,
+        custom_captures = {
+          -- Highlight local variables
+          ["variable.local"] = "Identifier",
+        },
+      }
 
-			vim.api.nvim_set_hl(0, "Identifier", { fg = "#55ffff" })
-		end,
-	},
+      vim.api.nvim_set_hl(0, "Identifier", { fg = "#55ffff" })
+    end,
+  },
 }

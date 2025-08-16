@@ -205,49 +205,55 @@ return {
         mode = { "n" },
         desc = "Move to below split",
       },
+      -- {
+      --   "<A-Left>",
+      --   function() require("smart-splits").resize_left() end,
+      --   mode = { "n" },
+      --   desc = "Resize split left",
+      -- },
+      -- {
+      --   "<A-Right>",
+      --   function() require("smart-splits").resize_right() end,
+      --   mode = { "n" },
+      --   desc = "Resize split right",
+      -- },
+      -- {
+      --   "<A-Up>",
+      --   function() require("smart-splits").resize_up() end,
+      --   mode = { "n" },
+      --   desc = "Resize split up",
+      -- },
+      -- {
+      --   "<A-Down>",
+      --   function() require("smart-splits").resize_down() end,
+      --   mode = { "n" },
+      --   desc = "Resize split down",
+      -- },
+
       {
-        "<A-Left>",
+        "<S-h>",
         function() require("smart-splits").resize_left() end,
         mode = { "n" },
         desc = "Resize split left",
       },
       {
-        "<A-Right>",
+        "<S-l>",
         function() require("smart-splits").resize_right() end,
         mode = { "n" },
         desc = "Resize split right",
       },
-      {
-        "<A-Up>",
-        function() require("smart-splits").resize_up() end,
-        mode = { "n" },
-        desc = "Resize split up",
-      },
-      {
-        "<A-Down>",
-        function() require("smart-splits").resize_down() end,
-        mode = { "n" },
-        desc = "Resize split down",
-      },
+      -- {
+      --   "<S-k>",
+      --   function() require("smart-splits").resize_up() end,
+      --   mode = { "n" },
+      --   desc = "Resize split up",
+      -- },
+      -- {
+      --   "<S-j>",
+      --   function() require("smart-splits").resize_down() end,
+      --   mode = { "n" },
+      --   desc = "Resize split down",
+      -- },
     },
   },
-  -- -- Find and replace
-  -- {
-  --   "MagicDuck/grug-far.nvim",
-  --   cmd = "GrugFar",
-  --   config = function()
-  --     require("grug-far").setup {
-  --       windowCreationCommand = "tabnew",
-  --     }
-  --   end,
-  --   keys = {
-  --     {
-  --       "<Leader>R",
-  --       function() require("grug-far").grug_far { prefills = { search = vim.fn.expand "<cword>" } } end,
-  --       mode = { "n" },
-  --       desc = "Open GrugFar",
-  --     },
-  --   },
-  -- },
-  -- Markdown preview support
 }

@@ -1,4 +1,3 @@
--- NOTE: always show hidden files and dot files
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {
@@ -9,21 +8,21 @@ return {
       filtered_items = {
         visible = true,
         show_hidden_count = true,
-        hide_dotfiles = true,
-        hide_gitignored = true,
-        hide_by_name = {
-          -- '.zip',
-          -- '.rar',
-          -- '.pdf',
-          -- '.DS_Store',
-          -- 'thumbs.db',
-        },
+        hide_dotfiles = false, -- always show dotfiles
+        hide_gitignored = false, -- always show gitignored
+        hide_by_name = {},
         never_show = {},
         never_show_by_pattern = { -- uses glob style patterns
           "*.zip",
           "*.rar",
-          "*.pdf",
+          -- "*.pdf",
         },
+      },
+    },
+    window = {
+      mappings = {
+        ["K"] = false, -- disable Shift+k
+        ["H"] = false, -- disable Shift+k
       },
     },
     enable_git_status = false,

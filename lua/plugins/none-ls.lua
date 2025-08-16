@@ -11,12 +11,10 @@ return {
     -- config variable is the default configuration table for the setup function call
     local null_ls = require("null-ls")
 
-    -- Check supported formatters and linters
-    -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-    -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     opts.sources = {
       require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "F" } }),
       require("none-ls.formatting.ruff_format"), -- Set a formatter
+
     }
     return opts
   end,

@@ -13,7 +13,7 @@ return {
       large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = false, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 2, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics_mode = 1, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
       highlighturl = false, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
@@ -27,7 +27,7 @@ return {
     sessions = {
       -- Configure auto saving
       autosave = {
-        last = true, -- auto save last session
+        last = false, -- auto save last session
         cwd = false, -- auto save session for each working directory
       },
       -- Patterns to ignore when saving sessions

@@ -16,6 +16,5 @@ return {
     icons = require "plugins.configs.ui.icons",
     status = require "plugins.configs.ui.status",
     lazygit = false,
-
   },
 }
