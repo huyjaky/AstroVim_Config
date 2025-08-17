@@ -42,19 +42,16 @@ sudo pacman -S lact
 
 ---
 
-config firewall for open ports 
+## SSH tunneling 
+1. first u must have port 22 available on 192.168.1.1 virtual trigger 
+2. uncomment `port 22` on file follow path `/etc/ssh/sshd_config`
+-> after that u can connect to ssh. it means u doesnt need add open port 22 
 
-```bash
-sudo pacman -S firewalld ipset ebtables
-sudo systemctl enable --now firewalld
-sudo systemctl start firewalld
+## Open port 
+-> This is depend on your method firewall u have 
+-> in my case, i have `nftables` 
 
-sudo firewall-cmd --permanent --zone=public --add-service=ssh
-sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
-sudo firewall-cmd --add-port=2424/udp --permanent 
-sudo firewall-cmd --add-port=2424/tcp --permanent
-sudo firewall-cmd --zone=public --add-forward-port=port=2424:proto=tcp:toport=22 --permanent
-sudo firewall-cmd --zone=public --add-forward-port=port=2424:proto=udp:toport=22 --permanent
-sudo firewall-cmd --reload
-```
-
+- `sudo nft -a list chain inet filter input` : list current port and rule was accepted 
+- `sudo nft add rule inet filter input tcp dport 8505 accept` : add open port (in case is 8505)
+- `sudo nft add rule inet filter input tcp dport '{ 8501-8509 }' accept` : add open port range 
+- `sudo nft delete rule inet filter input handle 16` : if u use command `list chain` (first command) u will see a number for each rule to replace for a number 16 
