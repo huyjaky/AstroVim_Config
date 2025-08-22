@@ -16,9 +16,9 @@ return {
   -- Git
   Github = "   ",
   GitAdd = " ",
-  GitBranch = " ",
+  GitBranch = "",
   GitChange = " ",
-  GitConflict = " ",
+  GitConflict = "",
   GitDelete = " ",
   GitIgnored = " ",
   GitRenamed = " ",

@@ -1,26 +1,56 @@
 return {
-	before_init = function(_, c)
-		if not c.settings then
-			c.settings = {}
-		end
-		if not c.settings.python then
-			c.settings.python = {}
-		end
-		c.settings.python.pythonPath = vim.fn.exepath("python")
-	end,
-	settings = {
-		pyright = {
-			disableLanguageServices = false,
-			disableOrganizeImports = true,
-			analysis = {
-				-- diagnosticMode = "openFilesOnly",
-				typeCheckingMode = "standard",
-				autoSearchPath = true,
-				-- diagnosticSeverityOverrides = false,
-				logLevel = "Trace",
-			},
-		},
-		-- python = {
-		-- },
-	},
+  init_options = {
+    settings = {
+      lint = {
+        unfixable = { "F401" },
+        select = {
+          "ALL",
+        },
+        ignore = {
+          "ANN",
+          "COM",
+          "C90",
+          "DJ",
+          "EXE",
+          "T10",
+          "TID",
+          "D100",
+          "D101",
+          "D102",
+          "D103",
+          "D104",
+          "D105",
+          "D106",
+          "D107",
+          "D200",
+          "D205",
+          "D212",
+          "D400",
+          "D401",
+          "D415",
+          "E402",
+          "E501",
+          "ERA001",
+          "TRY003",
+          "TD002",
+          "TD003",
+          "T201",
+          "FIX002",
+          "N803",
+          "PD901",
+          -- "F401",
+          "I001",
+          "RET504",
+          "PLR2004",
+          "W291",
+          "PLW2901",
+          "D213",
+          "D202",
+          "PLR0402",
+          "EM101",
+          "TRY301",
+        },
+      },
+    },
+  },
 }

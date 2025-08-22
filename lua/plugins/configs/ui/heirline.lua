@@ -30,7 +30,7 @@ M.statusline = {
     },
   },
   status.component.git_branch {
-    padding = { left = 0, right = 1 },
+    padding = { left = 1, right = 1 },
     surround = {
       separator = "none",
       color = "bg",
@@ -52,7 +52,7 @@ M.statusline = {
     },
   },
   status.component.git_diff {
-    padding = { left = 1 },
+    padding = { left = 0 },
     surround = {
       separator = "none",
       color = "bg",

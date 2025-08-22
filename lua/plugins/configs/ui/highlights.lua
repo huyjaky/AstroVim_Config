@@ -12,11 +12,18 @@ return {
       DiagnosticVirtualTextWarn = { fg = get_hlgroup("DiagnosticWarn").fg, bg = "none" },
 
       CursorLineNr = { fg = "#FFD700", bg = "none", bold = true },
-      CursorLine = { fg = "none", bg = "#004C4C", bold = true },
+      CursorLine = { fg = "none", bg = "#005C4C", bold = true },
+      CursorColumn = { fg = "none", bg = "#005C4C", bold = true },
+
       Visual = { fg = "#000000", bg = "#FFFFFF", bold = true },
 
       -- remove background of inlay hints
       LspInlayHint = { fg = "#FF748B", bg = "none" },
+
+      -- Highlight cho variable matching
+      LspReferenceText = { fg = "#FFFFFF", bg = "#FF6B35", bold = true }, -- Cam đậm + chữ trắng
+      LspReferenceRead = { fg = "#000000", bg = "#00E5FF", bold = true }, -- Xanh cyan + chữ đen
+      LspReferenceWrite = { fg = "#FFFFFF", bg = "#E91E63", bold = true }, -- Hồng đậm + chữ trắng
     }
 
     return hl

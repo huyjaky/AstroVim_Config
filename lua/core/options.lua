@@ -21,7 +21,7 @@ return {
     tabstop = 2, -- set the number of space in a tab to 4
     softtabstop = 2, -- can be differnt from tabstop
     showtabline = 0, -- always show tabline
-    expandtab = true, -- use spaces instead of tab
+    expandtab = false, -- use spaces instead of tab
     undofile = true, -- enable persistent undo
   },
   -- vim.g.<key>
@@ -29,5 +29,6 @@ return {
     -- configure global vim variables (vim.g)
     -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
     -- This can be found in the `lua/lazy_setup.lua` file
+    copilot_no_tab_map = true,
   },
 }

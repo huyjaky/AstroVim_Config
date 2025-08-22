@@ -6,12 +6,20 @@
 return {
 
   -- == Examples of Adding Plugins ==
-
   "andweeb/presence.nvim",
+
   {
     "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
+    event = "InsertEnter",
+    opts = {
+      bind = true,
+      handler_option = {
+        border = "rounded",
+      },
+      hint_enable = false,
+      doc_lines = 0,
+    },
+    -- config = function() require("lsp_signature").setup() end,
   },
 
   -- == Examples of Overriding Plugins ==
@@ -19,9 +27,7 @@ return {
   -- customize dashboard options
   {
     "folke/snacks.nvim",
-    config = function(_, opts)
-      require("snacks").setup(opts)
-    end,
+    config = function(_, opts) require("snacks").setup(opts) end,
     opts = {
       dashboard = {
         preset = {
@@ -29,40 +35,12 @@ return {
           keys = {},
         },
       },
-      scope = {
-        char = "󰥓"
-      },
-      indent = {
-        priority = 1,
-        enabled = true, -- enable indent guides
-        char = "l",
-        only_scope = false, -- only show indent guides of the scope
-        only_current = false, -- only show indent guides in the current window
-        hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
-      animate = {
-        enabled = vim.fn.has("nvim-0.10") == 1,
-        style = "out",
-        easing = "linear",
-        duration = {
-          step = 20, -- ms per step
-          total = 500, -- maximum duration
-        },
-      },
-      ---@class snacks.indent.Scope.Config: snacks.scope.Config
-      scope = {
-        enabled = true, -- enable highlighting the current scope
-        priority = 200,
-        char = "󰥓",
-        underline = false, -- underline the start of the scope
-        only_current = false, -- only show scope in the current window
-        hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
-      },
-      },
+      indent = require "plugins.configs.ui.indent",
+      dim = { enabled = false },
+      terminal = { enabled = false },
+      profiler = { enabled = false },
     },
   },
-
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
@@ -75,72 +53,62 @@ return {
     end,
   },
 
-
-	{
-		"altermo/ultimate-autopair.nvim",
-		event = "InsertEnter",
-		branch = "v0.6",
-		opts = {
-			cmap = false,
-			extensions = {
-				cond = {
-					cond = {
-						function(fn)
-							return not fn.in_node("comment")
-						end,
-					},
-				},
-				fly = {
-					nofilter = true,
-				},
-			},
-			config_internal_pairs = {
-				{ '"', '"', fly = true },
-				{ "'", "'", fly = true },
-				{ "[", "]", fly = true },
-				{ "{", "}", fly = true },
-				{ "(", ")", fly = true },
-			},
-		},
-		dependencies = {
-			{
-				"AstroNvim/astrocore",
-				opts = {
-					mappings = {
-						n = {
-							["<Leader>ua"] = {
-								desc = "Toggle Ultimate Autopair",
-								function()
-									local notify = require("astrocore").notify
-									local function bool2str(bool)
-										return bool and "on" or "off"
-									end
-									local ok, ultimate_autopair = pcall(require, "ultimate-autopair")
-									if ok then
-										ultimate_autopair.toggle()
-										vim.g.ultimate_autopair_enabled = require("ultimate-autopair.core").disable
-										notify(
-											string.format(
-												"ultimate-autopair %s",
-												bool2str(not vim.g.ultimate_autopair_enabled)
-											)
-										)
-									else
-										notify("ultimate-autopair not available")
-									end
-								end,
-							},
-						},
-					},
-				},
-			},
-		},
-		specs = {
-			{
-				"windwp/nvim-autopairs",
-				optional = true,
-				enabled = false,
-			},
-		},
-	},
+  {
+    "altermo/ultimate-autopair.nvim",
+    event = "InsertEnter",
+    branch = "v0.6",
+    opts = {
+      cmap = false,
+      extensions = {
+        cond = {
+          cond = {
+            function(fn) return not fn.in_node "comment" end,
+          },
+        },
+        fly = {
+          nofilter = true,
+        },
+      },
+      config_internal_pairs = {
+        { '"', '"', fly = true },
+        { "'", "'", fly = true },
+        { "[", "]", fly = true },
+        { "{", "}", fly = true },
+        { "(", ")", fly = true },
+      },
+    },
+    dependencies = {
+      {
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = {
+            n = {
+              ["<Leader>ua"] = {
+                desc = "Toggle Ultimate Autopair",
+                function()
+                  local notify = require("astrocore").notify
+                  local function bool2str(bool) return bool and "on" or "off" end
+                  local ok, ultimate_autopair = pcall(require, "ultimate-autopair")
+                  if ok then
+                    ultimate_autopair.toggle()
+                    vim.g.ultimate_autopair_enabled = require("ultimate-autopair.core").disable
+                    notify(string.format("ultimate-autopair %s", bool2str(not vim.g.ultimate_autopair_enabled)))
+                  else
+                    notify "ultimate-autopair not available"
+                  end
+                end,
+              },
+            },
+          },
+        },
+      },
+    },
+    specs = {
+      {
+        "windwp/nvim-autopairs",
+        optional = true,
+        enabled = false,
+      },
+    },
+  },
 }

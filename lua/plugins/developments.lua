@@ -8,8 +8,8 @@ return {
       icons = {
         type = "󰜁 ",
         parameter = "󰏪 ",
-        offspec = " ", -- hint kind not defined in official LSP spec
-        unknown = " ", -- hint kind is nil
+        offspec = "󰀒 ", -- hint kind not defined in official LSP spec
+        unknown = " ", -- hint kind is nil
       },
       label = {
         truncateAtChars = 100,
@@ -85,7 +85,6 @@ return {
       end
     end,
   },
-  
   -- DAP Virtual Text (disabled)
   {
     "theHamsta/nvim-dap-virtual-text",
@@ -99,8 +98,4 @@ return {
       virt_text_pos = "eol",
     },
   },
-  
-  -- Disabled development plugins
-  { "mfussenegger/nvim-dap", enabled = false },
-  { "jay-babu/mason-nvim-dap.nvim", enabled = false },
 }

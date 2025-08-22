@@ -26,14 +26,14 @@ return {
           ["K"] = false,
           ["H"] = false,
         },
+        width = 50
       },
       enable_git_status = false,
-      enable_diagnostics = false,
+      enable_diagnostics = true,
       git_status_async = false,
     },
   },
   
   -- Disabled file explorer plugins
-  { "s1n7ax/nvim-window-picker", enabled = false },
 }
 
