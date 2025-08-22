@@ -1,9 +1,9 @@
--- Plugins that enhance editor experience
+-- Editor Enhancements
 return {
+  -- Comment management
   {
     "numToStr/Comment.nvim",
     opts = {
-      -- Ignore empty line
       ignore = "^$",
     },
     keys = {
@@ -21,126 +21,130 @@ return {
       },
     },
   },
-  -- Built-in terminal support
+  
+  -- Auto-save functionality
   {
-    "akinsho/toggleterm.nvim",
-    opts = function(_, opts)
-      -- Use powershell for toggleterm on windows
-      -- if vim.fn.has "win32" then opts.shell = "pwsh.exe" end
-    end,
-  },
-  -- File tagging and navigation
-  -- {
-  --   "cbochs/grapple.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     {
-  --       "AstroNvim/astrocore",
-  --       opts = function(_, opts)
-  --         opts.mappings.n["<Leader><Leader>"] = { desc = require("astroui").get_icon("Grapple", 1, true) .. "Grapple" }
-  --       end,
-  --     },
-  --   },
-  --   opts = {
-  --     scope = "git_branch",
-  --   },
-  --   cmd = { "Grapple" },
-  --   keys = {
-  --     { "<Leader><Leader>a", "<Cmd>Grapple tag<CR>", desc = "Add tag to file" },
-  --     { "<Leader><Leader>d", "<Cmd>Grapple untag<CR>", desc = "Delete tag from file" },
-  --     { "<Leader><Leader>e", "<Cmd>Grapple toggle_tags<CR>", desc = "Select from tags" },
-  --     { "<Leader><Leader>s", "<Cmd>Grapple toggle_scopes<CR>", desc = "Select a project scope" },
-  --     { "<Leader><Leader>x", "<Cmd>Grapple reset<CR>", desc = "Clear tags" },
-  --     { "<C-e>", "<Cmd>Grapple cycle forward<CR>", desc = "Select next tag" },
-  --     { "<C-p>", "<Cmd>Grapple cycle backward<CR>", desc = "Select previous tag" },
-  --   },
-  -- },
-  -- Better escape support
-  -- {
-  --   "max397574/better-escape.nvim",
-  --   opts = {
-  --     mapping = { "jj", "kk", "jk" },
-  --   },
-  -- },
-  -- Better indent blankline
-  -- {
-  --   "shellRaining/hlchunk.nvim",
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   config = function(_, opts)
-  --     require("hlchunk").setup(require("astrocore").extend_tbl(opts, {
-  --       ignore = {},
-  --       chunk = {
-  --         enable = true,
-  --         notify = false,
-  --         chars = {
-  --           -- horizontal_line = "━",
-  --           -- vertical_line = "┃",
-  --           -- left_top = "┏",
-  --           -- left_bottom = "┗",
-  --           -- right_arrow = "➤",
-  --         },
-  --         style = "#06D001",
-  --         delay = 25,
-  --       },
-  --       indent = {
-  --         enable = false,
-  --         use_treesitter = true,
-  --         chars = {
-  --           "│",
-  --         },
-  --       },
-  --       blank = {
-  --         enable = false,
-  --         chars = {
-  --           " ",
-  --         },
-  --         style = {
-  --           { bg = "#434437" },
-  --           { bg = "#2f4440" },
-  --           { bg = "#433054" },
-  --           { bg = "#284251" },
-  --         },
-  --       },
-  --       line_num = {
-  --         enable = false,
-  --       },
-  --     }))
-  --   end,
-  -- },
-  -- AI code completion
-  -- {
-  --   "monkoose/neocodeium",
-  --   event = "LspAttach",
-  --   config = function()
-  --     local neocodeium = require "neocodeium"
-  --     neocodeium.setup()
-  --     vim.keymap.set("n", "<Leader>;", function() require("neocodeium.commands").toggle() end)
-  --     vim.keymap.set("i", "<A-a>", function() require("neocodeium").accept() end)
-  --     vim.keymap.set("i", "<C-Right>", function() require("neocodeium").accept_word() end)
-  --     vim.keymap.set("i", "<A-e>", function() require("neocodeium").accept_line() end)
-  --     vim.keymap.set("i", "<S-Right>", function() require("neocodeium").cycle_or_complete() end)
-  --     vim.keymap.set("i", "<S-Left>", function() require("neocodeium").cycle_or_complete(-1) end)
-  --     vim.keymap.set("i", "<C-x>", function() require("neocodeium").clear() end)
-  --   end,
-  -- },
-  -- Multi-cursors support
-  {
-    "brenton-leighton/multiple-cursors.nvim",
-    version = "*",
+    "okuuva/auto-save.nvim",
+    event = { "User AstroFile", "InsertEnter" },
+    dependencies = {
+      "AstroNvim/astrocore",
+      opts = {
+        autocmds = {
+          autoformat_toggle = {
+            {
+              event = "User",
+              desc = "Disable autoformat before saving",
+              pattern = "AutoSaveWritePre",
+              callback = function()
+                vim.g.OLD_AUTOFORMAT = vim.g.autoformat
+                vim.g.autoformat = false
+                local old_autoformat_buffers = {}
+                for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+                  if vim.b[bufnr].autoformat then
+                    table.insert(old_autoformat_buffers, bufnr)
+                    vim.b[bufnr].autoformat = false
+                  end
+                end
+                vim.g.OLD_AUTOFORMAT_BUFFERS = old_autoformat_buffers
+              end,
+            },
+            {
+              event = "User",
+              desc = "Re-enable autoformat after saving",
+              pattern = "AutoSaveWritePost",
+              callback = function()
+                vim.g.autoformat = vim.g.OLD_AUTOFORMAT
+                for _, bufnr in ipairs(vim.g.OLD_AUTOFORMAT_BUFFERS or {}) do
+                  vim.b[bufnr].autoformat = true
+                end
+              end,
+            },
+          },
+        },
+      },
+    },
     opts = {},
-    keys = {
-      { "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "i", "x" } },
-      { "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "i", "x" } },
-      { "<A-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = { "n", "i" } },
-      { "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" } },
-      { "<C-D>", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>", mode = { "n", "x" } },
+  },
+  
+  -- Indent scope highlighting
+  {
+    "echasnovski/mini.indentscope",
+    event = "User AstroFile",
+    opts = function()
+      vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#FF4500" })
+      return {
+        options = { try_as_border = true, border = "both" },
+        symbol = require("astrocore").plugin_opts("indent-blankline.nvim").context_char or "󰥓",
+        draw = {
+          delay = 0,
+          animation = function(s, n) return 10 end,
+        },
+      }
+    end,
+    dependencies = {
+      {
+        "lukas-reineke/indent-blankline.nvim",
+        optional = true,
+        opts = { scope = { enabled = false } },
+      },
+      {
+        "AstroNvim/astrocore",
+        opts = {
+          autocmds = {
+            mini_indentscope = {
+              {
+                event = "FileType",
+                desc = "Disable indentscope for certain filetypes",
+                callback = function(event)
+                  if vim.b[event.buf].miniindentscope_disable == nil then
+                    local filetype = vim.bo[event.buf].filetype
+                    local blankline_opts = require("astrocore").plugin_opts "indent-blankline.nvim"
+                    local ignore_filetypes = {
+                      "aerial", "alpha", "dashboard", "help", "lazy", "mason", "neo-tree",
+                      "NvimTree", "neogitstatus", "notify", "startify", "toggleterm", "Trouble",
+                    }
+                    if vim.tbl_contains(blankline_opts.filetype_exclude or ignore_filetypes, filetype) then
+                      vim.b[event.buf].miniindentscope_disable = true
+                    end
+                  end
+                end,
+              },
+              {
+                event = "BufWinEnter",
+                desc = "Disable indentscope for certain buftypes",
+                callback = function(event)
+                  if vim.b[event.buf].miniindentscope_disable == nil then
+                    local buftype = vim.bo[event.buf].buftype
+                    local blankline_opts = require("astrocore").plugin_opts "indent-blankline.nvim"
+                    local ignore_buftypes = {
+                      "nofile", "prompt", "quickfix", "terminal",
+                    }
+                    if vim.tbl_contains(blankline_opts.buftype_exclude or ignore_buftypes, buftype) then
+                      vim.b[event.buf].miniindentscope_disable = true
+                    end
+                  end
+                end,
+              },
+              {
+                event = "TermOpen",
+                desc = "Disable indentscope for terminals",
+                callback = function(event)
+                  if vim.b[event.buf].miniindentscope_disable == nil then
+                    vim.b[event.buf].miniindentscope_disable = true
+                  end
+                end,
+              },
+            },
+          },
+        },
+      },
     },
   },
+  
   -- Better code folding
   {
     "kevinhwang91/nvim-ufo",
     opts = {
-      -- Add virtual text to show how many lines are folded
       fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
         local suffix = (" 󰁂 %d "):format(endLnum - lnum)
@@ -158,7 +162,6 @@ return {
             local hlGroup = chunk[2]
             table.insert(newVirtText, { chunkText, hlGroup })
             chunkWidth = vim.fn.strdisplaywidth(chunkText)
-            -- str width returned from truncate() may less than 2nd argument, need padding
             if curWidth + chunkWidth < targetWidth then
               suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
             end
@@ -171,10 +174,11 @@ return {
       end,
     },
   },
+  
   -- Better split navigation and resize
   {
     "mrjones2014/smart-splits.nvim",
-    event = "VeryLazy", -- load on very lazy for mux detection
+    event = "VeryLazy",
     opts = function(_, opts)
       opts.ignored_filetypes = { "nofile", "quickfix", "qf", "prompt", "NvimTree" }
       opts.ignored_buftypes = { "nofile" }
@@ -205,31 +209,6 @@ return {
         mode = { "n" },
         desc = "Move to below split",
       },
-      -- {
-      --   "<A-Left>",
-      --   function() require("smart-splits").resize_left() end,
-      --   mode = { "n" },
-      --   desc = "Resize split left",
-      -- },
-      -- {
-      --   "<A-Right>",
-      --   function() require("smart-splits").resize_right() end,
-      --   mode = { "n" },
-      --   desc = "Resize split right",
-      -- },
-      -- {
-      --   "<A-Up>",
-      --   function() require("smart-splits").resize_up() end,
-      --   mode = { "n" },
-      --   desc = "Resize split up",
-      -- },
-      -- {
-      --   "<A-Down>",
-      --   function() require("smart-splits").resize_down() end,
-      --   mode = { "n" },
-      --   desc = "Resize split down",
-      -- },
-
       {
         "<S-h>",
         function() require("smart-splits").resize_left() end,
@@ -242,18 +221,23 @@ return {
         mode = { "n" },
         desc = "Resize split right",
       },
-      -- {
-      --   "<S-k>",
-      --   function() require("smart-splits").resize_up() end,
-      --   mode = { "n" },
-      --   desc = "Resize split up",
-      -- },
-      -- {
-      --   "<S-j>",
-      --   function() require("smart-splits").resize_down() end,
-      --   mode = { "n" },
-      --   desc = "Resize split down",
-      -- },
     },
   },
+  
+  -- Built-in terminal support
+  {
+    "akinsho/toggleterm.nvim",
+    enabled = false,
+    opts = function(_, opts)
+      -- Use powershell for toggleterm on windows
+      -- if vim.fn.has "win32" then opts.shell = "pwsh.exe" end
+    end,
+  },
+  
+  -- Disabled editor plugins
+  { "max397574/better-escape.nvim", enabled = false },
+  { "hinell/duplicate.nvim", enabled = false },
+  { "CRAG666/code_runner.nvim", enabled = false },
+  { "RRethy/vim-illuminate", enabled = false },
+  { "echasnovski/mini.bufremove", enabled = false },
 }

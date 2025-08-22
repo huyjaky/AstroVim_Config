@@ -12,7 +12,7 @@ M.statusline = {
   status.component.mode {
     -- enable mode text with padding as well as an icon before it
     mode_text = {
-      icon = { kind = "Mode", padding = { left = 0, right = 1 } },
+      icon = { kind = "Mode", padding = { left = 0, right = 0 } },
     },
     -- surround the component with a separators
     surround = {
@@ -30,7 +30,7 @@ M.statusline = {
     },
   },
   status.component.git_branch {
-    padding = { left = 2, right = 1 },
+    padding = { left = 0, right = 1 },
     surround = {
       separator = "none",
       color = "bg",

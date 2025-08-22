@@ -1,19 +1,25 @@
--- Plugins related to motion
+-- Motion, Navigation and Multiple Cursors
 return {
-  -- Faster change/delete/replace delimiter pairs
-  -- {
-  --   "echasnovski/mini.surround",
-  --   opts = { n_lines = 200 },
-  --   keys = {
-  --     { "sa", mode = { "n", "x" }, desc = "Add surrounding" },
-  --     { "sd", mode = { "n", "x" }, desc = "Delete surrounding" },
-  --     { "sr", mode = { "n", "x" }, desc = "Replace surrounding" },
-  --     { "sf", mode = { "n", "x" }, desc = "Find right surrounding" },
-  --     { "sF", mode = { "n", "x" }, desc = "Find left surrounding" },
-  --     { "sh", mode = { "n", "x" }, desc = "Highlight surrounding" },
-  --     { "sn", mode = { "n", "x" }, desc = "Update `MiniSurround.config.n_lines`" },
-  --   },
-  -- },
+  -- Multi-cursors support
+  {
+    "brenton-leighton/multiple-cursors.nvim",
+    version = "*",
+    opts = {},
+    keys = {
+      { "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "i", "x" } },
+      { "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "i", "x" } },
+      { "<A-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = { "n", "i" } },
+      { "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" } },
+      { "<C-D>", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>", mode = { "n", "x" } },
+    },
+  },
+  
+  -- Alternative multi-cursor plugin
+  {
+    "mg979/vim-visual-multi",
+    event = "BufRead",
+  },
+  
   -- Brackets splitjoin
   {
     "Wansmer/treesj",
@@ -26,6 +32,7 @@ return {
       { "gs", "<Cmd>TSJToggle<CR>", mode = { "n" }, desc = "Toggle splitjoin" },
     },
   },
+  
   -- Better move by word
   {
     "chrisgrieser/nvim-spider",
@@ -37,6 +44,7 @@ return {
       { "ge", "<Cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" }, desc = "Spider-ge" },
     },
   },
+  
   -- Better character motion
   {
     "folke/flash.nvim",
@@ -59,6 +67,7 @@ return {
       },
     },
   },
+  
   -- Move code block
   {
     "echasnovski/mini.move",
@@ -78,4 +87,7 @@ return {
       }
     end,
   },
+  
+  -- Disabled motion plugins
+  { "Wansmer/treesj", enabled = false },
 }

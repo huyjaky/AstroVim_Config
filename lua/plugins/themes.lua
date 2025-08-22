@@ -1,10 +1,27 @@
+-- Themes and Colorschemes
 return {
+  -- Main colorscheme
+  {
+    "ribru17/bamboo.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("bamboo").setup {
+        integrations = { mini = true },
+        terminal_colors = false
+      }
+      require("bamboo").load()
+    end,
+  },
+  
+  -- Alternative themes (disabled)
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    enabled = false,
     opts = {
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
+      flavour = "mocha",
+      background = {
         light = "latte",
         dark = "mocha",
       },
@@ -61,19 +78,15 @@ return {
       },
     },
   },
-
-  -- Using lazy.nvim
-  {
-    "ribru17/bamboo.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("bamboo").setup {
-        -- optional configuration here
-        integrations = { mini = true },
-        terminal_colors = false
-      }
-      require("bamboo").load()
-    end,
-  },
+  
+  -- Disabled themes
+  { "rebelot/kanagawa.nvim", enabled = false },
+  { "folke/tokyonight.nvim", enabled = false },
+  { "f4z3r/gruvbox-material.nvim", name = "gruvbox-material", enabled = false },
+  { "AstroNvim/astrotheme", enabled = false },
+  { "scottmckendry/cyberdream.nvim", enabled = false },
+  { "loctvl842/monokai-pro.nvim", enabled = false },
+  
+  -- Transparent background
+  { "xiyaowong/transparent.nvim", enabled = false },
 }
