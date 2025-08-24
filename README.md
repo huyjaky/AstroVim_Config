@@ -44,6 +44,7 @@ sudo pacman -S lact
 ## SSH tunneling 
 1. first u must have port 22 available on 192.168.1.1 virtual trigger 
 2. uncomment `port 22` on file follow path `/etc/ssh/sshd_config`
+3. `sudo systemctl enable sshd | systemctl start --now sshd`
 -> after that u can connect to ssh. it means u doesnt need add open port 22 
 
 
