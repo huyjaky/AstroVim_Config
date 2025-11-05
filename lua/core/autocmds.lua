@@ -1,4 +1,3 @@
-
 -- Some commands that I want to execute in specific timing
 vim.api.nvim_create_augroup("disable_comment_newline", { clear = true })
 vim.api.nvim_create_augroup("auto_wrap", { clear = true })
@@ -34,4 +33,53 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   group = "clear_last_search",
   pattern = "*",
   command = "let @/ = ''",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function() vim.opt_local.spell = false end,
+})
+
+vim.lsp.enable "pyrefly"
+vim.lsp.config("pyrefly", {
+  -- example of how to run `uv` installed Pyrefly without adding to your path
+  cmd = { "pyrefly", "lsp" },
+  filetypes = { "python" },
+  root_markers = {
+    "pyrefly.toml",
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    ".git",
+    ".venv",
+    ".env",
+  },
+  settings = {
+    python = {
+      pyrefly = {
+        -- reportMissingTypeStubs = false,
+        -- reportUnusedImport = false,
+        -- reportUnusedVariable = false,
+        -- strict = false,
+        -- displayTypeErrors = false,
+        -- analyzeUnannotatedFunctions = false,
+        displayTypeErrors = "error-missing-imports",
+        analysis = {
+          diagnosticMode = "off",
+          showHoverGoToLinks = false,
+        },
+      },
+    },
+  },
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end,
+  },
+  on_init = function(client)
+    client.server_capabilities.definitionProvider = false
+    client.server_capabilities.renameProvider = false
+    client.server_capabilities.diagnosticProvider = nil
+    -- client.server_capabilities.inlayHintProvider = nil
+  end,
 })

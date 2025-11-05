@@ -13,6 +13,7 @@ return {
 
   -- { "ray-x/lsp_signature.nvim", enabled = false },
   { "brenoprata10/nvim-highlight-colors", enabled = false },
+  { "OXY2DEV/markview.nvim", enabled = false },
 
   -- Disabled development plugins
   { "mfussenegger/nvim-dap", enabled = false },

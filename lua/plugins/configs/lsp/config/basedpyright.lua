@@ -5,33 +5,42 @@ return {
     c.settings.python.pythonPath = vim.fn.exepath "python3"
   end,
   settings = {
+
+    python = false,
     basedpyright = {
       disableLanguageServices = false,
       disableOrganizeImports = true,
       disableTaggedHints = true,
-
-      useLibraryCodeForTypes = false,
+      useLibraryCodeForTypes = true,
       openFilesOnly = true,
 
       analysis = {
-        autoSearchPath = false,
-        useLibraryCodeForTypes = false,
-        logLevel = "Trace",
-
-        typeCheckingMode = "basic",
+        verboseOutput = false,
+        autoImportCompletions = false,
+        pythonPlatform = "Linux",
+        autoSearchPaths = true,
         deprecateTypingAliases = false,
-        diagnosticMode = "openFilesOnly",
+        logLevel = "Error",
+        typeCheckingMode = "off",
         inlayHints = {
-          variableTypes = true,
+          variableTypes = false,
           genericTypes = true,
-          callArgumentNames = false,
+          callArgumentNames = true,
+        },
+        exclude = {
+          "**/unsloth_compiled_cache/**",
+          "**/__pycache__/**",
+          "**/.venv/**",
+          "__index__",
+          "**/.*",
         },
         ignore = {
           "**/unsloth_compiled_cache/**",
           "**/__pycache__/**",
           "__index__",
+          "**/.venv/**",
+          "**/*.ipynb",
         },
-        autoImportCompletions = false,
       },
     },
   },

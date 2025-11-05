@@ -10,23 +10,23 @@ return {
     features = {
       autoformat = false, -- enable or disable auto formatting on start
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
-      semantic_tokens = true, -- enable/disable semantic token highlighting
+      inlay_hints = true, -- enable/disable inlay hints on start
+      semantic_tokens = false, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
     formatting = require "plugins.configs.lsp.formatting",
     -- enable servers that you already have installed without mason
 
-    servers = {},
-    -- customize language server configuration options passed to `lspconfig`
+    servers = {}, -- customize language server configuration options passed to `lspconfig`
+
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = require "plugins.configs.lsp.config.clangd",
-      basedpyright = require "plugins.configs.lsp.config.basedpyright",
-      jedi_language_server = require "plugins.configs.lsp.config.jedi_language",
       pyright = require "plugins.configs.lsp.config.pyright",
-      ruff = require "plugins.configs.lsp.config.ruff",
-      pylsp = require "plugins.configs.lsp.config.pylsp",
+      -- basedpyright = require "plugins.configs.lsp.config.basedpyright",
+      -- clangd = require "plugins.configs.lsp.config.clangd",
+      -- jedi_language_server = require "plugins.configs.lsp.config.jedi_language",
+      -- ruff = require "plugins.configs.lsp.config.ruff",
+      -- pylsp = require "plugins.configs.lsp.config.pylsp",
     },
     -- customize how language servers are attached
     handlers = {
@@ -37,11 +37,11 @@ return {
       -- the key is the server that is being setup with `lspconfig`
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
-
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)
+
       lsp_document_highlight = {
         -- Optional condition to create/delete auto command group
         -- can either be a string of a client capability or a function of `fun(client, bufnr): boolean`
@@ -63,6 +63,8 @@ return {
           callback = function() vim.lsp.buf.clear_references() end,
         },
       },
+
+      -- NOTE: start
       -- disable inlay hints in insert mode
       disable_inlay_hints_on_insert = {
         -- only create for language servers that support inlay hints
@@ -89,6 +91,7 @@ return {
           end,
         },
       },
+      -- ----------------------------------------------------------------------------------
     },
     -- mappings to be set up on attaching of a language server
     mappings = {
@@ -99,50 +102,45 @@ return {
     on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
+
       -- Disable ruff_lsp hover in favor of pyright
-      if client.name == "ruff" then
-        client.server_capabilities.hoverProvider = false
-        client.server_capabilities.completionProvider = false
-      end
+      -- if client.name == "ruff" then
+      --   client.server_capabilities.hoverProvider = false
+      --   client.server_capabilities.completionProvider = false
+      -- end
 
-      -- if client.name == "pyright" then
-      --   -- disable pyright analysis features
-      --   client.server_capabilities.documentFormattingProvider = false
-      --      client.server_capabilities.hoverProvider = false
+      -- if client.name == "jedi_language_server" then client.server_capabilities.renameProvider = false end
 
-      --    end
-
-      if client.name == "jedi_language_server" then client.server_capabilities.renameProvider = false end
-
-      if client.name == "basedpyright" then
-        -- client.server_capabilities.completionProvider = false
-        -- client.server_capabilities.hoverProvider = false
+      if client.name == "pyright" then
         -- client.server_capabilities.renameProvider = false
         -- client.server_capabilities.definitionProvider = false
-        -- client.server_capabilities.signatureHelpProvider = false
-
-        client.server_capabilities.codeLensProvider = false
+        -- client.server_capabilities.diagnosticProvider = nil
+        -- client.server_capabilities.inlayHintProvider = nil
+        client.server_capabilities.hoverProvider = false
+        client.server_capabilities.signatureHelpProvider = nil
+        client.server_capabilities.completionProvider = nil
+        client.server_capabilities.codeLensProvider = nil
         client.server_capabilities.colorProvider = false
         client.server_capabilities.callHierarchyProvider = false
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
         client.server_capabilities.declarationProvider = false
-        client.server_capabilities.documentLinkProvider = false
-        client.server_capabilities.documentOnTypeFormattingProvider = false
+        client.server_capabilities.documentLinkProvider = nil
+        client.server_capabilities.documentOnTypeFormattingProvider = nil
         client.server_capabilities.documentSymbolProvider = false
         client.server_capabilities.inlineCompletionProvider = false
         client.server_capabilities.inlineValueProvider = false
-        client.server_capabilities.notebookDocumentSync = false
+        client.server_capabilities.notebookDocumentSync = nil
         client.server_capabilities.typeDefinitionProvider = false
         client.server_capabilities.workspaceSymbolProvider = false
         client.server_capabilities.monikerProvider = false
-        client.server_capabilities.semanticTokensProvider = false
+        client.server_capabilities.semanticTokensProvider = nil
         client.server_capabilities.referencesProvider = false
         client.server_capabilities.implementationProvider = false
         client.server_capabilities.foldingRangeProvider = false
         client.server_capabilities.selectionRangeProvider = false
         client.server_capabilities.linkedEditingRangeProvider = false
-        client.server_capabilities.executeCommandProvider = false
+        client.server_capabilities.executeCommandProvider = nil
         client.server_capabilities.workspace = {
           workspaceFolders = { supported = false },
           fileOperations = { supported = false },

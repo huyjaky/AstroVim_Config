@@ -9,7 +9,7 @@ return {
         type = "󰜁 ",
         parameter = "󰏪 ",
         offspec = "󰀒 ", -- hint kind not defined in official LSP spec
-        unknown = " ", -- hint kind is nil
+        unknown = "", -- hint kind is nil
       },
       label = {
         truncateAtChars = 100,
