@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.lsp.enable "pyrefly"
 vim.lsp.config("pyrefly", {
   -- example of how to run `uv` installed Pyrefly without adding to your path
-  cmd = { "pyrefly", "lsp" },
+  cmd = { "pyrefly", "lsp", "--indexing-mode", "none" },
   filetypes = { "python" },
   root_markers = {
     "pyrefly.toml",

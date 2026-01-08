@@ -116,6 +116,7 @@ return {
         -- client.server_capabilities.definitionProvider = false
         -- client.server_capabilities.diagnosticProvider = nil
         -- client.server_capabilities.inlayHintProvider = nil
+
         client.server_capabilities.hoverProvider = false
         client.server_capabilities.signatureHelpProvider = nil
         client.server_capabilities.completionProvider = nil
