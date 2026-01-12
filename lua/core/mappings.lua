@@ -19,6 +19,8 @@ return function()
   mappings.n["<C-Up>"] = false
   mappings.n["<C-Down>"] = false
 
+  mappings.n["<z-b>"] = false
+
   -------------------------------------------
   ----------- Utility functions -------------
   -------------------------------------------

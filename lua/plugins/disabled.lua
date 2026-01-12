@@ -1,5 +1,6 @@
 return {
   { "Wansmer/treesj", enabled = false },
+  -- { "kevinhwang91/nvim-ufo", enabled = true},
 
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = false },

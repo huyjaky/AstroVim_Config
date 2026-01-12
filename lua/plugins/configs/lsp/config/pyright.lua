@@ -15,7 +15,7 @@ return {
       analysis = {
         useLibraryCodeForTypes = false,
         autoImportCompletions = false,
-        diagnosticMode = "openFilesOnly",
+        diagnosticMode = "off",
         typeCheckingMode = "off",
         autoSearchPath = false,
         logLevel = "Error",
