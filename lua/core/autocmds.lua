@@ -40,47 +40,52 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.opt_local.spell = false end,
 })
 
+local function get_conda_python_path()
+  local conda_prefix = os.getenv("CONDA_PREFIX")
+  if conda_prefix then
+    return conda_prefix .. "/bin/python"
+  end
+  return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+end
+
 vim.lsp.enable "pyrefly"
 vim.lsp.config("pyrefly", {
-  -- example of how to run `uv` installed Pyrefly without adding to your path
-  cmd = { "pyrefly", "lsp", "--indexing-mode", "none" , "--threads", "4"},
+  cmd = { "pyrefly", "lsp" }, 
   filetypes = { "python" },
   root_markers = {
     "pyrefly.toml",
     "pyproject.toml",
-    "setup.py",
-    "setup.cfg",
-    "requirements.txt",
-    "requirement.txt",
-    "Pipfile",
     ".git",
-    ".venv",
-    ".env",
   },
   settings = {
     python = {
       pyrefly = {
-        -- reportMissingTypeStubs = false,
-        -- reportUnusedImport = false,
-        -- reportUnusedVariable = false,
+        displayTypeErrors = "force-off", 
         -- strict = false,
-        -- displayTypeErrors = false,
-        -- analyzeUnannotatedFunctions = false,
-        displayTypeErrors = "error-missing-imports",
+        disabledLanguageServices = {
+            "textDocument/definition",
+            "textDocument/rename",
+            "textDocument/references",
+            "textDocument/documentHighlight",
+            "textDocument/signatureHelp",
+            -- "workspace/symbol",
+            "textDocument/formatting",     
+            "textDocument/rangeFormatting" 
+        },
         analysis = {
-          diagnosticMode = "off",
-          showHoverGoToLinks = false,
+          diagnosticMode = "workspace",
+          showHoverGoToLinks = false, 
         },
       },
     },
   },
-  handlers = {
-    ["textDocument/publishDiagnostics"] = function() end,
-  },
+  
   on_init = function(client)
-    client.server_capabilities.definitionProvider = false
-    client.server_capabilities.renameProvider = false
     client.server_capabilities.diagnosticProvider = nil
-    -- client.server_capabilities.inlayHintProvider = nil
+    client.server_capabilities.definitionProvider = false
+    --
+    client.server_capabilities.renameProvider = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end,
 })

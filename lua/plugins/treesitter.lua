@@ -13,7 +13,7 @@ return {
         -- "c",
         -- "cpp",
         "python",
-        "latex",
+        -- "latex",
         -- "javascript",
       })
 

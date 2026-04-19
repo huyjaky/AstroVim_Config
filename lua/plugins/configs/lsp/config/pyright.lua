@@ -2,37 +2,29 @@ return {
   before_init = function(_, c)
     if not c.settings then c.settings = {} end
     if not c.settings.python then c.settings.python = {} end
-    c.settings.python.pythonPath = vim.fn.exepath "python3"
+    c.settings.python.pythonPath = vim.fn.exepath("python3")
   end,
   settings = {
     python = {
       disableLanguageServices = true,
       disableOrganizeImports = true,
-      disableTaggedHints = true,
-      openFilesOnly = true,
-      useLibraryCodeForTypes = false,
-
       analysis = {
+        diagnosticMode = "openFilesOnly",
+        typeCheckingMode = "basic",      
         useLibraryCodeForTypes = false,
         autoImportCompletions = false,
-        diagnosticMode = "off",
-        typeCheckingMode = "off",
-        autoSearchPath = false,
+        autoSearchPaths = false,
         logLevel = "Error",
-        verboseOutput = false,
-        pythonPlatform = "Linux",
         exclude = {
           "**/unsloth_compiled_cache/**",
           "**/__pycache__/**",
           "**/.venv/**",
-          "__index__",
-          "**/.*",
+          "**/venv/**",
+          "**/.env/**",
+          "**/.git/**",
         },
         ignore = {
           "**/unsloth_compiled_cache/**",
-          "**/__pycache__/**",
-          "__index__",
-          "**/.venv/**",
           "**/*.ipynb",
         },
       },
