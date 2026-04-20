@@ -5,9 +5,6 @@ return {
     event = "User AstroFile",
     cmd = { "TSContext" },
     opts = {
-      on_attach = function()
-        vim.api.nvim_set_hl(0, "TreesitterContext", { underline = true, sp = "Red", bg = "#1e1e3f" })
-      end,
       max_lines = 2,
     },
     dependencies = {

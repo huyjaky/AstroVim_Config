@@ -25,7 +25,7 @@ return {
       -- basedpyright = require "plugins.configs.lsp.config.basedpyright",
       -- clangd = require "plugins.configs.lsp.config.clangd",
       -- jedi_language_server = require "plugins.configs.lsp.config.jedi_language",
-      -- ruff = require "plugins.configs.lsp.config.ruff",
+      ruff = require "plugins.configs.lsp.config.ruff",
       -- pylsp = require "plugins.configs.lsp.config.pylsp",
     },
     -- customize how language servers are attached
@@ -93,7 +93,7 @@ return {
       },
       -- ----------------------------------------------------------------------------------
     },
-    -- mappings to be set up on attaching of a language server
+    -- mapping to be set up on attaching of a language server
     mappings = {
       n = {},
     },
@@ -102,51 +102,19 @@ return {
     on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
-
-      -- Disable ruff_lsp hover in favor of pyright
-      -- if client.name == "ruff" then
-      --   client.server_capabilities.hoverProvider = false
-      --   client.server_capabilities.completionProvider = false
-      -- end
-
-      -- if client.name == "jedi_language_server" then client.server_capabilities.renameProvider = false end
-
-      if client.name == "pyright" then
-        -- client.server_capabilities.renameProvider = false
-        -- client.server_capabilities.definitionProvider = false
-        -- client.server_capabilities.diagnosticProvider = nil
-        -- client.server_capabilities.inlayHintProvider = nil
-
-        client.server_capabilities.hoverProvider = false
-        client.server_capabilities.signatureHelpProvider = nil
-        client.server_capabilities.completionProvider = nil
-        client.server_capabilities.codeLensProvider = nil
-        client.server_capabilities.colorProvider = false
-        client.server_capabilities.callHierarchyProvider = false
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        client.server_capabilities.declarationProvider = false
-        client.server_capabilities.documentLinkProvider = nil
-        client.server_capabilities.documentOnTypeFormattingProvider = nil
-        client.server_capabilities.documentSymbolProvider = false
-        client.server_capabilities.inlineCompletionProvider = false
-        client.server_capabilities.inlineValueProvider = false
-        client.server_capabilities.notebookDocumentSync = nil
-        client.server_capabilities.typeDefinitionProvider = false
-        client.server_capabilities.workspaceSymbolProvider = false
-        client.server_capabilities.monikerProvider = false
-        client.server_capabilities.semanticTokensProvider = nil
-        client.server_capabilities.referencesProvider = false
-        client.server_capabilities.implementationProvider = false
-        client.server_capabilities.foldingRangeProvider = false
-        client.server_capabilities.selectionRangeProvider = false
-        client.server_capabilities.linkedEditingRangeProvider = false
-        client.server_capabilities.executeCommandProvider = nil
-        client.server_capabilities.workspace = {
-          workspaceFolders = { supported = false },
-          fileOperations = { supported = false },
-        }
-      end
     end,
   },
+  init = function()
+    -- Set up pyrefly native LSP
+    vim.lsp.config("pyrefly", vim.tbl_deep_extend("force", {
+      cmd = { "pyrefly", "lsp" },
+      filetypes = { "python" },
+      root_markers = {
+        "pyrefly.toml",
+        "pyproject.toml",
+        ".git",
+      },
+    }, require "plugins.configs.lsp.config.pyrefly"))
+    vim.lsp.enable "pyrefly"
+  end,
 }

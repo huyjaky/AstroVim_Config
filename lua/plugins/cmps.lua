@@ -1,9 +1,46 @@
 return {
+  -- {
+  --   "github/copilot.vim",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
+  --   end,
+  -- },
+
   {
-    "github/copilot.vim",
-    event = "BufRead",
-    config = function()
-      vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<C-f>",
+          next = "<C-j>",
+          prev = "<C-k>",
+          dismiss = "<C-l>",
+        },
+      },
+      panel = {
+        enabled = false,
+        keymap = {
+          open = "<C-h>",
+        },
+      },
+    },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuOpen",
+        callback = function() vim.b.copilot_suggestion_hidden = true end,
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuClose",
+        callback = function() vim.b.copilot_suggestion_hidden = false end,
+      })
     end,
   },
   {

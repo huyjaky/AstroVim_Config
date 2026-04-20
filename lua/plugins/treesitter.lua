@@ -9,10 +9,10 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ignore_install = { "help" }
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        -- "lua",
+        "lua",
+        "python",
         -- "c",
         -- "cpp",
-        "python",
         -- "latex",
         -- "javascript",
       })
@@ -26,8 +26,6 @@ return {
           ["variable.local"] = "Identifier",
         },
       }
-
-      vim.api.nvim_set_hl(0, "Identifier", { fg = "#55ffff" })
     end,
   },
 }
