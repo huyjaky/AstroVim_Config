@@ -85,7 +85,7 @@ return {
           draw = {
             columns = {
               { "kind_icon", "label", gap = 1 },
-              { "kind", gap = 1 },
+              { "kind", "source_name", gap = 1 },
             },
           },
         },
@@ -93,7 +93,7 @@ return {
           auto_brackets = { enabled = false },
         },
         documentation = {
-          auto_show = true,
+          auto_show = false,
           auto_show_delay_ms = 0,
           window = {
             border = "rounded",
