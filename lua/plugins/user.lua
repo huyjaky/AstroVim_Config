@@ -75,6 +75,7 @@ return {
         { "[", "]", fly = true },
         { "{", "}", fly = true },
         { "(", ")", fly = true },
+        { "<", ">", fly = true },
       },
     },
     dependencies = {

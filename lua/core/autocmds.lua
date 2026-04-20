@@ -40,51 +40,19 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local function get_conda_python_path()
-  local conda_prefix = os.getenv("CONDA_PREFIX")
-  if conda_prefix then
-    return conda_prefix .. "/bin/python"
-  end
-  return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+  local conda_prefix = os.getenv "CONDA_PREFIX"
+  if conda_prefix then return conda_prefix .. "/bin/python" end
+  return vim.fn.exepath "python3" or vim.fn.exepath "python" or "python"
 end
 
 vim.lsp.enable "pyrefly"
 vim.lsp.config("pyrefly", {
-  cmd = { "pyrefly", "lsp" }, 
+  cmd = { "pyrefly", "lsp" },
   filetypes = { "python" },
   root_markers = {
     "pyrefly.toml",
     "pyproject.toml",
     ".git",
   },
-  settings = {
-    python = {
-      pyrefly = {
-        displayTypeErrors = "force-off", 
-        -- strict = false,
-        disabledLanguageServices = {
-            "textDocument/definition",
-            "textDocument/rename",
-            "textDocument/references",
-            "textDocument/documentHighlight",
-            "textDocument/signatureHelp",
-            -- "workspace/symbol",
-            "textDocument/formatting",     
-            "textDocument/rangeFormatting" 
-        },
-        analysis = {
-          diagnosticMode = "workspace",
-          showHoverGoToLinks = false, 
-        },
-      },
-    },
-  },
-  
-  on_init = function(client)
-    client.server_capabilities.diagnosticProvider = nil
-    client.server_capabilities.definitionProvider = false
-    --
-    client.server_capabilities.renameProvider = false
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-  end,
+  require "plugins.configs.lsp.config.pyrefly",
 })
