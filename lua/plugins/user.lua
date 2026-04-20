@@ -24,11 +24,9 @@ return {
         current = "󰜱   ", -- when the hint is on the same line
         below = "󰧄   ", -- when the hint is on the line below the current line
       },
-      hi_parameter = "MyCustomHintColor",
-      doc_lines = 0,
+      doc_lines = 2,
     },
     config = function(_, opts)
-      vim.api.nvim_set_hl(0, "MyCustomHintColor", { fg = "#98C379", italic = true })
       require("lsp_signature").setup(opts)
       local orig_extmark = vim.api.nvim_buf_set_extmark
       vim.api.nvim_buf_set_extmark = function(buf, ns, line, col, e_opts)
@@ -37,7 +35,7 @@ return {
           local vt = e_opts.virt_text
           if vt[2] and type(vt[2][1]) == "string" then
             local text = vt[2][1]
-            local max_chars = 40
+            local max_chars = 60
             if vim.fn.strchars(text) > max_chars then vt[2][1] = vim.fn.strcharpart(text, 0, max_chars) .. "..." end
           end
 
