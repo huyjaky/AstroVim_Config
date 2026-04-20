@@ -26,8 +26,6 @@ return {
           ["variable.local"] = "Identifier",
         },
       }
-
-      vim.api.nvim_set_hl(0, "Identifier", { fg = "#55ffff" })
     end,
   },
 }

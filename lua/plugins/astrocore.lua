@@ -49,9 +49,113 @@ return {
       },
     },
     -- vim options can be configured here
-    options = require"core.options",
+    options = {
+      opt = {
+        number = true, -- show line number
+        relativenumber = true, -- show relative line number
+        spell = false, -- disable spell check
+        wrap = false, -- disable auto wrap lines
+        signcolumn = "yes", -- show changes of file
+        foldcolumn = "1", -- show foldcolumn
+        foldenable = true, -- enable fold for nvim-ufo
+        foldlevel = 99, -- set high foldlevel for nvim-ufo
+        foldlevelstart = 99, -- start with all code unfolded
+        guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20", -- default cursor setting
+        clipboard = "unnamedplus", -- enable system clipboard
+        termguicolors = true, -- true color support
+        mouse = "a", -- enable mouse
+        mousemoveevent = true, -- enable mousemove event
+        laststatus = 3, -- only show one statusline
+        swapfile = false, -- don't use swapfile
+        shiftwidth = 2, -- number of space inserted for indentation; when zero the 'tabstop' value will be used
+        tabstop = 2, -- set the number of space in a tab to 4
+        softtabstop = 2, -- can be differnt from tabstop
+        showtabline = 0, -- always show tabline
+        expandtab = false, -- use spaces instead of tab
+        undofile = true, -- enable persistent undo
+      },
+      g = {
+        copilot_no_tab_map = true,
+      },
+    },
     -- Mappings can be configured through AstroCore as well.
-    -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
-    mappings = require "core.mappings"(),
+    mappings = {
+      n = {
+        ["<C-H>"] = false,
+        ["<C-L>"] = false,
+        ["<C-K>"] = false,
+        ["<C-J>"] = false,
+        ["<C-Left>"] = false,
+        ["<C-Right>"] = false,
+        ["<C-Up>"] = false,
+        ["<C-Down>"] = false,
+        ["<z-b>"] = false,
+
+        ["<C-z>"] = { "u", desc = "Undo" },
+        ["<C-a>"] = { "ggVG", desc = "Select all lines" },
+        ["<leader>xn"] = { "<Cmd>Telescope notify<CR>", desc = "Notifications" },
+      },
+      i = {
+        ["<C-z>"] = { "<C-o>u", desc = "Undo" },
+        ["<C-Del>"] = { "<C-o>dw", desc = "Delete a word backward" },
+        ["<C-s>"] = { "<Cmd>w!<CR>", desc = "Save file" },
+        ["jj"] = { "<Esc>", desc = "Normal mode" },
+        ["<S-Tab>"] = { "<C-d>", desc = "Unindent line" },
+      },
+      v = {
+        ["<Tab>"] = { ">gv", desc = "Indent line" },
+        ["<S-Tab>"] = { "<gv", desc = "Unindent line" },
+        ["K"] = { "<Nop>", desc = "Ignore error when hover on visual" },
+      },
+    },
+    autocmds = {
+      disable_comment_newline = {
+        {
+          event = "BufEnter",
+          desc = "Disable auto insert comment newline",
+          command = "set formatoptions-=cro",
+        },
+      },
+      auto_wrap = {
+        {
+          event = "FileType",
+          desc = "Enable wrap and spell for text like documents",
+          pattern = { "gitcommit", "markdown", "text", "plaintext" },
+          callback = function()
+            vim.opt_local.wrap = true
+            vim.opt_local.spell = true
+          end,
+        },
+        {
+          event = "FileType",
+          pattern = "markdown",
+          callback = function() vim.opt_local.spell = false end,
+        },
+      },
+      disable_suspend_with_c_z = {
+        {
+          event = "BufEnter",
+          desc = "Remap <C-z> to nothing so that it doesn't suspend terminal",
+          command = "nnoremap <c-z> <nop>",
+        },
+      },
+      clear_last_search = {
+        {
+          event = "BufWinEnter",
+          desc = "Clear last search pattern",
+          pattern = "*",
+          command = "let @/ = ''",
+        },
+      },
+      custom_highlights = {
+        {
+          event = "ColorScheme",
+          desc = "Custom Highlight Groups",
+          callback = function()
+            vim.api.nvim_set_hl(0, "Identifier", { fg = "#55ffff" })
+          end,
+        },
+      },
+    },
   },
 }

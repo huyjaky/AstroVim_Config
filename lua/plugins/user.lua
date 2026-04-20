@@ -56,7 +56,7 @@ return {
   {
     "altermo/ultimate-autopair.nvim",
     event = "InsertEnter",
-    branch = "v0.6",
+    -- branch = "v0.6",
     opts = {
       cmap = false,
       extensions = {
@@ -68,14 +68,6 @@ return {
         fly = {
           nofilter = true,
         },
-      },
-      config_internal_pairs = {
-        { '"', '"', fly = true },
-        { "'", "'", fly = true },
-        { "[", "]", fly = true },
-        { "{", "}", fly = true },
-        { "(", ")", fly = true },
-        { "<", ">", fly = true },
       },
     },
     dependencies = {

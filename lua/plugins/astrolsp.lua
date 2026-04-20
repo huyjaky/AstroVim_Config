@@ -93,7 +93,7 @@ return {
       },
       -- ----------------------------------------------------------------------------------
     },
-    -- mappings to be set up on attaching of a language server
+    -- mapping to be set up on attaching of a language server
     mappings = {
       n = {},
     },
@@ -102,12 +102,19 @@ return {
     on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
-
-      -- Disable ruff_lsp hover in favor of pyright
-      -- if client.name == "ruff" then
-      --   client.server_capabilities.hoverProvider = false
-      --   client.server_capabilities.completionProvider = false
-      -- end
     end,
   },
+  init = function()
+    -- Set up pyrefly native LSP
+    vim.lsp.config("pyrefly", vim.tbl_deep_extend("force", {
+      cmd = { "pyrefly", "lsp" },
+      filetypes = { "python" },
+      root_markers = {
+        "pyrefly.toml",
+        "pyproject.toml",
+        ".git",
+      },
+    }, require "plugins.configs.lsp.config.pyrefly"))
+    vim.lsp.enable "pyrefly"
+  end,
 }
