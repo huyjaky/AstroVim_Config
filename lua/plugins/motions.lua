@@ -72,7 +72,12 @@ return {
   -- Move code block
   {
     "echasnovski/mini.move",
-    event = "BufRead",
+    keys = {
+      { "<M-a>", mode = { "n", "v" }, desc = "Move left" },
+      { "<M-s>", mode = { "n", "v" }, desc = "Move down" },
+      { "<M-d>", mode = { "n", "v" }, desc = "Move right" },
+      { "<M-w>", mode = { "n", "v" }, desc = "Move up" },
+    },
     config = function()
       require("mini.move").setup {
         mappings = {

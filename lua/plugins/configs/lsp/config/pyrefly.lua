@@ -21,6 +21,9 @@ return {
       },
     },
   },
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end,
+  },
   on_init = function(client)
     client.server_capabilities.diagnosticProvider = nil
     client.server_capabilities.definitionProvider = false

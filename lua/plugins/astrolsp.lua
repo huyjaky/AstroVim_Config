@@ -25,7 +25,7 @@ return {
       -- basedpyright = require "plugins.configs.lsp.config.basedpyright",
       -- clangd = require "plugins.configs.lsp.config.clangd",
       -- jedi_language_server = require "plugins.configs.lsp.config.jedi_language",
-      -- ruff = require "plugins.configs.lsp.config.ruff",
+      ruff = require "plugins.configs.lsp.config.ruff",
       -- pylsp = require "plugins.configs.lsp.config.pylsp",
     },
     -- customize how language servers are attached

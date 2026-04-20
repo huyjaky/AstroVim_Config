@@ -1,7 +1,7 @@
 return {
   {
     "github/copilot.vim",
-    event = "BufRead",
+    event = "InsertEnter",
     config = function()
       vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
     end,

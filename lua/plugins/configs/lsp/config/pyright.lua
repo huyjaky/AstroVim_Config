@@ -4,6 +4,9 @@ return {
       disableLanguageServices = true,
       disableOrganizeImports = true,
       analysis = {
+        diagnosticSeverityOverrides = {
+          reportMissingImports = "none",
+        },
         diagnosticMode = "workspace",
         typeCheckingMode = "basic",
         useLibraryCodeForTypes = false,
@@ -33,11 +36,6 @@ return {
   end,
 
   on_init = function(client)
-    -- client.server_capabilities.renameProvider = false
-    -- client.server_capabilities.definitionProvider = false
-    -- client.server_capabilities.diagnosticProvider = nil
-    -- client.server_capabilities.inlayHintProvider = nil
-
     client.server_capabilities.hoverProvider = false
     client.server_capabilities.signatureHelpProvider = nil
     client.server_capabilities.completionProvider = nil
