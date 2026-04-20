@@ -33,10 +33,22 @@ return {
         local lsp_sig_ns = vim.api.nvim_create_namespace "lsp_signature_vt"
         if ns == lsp_sig_ns and e_opts and e_opts.virt_text then
           local vt = e_opts.virt_text
+          local second_line_text = nil
+          local second_line_hl = nil
+
           if vt[2] and type(vt[2][1]) == "string" then
             local text = vt[2][1]
-            local max_chars = 60
-            if vim.fn.strchars(text) > max_chars then vt[2][1] = vim.fn.strcharpart(text, 0, max_chars) .. "..." end
+            local max_chars = 70
+            if vim.fn.strchars(text) > max_chars then
+              local chunk1 = vim.fn.strcharpart(text, 0, max_chars)
+              local chunk2 = vim.fn.strcharpart(text, max_chars, max_chars)
+              if vim.fn.strchars(text) > max_chars * 2 then
+                chunk2 = chunk2 .. "..."
+              end
+              vt[2][1] = chunk1
+              second_line_text = chunk2
+              second_line_hl = vt[2][2]
+            end
           end
 
           if vt[1] and type(vt[1][1]) == "string" and string.match(vt[1][1], "^%s*$") then
@@ -49,6 +61,12 @@ return {
             local needed_pad = cursor_width - target_line_width
             if needed_pad < 1 then needed_pad = 1 end
             vt[1][1] = string.rep(" ", needed_pad)
+
+            if second_line_text then
+              e_opts.virt_lines = {
+                { { string.rep(" ", cursor_width + 4) .. second_line_text, second_line_hl } }
+              }
+            end
           end
         end
         return orig_extmark(buf, ns, line, col, e_opts)
