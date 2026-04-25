@@ -6,6 +6,7 @@ return {
       analysis = {
         diagnosticSeverityOverrides = {
           reportMissingImports = "none",
+          reportPrivateImportUsage = "none",
         },
         diagnosticMode = "workspace",
         typeCheckingMode = "basic",
@@ -36,6 +37,9 @@ return {
   end,
 
   on_init = function(client)
+    -- client.server_capabilities.definitionProvider = false
+    -- client.server_capabilities.typeDefinitionProvider = false
+
     client.server_capabilities.hoverProvider = false
     client.server_capabilities.signatureHelpProvider = nil
     client.server_capabilities.completionProvider = nil
@@ -51,7 +55,6 @@ return {
     client.server_capabilities.inlineCompletionProvider = false
     client.server_capabilities.inlineValueProvider = false
     client.server_capabilities.notebookDocumentSync = nil
-    client.server_capabilities.typeDefinitionProvider = false
     client.server_capabilities.workspaceSymbolProvider = false
     client.server_capabilities.monikerProvider = false
     client.server_capabilities.semanticTokensProvider = nil
